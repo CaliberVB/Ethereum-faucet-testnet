@@ -2,7 +2,7 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 import { BaseClaimButton } from "./_BaseClaimButton"
 
 type GoogleReCaptchaClaimButtonProps = {
-  onSuccess: () => void
+  onSuccess: (message: string) => void
   onError: (message: string) => void
 }
 

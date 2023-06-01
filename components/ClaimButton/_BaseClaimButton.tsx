@@ -8,7 +8,7 @@ import { claimTokens, retrieveNonce } from "../../services/HttpClient"
 import { messageTemplate } from "../../utils/textMessage"
 
 type BaseClaimButtonProps = {
-  onSuccess: () => void
+  onSuccess: (message: string) => void
   onError: (message: string) => void
   retrieveCaptcha: () => Promise<string>
 }
@@ -31,8 +31,9 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
       const signer = library.getSigner()
       const signature = await signer.signMessage(message)
 
-      await claimTokens(account as string, message, signature, captchaToken)
-      onSuccess()
+      const txHash = await claimTokens(account as string, message, signature, captchaToken)
+      console.log(txHash.message)
+      onSuccess(txHash.message)
     } catch (e: any) {
       if (e.name === "AxiosError" && e.response.data.message) {
         onError(e.response.data.message)
@@ -75,7 +76,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
 
   return (
     <Button variant="contained" onClick={claimGorliEth} fullWidth>
-      Claim Görli ETH
+      Claim Göerli ETH
     </Button>
   )
 }

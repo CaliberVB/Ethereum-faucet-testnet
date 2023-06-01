@@ -20,7 +20,7 @@ export class Ethereum implements Blockchain {
     private readonly transactionHistoryService: TransactionHistory | undefined = undefined
   ) {}
 
-  async fundWallet(address: string): Promise<void> {
+  async fundWallet(address: string): Promise<string> {
     try {
       const amount = this.classificationService.retrieveAmount(address)
       const value = ethers.BigNumber.from(amount.toString())
@@ -29,14 +29,15 @@ export class Ethereum implements Blockchain {
         to: address,
         value
       }
-      await this.wallet.sendTransaction(transaction)
-
+      const tx = await this.wallet.sendTransaction(transaction)
+      console.log(tx.hash)
       // Added after the video was released to prevent user from draining system's wallet
       if (this.transactionHistoryService === undefined) {
-        return
+        return tx.hash
       }
 
       await this.transactionHistoryService.recordTransaction(address)
+      return tx.hash
     } catch (e: any) {
       if (e?.code === "INSUFFICIENT_FUNDS") {
         throw new InsufficientFundsError()

@@ -1,6 +1,6 @@
-export interface SuccessResponse<K = undefined> {
+export interface SuccessResponse {
   status: "ok"
-  data?: K
+  message: string
 }
 
 export interface ErrorResponse {
@@ -8,4 +8,4 @@ export interface ErrorResponse {
   message: string
 }
 
-export type DefaultResponse<K = undefined> = SuccessResponse<K> | ErrorResponse
+export type DefaultResponse = SuccessResponse | ErrorResponse

@@ -11,6 +11,7 @@ import { useWalletClassification } from "../hooks/useWalletClassification"
 type Action =
   | {
       type: "success"
+      txHash: string
     }
   | {
       type: "default"
@@ -23,6 +24,7 @@ type Action =
 type State =
   | {
       status: "success"
+      txHash: string
     }
   | {
       status: "default"
@@ -41,7 +43,7 @@ const reducer = (_: State, action: Action): State => {
     case "error":
       return { status: "error", error: action.error }
     case "success":
-      return { status: "success" }
+      return { status: "success", txHash: action.txHash }
     default:
       return { status: "default" }
   }
@@ -56,7 +58,7 @@ const Home: NextPage = () => {
 
   const [retrieveAmount] = useWalletClassification()
 
-  const handleSuccess = () => dispatch({ type: "success" })
+  const handleSuccess = (txHash: string) => dispatch({ type: "success", txHash })
 
   const handleError = (error: string) => dispatch({ type: "error", error })
 
@@ -65,7 +67,8 @@ const Home: NextPage = () => {
       case "success":
         return (
           <Alert severity="success">
-            Göerli ETH has been dispatched to your wallet. You should receive it within 3 minutes.
+            Göerli ETH has been dispatched to your wallet. You should receive it within 3 minutes. TxHash:{" "}
+            {state.txHash}
           </Alert>
         )
       case "error":

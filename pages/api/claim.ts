@@ -44,13 +44,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     }
     await ethereum.verifyMessage(address, message, signature)
     await ethereum.isEligible(address)
-    await ethereum.fundWallet(address)
+    const txHash = await ethereum.fundWallet(address)
     // IP Detection
     if (ipAddress) {
       await ipDetection.recordTransaction(ipAddress)
     }
 
-    return res.status(200).json({ status: "ok" })
+    return res.status(200).json({ status: "ok", message: txHash })
   } catch (e) {
     if (
       e instanceof InvalidCaptcha ||

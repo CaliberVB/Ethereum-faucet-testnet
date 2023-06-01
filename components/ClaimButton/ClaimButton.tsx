@@ -2,7 +2,7 @@ import { BaseClaimButton } from "./_BaseClaimButton"
 import { GoogleReCaptchaClaimButton } from "./_GoogleReCaptchaClaimButton"
 
 type ClaimButtonProps = {
-  onSuccess: () => void
+  onSuccess: (message: string) => void
   onError: (message: string) => void
 }
 
