@@ -8,7 +8,10 @@ export const OpenSourceMemo = () => (
       <b>Daily limit for each IP address/ wallet: 0.002ETH</b>
     </RoundedBox>
     <RoundedBox>
-      <b>If you have plenty of ETH, consider donate back to us at</b>
+      <b>
+        If you have plenty of ETH, consider donate back to us at our faucet vault:{" "}
+        {process.env.NEXT_PUBLIC_WALLET_ADDRESS}
+      </b>
     </RoundedBox>
   </div>
 )

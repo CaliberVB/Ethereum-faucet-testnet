@@ -46,7 +46,7 @@ const reducer = (_: State, action: Action): State => {
       return { status: "default" }
   }
 }
-const faucet = process.env.WALLET_ADDRESS as string
+const faucet = process.env.NEXT_PUBLIC_WALLET_ADDRESS as string
 
 const Home: NextPage = () => {
   const { account } = useEthers()
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
       case "success":
         return (
           <Alert severity="success">
-            Görli ETH has been dispatched to your wallet. You should receive it within 3 minutes.
+            Göerli ETH has been dispatched to your wallet. You should receive it within 3 minutes.
           </Alert>
         )
       case "error":
@@ -79,15 +79,15 @@ const Home: NextPage = () => {
     <RoundedBox>
       <Item>
         <span>Wallet balance</span>
-        <span>{balance ? formatEther(balance) : <>&ndash;</>} ETH (testnet)</span>
+        <span>{balance ? formatEther(balance) : <>&ndash;</>} ETH</span>
       </Item>
       <Item>
         <span>Faucet balance</span>
-        <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH (testnet)</span>
+        <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH</span>
       </Item>
       <Item>
         <span>Claimable Görli ETH</span>
-        <span>{formatEther(retrieveAmount(account))} ETH (testnet)</span>
+        <span>{formatEther(retrieveAmount(account))} ETH</span>
       </Item>
       <ClaimButton onSuccess={handleSuccess} onError={handleError} />
       {renderAlert()}

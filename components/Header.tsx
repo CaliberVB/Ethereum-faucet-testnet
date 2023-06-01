@@ -16,10 +16,9 @@ const HeaderDiv = styled("div")(({ theme }) => ({
 export const Header = () => {
   return (
     <HeaderDiv>
-      <Typography variant="h1">Claim Görli ETH</Typography>
+      <Typography variant="h1">Claim Göerli ETH</Typography>
       <Typography variant="body2">
-        <b>Görli ETH has no monetary value.</b> It means you can’t sell or exchange it for any goods or services. The
-        only utility it has is testing your decentralized application (DApp).
+        <b>Claim Göerli ETH to support your DApps development</b>.
       </Typography>
     </HeaderDiv>
   )

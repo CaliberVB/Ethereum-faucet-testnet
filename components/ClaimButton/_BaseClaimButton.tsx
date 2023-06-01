@@ -68,7 +68,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
   if (chainId !== Goerli.chainId) {
     return (
       <Button variant="contained" onClick={() => switchNetwork(Goerli.chainId)} fullWidth>
-        Switch to Görli network
+        Switch to Göerli network
       </Button>
     )
   }

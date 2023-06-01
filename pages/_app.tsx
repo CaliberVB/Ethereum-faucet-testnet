@@ -22,7 +22,7 @@ const theme = createTheme()
 const EthereumFaucet = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <title>Claim Görli ETH</title>
+      <title>Claim Göerli ETH</title>
     </Head>
     <CaptchaProvider>
       <DAppProvider config={config}>
