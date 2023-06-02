@@ -86,7 +86,7 @@ const Home: NextPage = () => {
       default:
         return null
     }
-  }, [state.status])
+  }, [state])
 
   return (
     <RoundedBox>
@@ -99,7 +99,7 @@ const Home: NextPage = () => {
         <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH</span>
       </Item>
       <Item>
-        <span>Claimable Görli ETH</span>
+        <span>Claimable Göerli ETH</span>
         <span>{formatEther(retrieveAmount(account))} ETH</span>
       </Item>
       <ClaimButton onSuccess={handleSuccess} onError={handleError} />
