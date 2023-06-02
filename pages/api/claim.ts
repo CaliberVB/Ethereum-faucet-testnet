@@ -12,6 +12,7 @@ import { DefaultResponse } from "../../interfaces/Response"
 import { bootstrapCaptcha } from "../../utils/bootstrapCaptcha"
 import { bootstrapEthereum } from "../../utils/bootstrapEthereum"
 import { bootstrapTransactionHistory } from "../../utils/bootstrapTransactionHistory"
+import { WalletNotEligible } from "../../errors/WalletNotEligible"
 
 type ClaimParams = {
   address: string
@@ -59,7 +60,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
       e instanceof SignatureMismatchError ||
       e instanceof InsufficientFundsError ||
       e instanceof NonEmptyWalletError ||
-      e instanceof WalletAlreadyFunded
+      e instanceof WalletAlreadyFunded ||
+      e instanceof WalletNotEligible
     ) {
       return res.status(e.code).json({ status: "error", message: e.message })
     }

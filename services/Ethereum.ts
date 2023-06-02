@@ -2,6 +2,7 @@ import { recoverPersonalSignature } from "@metamask/eth-sig-util"
 import { ethers } from "ethers"
 import { defaultWalletWeiAmount } from "../consts/env"
 import { InsufficientFundsError } from "../errors/InsufficientFundsError"
+import { WalletNotEligible } from "../errors/WalletNotEligible"
 import { NonceExpiredError } from "../errors/NonceExpiredError"
 import { NonEmptyWalletError } from "../errors/NonEmptyWalletError"
 import { SignatureMismatchError } from "../errors/SignatureMismatchError"
@@ -85,9 +86,13 @@ export class Ethereum implements Blockchain {
     }
 
     const hasReceivedTokens = await this.transactionHistoryService.hasReceivedTokens(address)
+    const eligibleWallet = await this.transactionHistoryService.checkWalletActivity(address)
 
     if (hasReceivedTokens) {
       throw new WalletAlreadyFunded()
+    }
+    if (!eligibleWallet) {
+      throw new WalletNotEligible()
     }
   }
 }
