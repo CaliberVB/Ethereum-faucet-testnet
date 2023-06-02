@@ -7,6 +7,8 @@ import { ClaimButton } from "../components/ClaimButton"
 import { Item } from "../components/Item"
 import { RoundedBox } from "../components/RoundedBox"
 import { useWalletClassification } from "../hooks/useWalletClassification"
+import { Link as MuiLink, styled } from "@mui/material"
+import Link from "next/link"
 
 type Action =
   | {
@@ -67,8 +69,16 @@ const Home: NextPage = () => {
       case "success":
         return (
           <Alert severity="success">
-            Göerli ETH has been dispatched to your wallet. You should receive it within 3 minutes. TxHash:{" "}
-            {state.txHash}
+            Göerli ETH has been dispatched to your wallet. <br />
+            You should receive it within 1-3 minutes.
+            <br />
+            TxHash:
+            <br />{" "}
+            <Link href={`https://goerli.etherscan.io/tx/${state.txHash}`} passHref>
+              <MuiLink target="_blank" rel="noopener referrer">
+                {state.txHash}
+              </MuiLink>
+            </Link>
           </Alert>
         )
       case "error":
