@@ -1,4 +1,4 @@
-import { Goerli } from "@usedapp/core"
+import { Sepolia } from "@usedapp/core"
 import { ethers } from "ethers"
 import { privilegedWallets } from "../consts/wallets"
 import { Ethereum } from "../services/Ethereum"
@@ -6,7 +6,7 @@ import { TimestampNonce } from "../services/TimestampNonce"
 import { WalletClassification } from "../services/WalletClassification"
 import { bootstrapTransactionHistory, TransactionHistoryType } from "./bootstrapTransactionHistory"
 
-export const bootstrapEthereum = (chainId: number = Goerli.chainId) => {
+export const bootstrapEthereum = (chainId: number = Sepolia.chainId) => {
   // Wallet Classification Service
   const classificationService = new WalletClassification(privilegedWallets)
 
@@ -18,7 +18,7 @@ export const bootstrapEthereum = (chainId: number = Goerli.chainId) => {
   const nonceService = new TimestampNonce()
 
   // Blockchain Service
-  const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_ETH_API_URL || "", chainId)
+  const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_ALCHEMY_SEPOLIA || "", chainId)
   const wallet = new ethers.Wallet(process.env.WALLET_PRIVATE_KEY || "", provider)
   const ethereum = new Ethereum(wallet, nonceService, classificationService, transactionHistoryService)
 

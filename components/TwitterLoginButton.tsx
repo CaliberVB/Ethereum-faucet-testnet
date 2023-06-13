@@ -16,11 +16,11 @@ const TwitterLoginButton = () => {
           display: "inline-flex",
           alignItems: "center",
           padding: "5px",
-          paddingTop: "10px",
-          marginLeft: "4px",
+          paddingTop: "5px",
+          paddingLeft: "13px",
           backgroundColor: "#1DA1F2",
           color: "white",
-          borderRadius: "5px",
+          borderRadius: "6px",
           textDecoration: "none"
         }}
         onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#0d95e8")}

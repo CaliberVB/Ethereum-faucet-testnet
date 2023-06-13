@@ -74,7 +74,7 @@ const Home: NextPage = () => {
             <br />
             TxHash:
             <br />{" "}
-            <Link href={`https://goerli.etherscan.io/tx/${state.txHash}`} passHref>
+            <Link href={`https://sepolia.etherscan.io/tx/${state.txHash}`} passHref>
               <MuiLink target="_blank" rel="noopener referrer">
                 {state.txHash}
               </MuiLink>

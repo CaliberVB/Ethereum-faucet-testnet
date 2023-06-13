@@ -1,6 +1,6 @@
 import { Button } from "@mui/material"
 import LoadingButton from "@mui/lab/LoadingButton"
-import { Goerli, useEthers } from "@usedapp/core"
+import { Sepolia, useEthers } from "@usedapp/core"
 import { isNil } from "lodash"
 import Link from "next/link"
 import { hasMetamask } from "../../hooks/hasMetamask"
@@ -17,7 +17,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
   const { account, library, isLoading: loading, activateBrowserWallet, switchNetwork, chainId } = useEthers()
   const installed = hasMetamask()
 
-  const claimGorliEth = async () => {
+  const claimSepoliaEth = async () => {
     try {
       if (isNil(library) || isNil(account)) {
         throw new Error("Wallet is not connected")
@@ -66,17 +66,17 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
     )
   }
 
-  if (chainId !== Goerli.chainId) {
+  if (chainId !== Sepolia.chainId) {
     return (
-      <Button variant="contained" onClick={() => switchNetwork(Goerli.chainId)} fullWidth>
-        Switch to Göerli network
+      <Button variant="contained" onClick={() => switchNetwork(Sepolia.chainId)} fullWidth>
+        Switch to Sepolia network
       </Button>
     )
   }
 
   return (
-    <Button variant="contained" onClick={claimGorliEth} fullWidth>
-      Claim Göerli ETH
+    <Button variant="contained" onClick={claimSepoliaEth} fullWidth>
+      Claim Sepolia ETH
     </Button>
   )
 }

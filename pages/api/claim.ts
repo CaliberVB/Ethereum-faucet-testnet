@@ -32,12 +32,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     // Start of IP detection
     const ipDetection = bootstrapTransactionHistory("ip") as TransactionHistory
     const ipAddress = requestIp.getClientIp(req)
-    if (ipAddress) {
-      const hasReceivedTokens = await ipDetection.hasReceivedTokens(ipAddress)
-      if (hasReceivedTokens) {
-        throw new IpLimitExceeded()
-      }
-    }
+    // if (ipAddress) {
+    //   const hasReceivedTokens = await ipDetection.hasReceivedTokens(ipAddress)
+    //   if (hasReceivedTokens) {
+    //     throw new IpLimitExceeded()
+    //   }
+    // }
     // End of IP detection
 
     if (captcha) {
