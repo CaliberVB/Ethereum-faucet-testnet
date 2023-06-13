@@ -9,6 +9,7 @@ import { Layout } from "../components/Layout"
 import { Content } from "../components/Content"
 import { pollingInterval } from "../consts/env"
 import { CaptchaProvider } from "../components/CaptchaProvider"
+import { SessionProvider } from "next-auth/react"
 
 const config: Config = {
   readOnlyChainId: Goerli.chainId,
@@ -21,24 +22,26 @@ const theme = createTheme()
 
 const EthereumFaucet = ({ Component, pageProps }: AppProps) => (
   <>
-    <Head>
-      <title>Claim Göerli ETH</title>
-    </Head>
-    <CaptchaProvider>
-      <DAppProvider config={config}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Layout>
-            <Content>
-              <Header />
-              <Component {...pageProps} />
-              <OpenSourceMemo />
-            </Content>
-            <Footer />
-          </Layout>
-        </ThemeProvider>
-      </DAppProvider>
-    </CaptchaProvider>
+    <SessionProvider session={pageProps.session}>
+      <Head>
+        <title>Claim Göerli ETH</title>
+      </Head>
+      <CaptchaProvider>
+        <DAppProvider config={config}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Layout>
+              <Content>
+                <Header />
+                <Component {...pageProps} />
+                <OpenSourceMemo />
+              </Content>
+              <Footer />
+            </Layout>
+          </ThemeProvider>
+        </DAppProvider>
+      </CaptchaProvider>
+    </SessionProvider>
   </>
 )
 
