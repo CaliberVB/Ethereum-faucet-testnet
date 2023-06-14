@@ -69,7 +69,7 @@ const Home: NextPage = () => {
       case "success":
         return (
           <Alert severity="success">
-            Göerli ETH has been dispatched to your wallet. <br />
+            Sepolia ETH has been dispatched to your wallet. <br />
             You should receive it within 1-3 minutes.
             <br />
             TxHash:
@@ -99,7 +99,7 @@ const Home: NextPage = () => {
         <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH</span>
       </Item>
       <Item>
-        <span>Claimable Göerli ETH</span>
+        <span>Claimable Sepolia ETH</span>
         <span>{formatEther(retrieveAmount(account))} ETH</span>
       </Item>
       <ClaimButton onSuccess={handleSuccess} onError={handleError} />

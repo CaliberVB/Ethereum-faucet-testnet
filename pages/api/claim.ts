@@ -13,6 +13,8 @@ import { bootstrapCaptcha } from "../../utils/bootstrapCaptcha"
 import { bootstrapEthereum } from "../../utils/bootstrapEthereum"
 import { bootstrapTransactionHistory } from "../../utils/bootstrapTransactionHistory"
 import { WalletNotEligible } from "../../errors/WalletNotEligible"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "./auth/[...nextauth]"
 
 type ClaimParams = {
   address: string
@@ -23,21 +25,34 @@ type ClaimParams = {
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
   try {
+    const session = await getServerSession(req as any, res as any, authOptions)
+    console.log(session)
+    // if (!session) {
+    //   throw new Error("Not authenticated")
+    // }
+
+    // const twitterHandle = session.user?.name
+    // if (!twitterHandle) {
+    //   throw new Error("Twitter handle not found in session")
+    // }
+    // console.log("User twitter handle:", twitterHandle)
+    // const twitterDetection = bootstrapTransactionHistory("twitter") as TransactionHistory
+
     const ethereum = bootstrapEthereum()
     const captcha = bootstrapCaptcha()
 
     const { address, message, signature, captcha: captchaToken }: ClaimParams = req.body
 
-    // TODO(mateusz): Refactor bootstrapTransactionHistory. The current implementation is hairy
     // Start of IP detection
     const ipDetection = bootstrapTransactionHistory("ip") as TransactionHistory
     const ipAddress = requestIp.getClientIp(req)
-    // if (ipAddress) {
-    //   const hasReceivedTokens = await ipDetection.hasReceivedTokens(ipAddress)
-    //   if (hasReceivedTokens) {
-    //     throw new IpLimitExceeded()
-    //   }
-    // }
+    if (ipAddress) {
+      const hasReceivedTokens = await ipDetection.hasReceivedTokens(ipAddress)
+      // && (await twitterDetection.hasReceivedTokens(twitterHandle))
+      if (hasReceivedTokens) {
+        throw new IpLimitExceeded()
+      }
+    }
     // End of IP detection
 
     if (captcha) {

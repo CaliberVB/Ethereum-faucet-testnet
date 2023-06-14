@@ -4,8 +4,9 @@ import { TransactionHistory } from "../interfaces/TransactionHistory"
 import { EtherscanTransactionHistory } from "../services/EtherscanTransactionHistory"
 import { IpTransactionHistory } from "../services/IpTransactionHistory"
 import { RedisTransactionHistory } from "../services/RedisTransactionHistory"
+import { TwitterTransactionHistory } from "../services/TwitterTransactionHistory"
 
-export type TransactionHistoryType = "etherscan" | "redis" | "ip"
+export type TransactionHistoryType = "etherscan" | "redis" | "ip" | "twitter"
 
 export const bootstrapTransactionHistory = (
   type: TransactionHistoryType,
@@ -40,6 +41,17 @@ export const bootstrapTransactionHistory = (
       console.log("ip")
 
       return ipService
+    }
+    case "twitter": {
+      const redis = new Redis(process.env.REDIS_URL as string, {
+        tls: {
+          rejectUnauthorized: false
+        }
+      })
+      const twitterService = new TwitterTransactionHistory(redis)
+      console.log("ip")
+
+      return twitterService
     }
     default: {
       console.log("nothing")

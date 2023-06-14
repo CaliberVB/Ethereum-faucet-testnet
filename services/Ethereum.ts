@@ -76,9 +76,9 @@ export class Ethereum implements Blockchain {
 
     const balance = await this.wallet.provider.getBalance(address)
 
-    if (balance.gt(defaultWalletWeiAmount)) {
-      throw new NonEmptyWalletError()
-    }
+    // if (balance.gt(defaultWalletWeiAmount)) {
+    //   throw new NonEmptyWalletError()
+    // }
 
     // Added after the video was released to prevent user from draining system's wallet
     if (this.transactionHistoryService === undefined) {

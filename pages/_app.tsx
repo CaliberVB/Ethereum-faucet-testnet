@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app"
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material"
-import { Goerli, Sepolia, DAppProvider, Config } from "@usedapp/core"
+import { Sepolia, DAppProvider, Config } from "@usedapp/core"
 import Head from "next/head"
 import { OpenSourceMemo } from "../components/OpenSourceMemo"
 import { Header } from "../components/Header"
