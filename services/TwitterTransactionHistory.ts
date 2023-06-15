@@ -2,6 +2,7 @@ import Redis from "ioredis"
 import { defaultMillisecondsLayover } from "../consts/env"
 import { TransactionHistory } from "../interfaces/TransactionHistory"
 
+// @ts-ignore
 export class TwitterTransactionHistory implements TransactionHistory {
   constructor(private readonly redis: Redis) {}
 

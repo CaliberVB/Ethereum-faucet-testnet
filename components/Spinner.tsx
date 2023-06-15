@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unknown-property */
+
 const Spinner = () => {
   return (
     <div

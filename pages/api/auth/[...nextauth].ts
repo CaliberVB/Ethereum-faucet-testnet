@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions, Account, User, Profile } from "next-auth"
 import TwitterProvider from "next-auth/providers/twitter"
+import { JWT } from "next-auth/jwt"
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -9,17 +10,30 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
-    async jwt({ token, account }: { token: { [key: string]: any }; account?: Account | undefined }) {
+    // Note that you might need to import the types: JWT, User, Profile, and Account from 'next-auth'
+    async jwt({
+      token,
+      user,
+      account,
+      profile,
+      isNewUser
+    }: {
+      token: JWT
+      user: User
+      account: Account | null
+      profile?: Profile
+      isNewUser?: boolean
+    }) {
       if (account?.provider && !token[account.provider]) {
         token[account.provider] = {}
       }
 
       if (account?.accessToken) {
-        token[account.provider].accessToken = account.accessToken
+        ;(token[account.provider] as { [key: string]: any }).accessToken = account.accessToken
       }
 
       if (account?.refreshToken) {
-        token[account.provider].refreshToken = account.refreshToken
+        ;(token[account.provider] as { [key: string]: any }).refreshToken = account.refreshToken
       }
 
       return token

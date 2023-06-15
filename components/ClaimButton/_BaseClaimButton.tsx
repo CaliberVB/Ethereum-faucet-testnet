@@ -6,6 +6,7 @@ import Link from "next/link"
 import { hasMetamask } from "../../hooks/hasMetamask"
 import { claimTokens, retrieveNonce } from "../../services/HttpClient"
 import { messageTemplate } from "../../utils/textMessage"
+import { ethers } from "ethers"
 
 type BaseClaimButtonProps = {
   onSuccess: (message: string) => void
@@ -28,7 +29,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
       const nonce = await retrieveNonce()
       const message = messageTemplate(nonce)
 
-      const signer = library.getSigner()
+      const signer = (library as ethers.providers.JsonRpcProvider).getSigner()
       const signature = await signer.signMessage(message)
 
       const txHash = await claimTokens(account as string, message, signature, captchaToken)

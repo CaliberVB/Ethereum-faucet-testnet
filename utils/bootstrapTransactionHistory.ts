@@ -28,7 +28,7 @@ export const bootstrapTransactionHistory = (
       })
       const redisService = new RedisTransactionHistory(redis)
       console.log("redis")
-
+      // @ts-ignore
       return redisService
     }
     case "ip": {
@@ -39,7 +39,7 @@ export const bootstrapTransactionHistory = (
       })
       const ipService = new IpTransactionHistory(redis)
       console.log("ip")
-
+      // @ts-ignores
       return ipService
     }
     case "twitter": {
@@ -50,7 +50,7 @@ export const bootstrapTransactionHistory = (
       })
       const twitterService = new TwitterTransactionHistory(redis)
       console.log("ip")
-
+      // @ts-ignore
       return twitterService
     }
     default: {

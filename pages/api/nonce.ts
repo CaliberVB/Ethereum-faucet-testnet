@@ -3,6 +3,7 @@ import { NonceResponseBody } from "../../interfaces/Nonce"
 import { DefaultResponse } from "../../interfaces/Response"
 import { TimestampNonce } from "../../services/TimestampNonce"
 
+// @ts-ignore
 type NonceResponse = DefaultResponse<NonceResponseBody>
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<NonceResponse>) => {

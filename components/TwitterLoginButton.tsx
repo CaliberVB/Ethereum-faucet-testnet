@@ -1,7 +1,7 @@
 import { signIn } from "next-auth/react"
 
 const TwitterLoginButton = () => {
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     signIn("twitter")
   }

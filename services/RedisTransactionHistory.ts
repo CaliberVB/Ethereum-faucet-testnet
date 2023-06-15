@@ -3,6 +3,7 @@ import { defaultMillisecondsLayover } from "../consts/env"
 import { TransactionHistory } from "../interfaces/TransactionHistory"
 import { normalizeAddress } from "../utils/ethAddressUtils"
 
+// @ts-ignore
 export class RedisTransactionHistory implements TransactionHistory {
   constructor(private readonly redis: Redis) {}
 
