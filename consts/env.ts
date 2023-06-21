@@ -1,12 +1,12 @@
 export const defaultWalletEthAmount =
   process.env.NEXT_PUBLIC_DEFAULT_WALLET_ETH_AMOUNT !== undefined
     ? parseFloat(process.env.NEXT_PUBLIC_DEFAULT_WALLET_ETH_AMOUNT)
-    : 0.002
+    : 0.1
 
 export const privilegedWalletEthAmount =
   process.env.NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT !== undefined
     ? parseFloat(process.env.NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT)
-    : 0.005
+    : 0.2
 
 export const defaultWalletWeiAmount = BigInt(defaultWalletEthAmount * 10 ** 18)
 
