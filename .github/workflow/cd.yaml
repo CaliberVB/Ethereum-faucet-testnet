@@ -31,7 +31,8 @@ jobs:
         USER: ${{ secrets.USERNAME }}
         GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       run: |
-        mkdir ~/.ssh/
+        mkdir -p ~/.ssh/
+        rm -f ~/.ssh/id_rsa
         echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         echo "$HOST ecdsa-sha2-nistp256 $SSH_KEY" >> ~/.ssh/known_hosts
