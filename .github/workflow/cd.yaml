@@ -1,0 +1,45 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build
+      run: yarn build
+
+    - name: Deploy to EC2
+      env:
+        PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+        HOST: ${{ secrets.HOST }}
+        USER: ${{ secrets.USERNAME }}
+        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+      run: |
+        mkdir ~/.ssh/
+        echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo "$HOST ecdsa-sha2-nistp256 $SSH_KEY" >> ~/.ssh/known_hosts
+        git config --global credential.helper 'store --file ~/.my-credentials'
+        echo "https://$GIT_TOKEN:x-oauth-basic@github.com" > ~/.my-credentials
+        ssh -tt $USER@$HOST << EOF
+          cd Ethereum-faucet-testnet
+          git pull
+          yarn install
+          pm2 restart all
+EOF
