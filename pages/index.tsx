@@ -12,6 +12,7 @@ import Link from "next/link"
 import WalletIcon from "@mui/icons-material/AccountBalanceWallet"
 import FaucetIcon from "@mui/icons-material/Opacity"
 import ClaimIcon from "@mui/icons-material/GetApp"
+import { NavBar } from "../components/NavBar"
 
 type Action =
   | {
@@ -92,25 +93,28 @@ const Home: NextPage = () => {
   }, [state])
 
   return (
-    <RoundedBox>
-      <Item>
-        <WalletIcon />
+    <div>
+      <NavBar></NavBar>
+      <RoundedBox>
+        <Item>
+          <WalletIcon />
 
-        <span> Wallet balance</span>
-        <span>{balance ? formatEther(balance) : <>&ndash;</>} ETH</span>
-      </Item>
-      <Item>
-        <FaucetIcon />
-        <span> Faucet balance</span>
-        <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH</span>
-      </Item>
-      <Item>
-        <ClaimIcon /> <span> Claimable Sepolia ETH</span>
-        <span>{formatEther(retrieveAmount(account))} ETH</span>
-      </Item>
-      <ClaimButton onSuccess={handleSuccess} onError={handleError} />
-      {renderAlert()}
-    </RoundedBox>
+          <span> Wallet balance</span>
+          <span>{balance ? formatEther(balance) : <>&ndash;</>} ETH</span>
+        </Item>
+        <Item>
+          <FaucetIcon />
+          <span> Faucet balance</span>
+          <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH</span>
+        </Item>
+        <Item>
+          <ClaimIcon /> <span> Claimable Sepolia ETH</span>
+          <span>{formatEther(retrieveAmount(account))} ETH</span>
+        </Item>
+        <ClaimButton onSuccess={handleSuccess} onError={handleError} />
+        {renderAlert()}
+      </RoundedBox>
+    </div>
   )
 }
 
