@@ -9,6 +9,9 @@ import { RoundedBox } from "../components/RoundedBox"
 import { useWalletClassification } from "../hooks/useWalletClassification"
 import { Link as MuiLink, styled } from "@mui/material"
 import Link from "next/link"
+import WalletIcon from "@mui/icons-material/AccountBalanceWallet"
+import FaucetIcon from "@mui/icons-material/Opacity"
+import ClaimIcon from "@mui/icons-material/GetApp"
 
 type Action =
   | {
@@ -91,15 +94,18 @@ const Home: NextPage = () => {
   return (
     <RoundedBox>
       <Item>
-        <span>Wallet balance</span>
+        <WalletIcon />
+
+        <span> Wallet balance</span>
         <span>{balance ? formatEther(balance) : <>&ndash;</>} ETH</span>
       </Item>
       <Item>
-        <span>Faucet balance</span>
+        <FaucetIcon />
+        <span> Faucet balance</span>
         <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH</span>
       </Item>
       <Item>
-        <span>Claimable Sepolia ETH</span>
+        <ClaimIcon /> <span> Claimable Sepolia ETH</span>
         <span>{formatEther(retrieveAmount(account))} ETH</span>
       </Item>
       <ClaimButton onSuccess={handleSuccess} onError={handleError} />

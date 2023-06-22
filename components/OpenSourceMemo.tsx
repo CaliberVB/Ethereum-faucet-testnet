@@ -5,7 +5,7 @@ import { RoundedBox } from "./RoundedBox"
 export const OpenSourceMemo = () => (
   <div>
     <RoundedBox>
-      <b>Daily limit for each IP address/ wallet: 0.002ETH</b>
+      <b>Daily limit for each IP address/ wallet: 0.1ETH</b>
     </RoundedBox>
     <RoundedBox>
       <b>
