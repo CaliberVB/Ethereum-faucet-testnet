@@ -14,7 +14,7 @@ const HeaderDiv = styled("div")(({ theme }) => ({
 }))
 
 export const Header = () => {
-  return
+  return <div></div>
   // (
   //   <HeaderDiv>
   //     <Typography variant="h1">Claim Sepolia ETH</Typography>
