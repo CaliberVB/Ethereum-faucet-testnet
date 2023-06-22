@@ -43,3 +43,4 @@ jobs:
           git pull
           yarn install
           pm2 restart all
+        EOF
