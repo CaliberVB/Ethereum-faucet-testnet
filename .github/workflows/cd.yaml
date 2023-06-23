@@ -34,8 +34,8 @@ jobs:
           host: HOST
           username: USER
           key: PRIVATE_KEY
-        script: |
-          cd Ethereum-faucet-testnet
-          git pull
-          yarn install
-          pm2 restart all
+          script: |
+            cd Ethereum-faucet-testnet
+            git pull
+            yarn install
+            pm2 restart all
