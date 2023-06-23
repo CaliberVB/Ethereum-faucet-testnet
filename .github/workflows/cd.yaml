@@ -34,4 +34,4 @@ jobs:
             cd Ethereum-faucet-testnet
             git pull
             yarn install
-            pm2 restart all
+            yarn pm2 restart all
