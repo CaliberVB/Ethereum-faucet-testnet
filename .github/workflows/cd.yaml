@@ -34,4 +34,5 @@ jobs:
             cd Ethereum-faucet-testnet
             git pull
             yarn install
-            yarn pm2 restart all
+            yarn pm2 delete faucet
+            yarn pm2 start yarn --interpreter bash --name faucet -- start
