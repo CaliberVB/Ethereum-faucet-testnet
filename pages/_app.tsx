@@ -18,13 +18,31 @@ const config: Config = {
   },
   pollingInterval
 }
-const theme = createTheme()
+const theme = createTheme({
+  palette: {
+    background: {
+      default: 'white', 
+    },
+  },
+  shape: {
+    borderRadius: 17, // adjust this to your liking
+  },
+  components: {
+    // MuiCssBaseline: {
+    //   styleOverrides: {
+    //     body: {
+    //       backgroundColor: 'pink', 
+    //     },
+    //   },
+    // },
+  },
+})
 
 const EthereumFaucet = ({ Component, pageProps }: AppProps) => (
   <>
     <SessionProvider session={pageProps.session}>
       <Head>
-        <title>Claim Testnet ETH</title>
+        <title>Sepolia Faucet</title>
       </Head>
       <CaptchaProvider>
         <DAppProvider config={config}>

@@ -1,15 +1,25 @@
-import { AppBar, Toolbar, Typography } from "@mui/material"
+import { Box, Typography, Button } from "@mui/material"
+import Image from 'next/image'
+import Logo from './Caliber_Solid.png'
 
 export const NavBar = () => {
   return (
-    <AppBar position="static" color="default">
-      <Toolbar>
-        {/* Add your logo component or text here */}
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Sepolia ETH Faucet{" "}
+    <Box 
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      px={2}
+      bgcolor="white"
+      color="inherit"
+      height={40} 
+    >
+      <Box display="flex" alignItems="center">
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: "0.8rem", marginRight: 1 }}>
+          Powered by
         </Typography>
-        {/* Add other navigation elements like links or buttons here */}
-      </Toolbar>
-    </AppBar>
+        <Image src={Logo} alt="Logo" size="small" /> 
+      </Box>
+      <Button variant="outlined" color="inherit" size="small">Twitter Login</Button>
+    </Box>
   )
 }
