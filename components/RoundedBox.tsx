@@ -1,12 +1,15 @@
 import { Box, styled } from "@mui/material"
 
 export const RoundedBox = styled(Box)(({ theme }) => ({
-  background: theme.palette.background.default,
+  background: "#F8F8F8", // Replace with your desired color
   borderRadius: theme.shape.borderRadius,
   margin: `${theme.spacing(2)} auto`,
-  padding: theme.spacing(2),
-  minWidth: theme.spacing(40),
-  maxWidth: theme.spacing(70),
+  padding: theme.spacing(3),
+  marginTop: theme.spacing(2),
+  paddingLeft: theme.spacing(5),
+  paddingRight: theme.spacing(5),
+  minWidth: theme.spacing(60),
+  maxWidth: theme.spacing(80),
   width: "100%",
   ...theme.typography.body2
 }))

@@ -50,7 +50,7 @@ const EthereumFaucet = ({ Component, pageProps }: AppProps) => (
             <CssBaseline />
             <Layout>
               <Content>
-                <Header />
+                {/* <Header /> */}
                 <Component {...pageProps} />
                 <OpenSourceMemo />
               </Content>

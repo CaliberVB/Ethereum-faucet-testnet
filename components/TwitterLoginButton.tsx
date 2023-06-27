@@ -15,19 +15,19 @@ const TwitterLoginButton = () => {
         style={{
           display: "inline-flex",
           alignItems: "center",
-          padding: "5px",
-          paddingTop: "5px",
-          paddingLeft: "13px",
-          backgroundColor: "#1DA1F2",
+          margin:"2px",
+          padding: "3px", // reduced padding
+          paddingLeft: "10px", // reduced padding
+          backgroundColor: "#4AB3F4", // lighter background color
           color: "white",
           borderRadius: "6px",
           textDecoration: "none"
         }}
-        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#0d95e8")}
-        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#1DA1F2")}
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#39a1f2")} // adjusted hover color
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#4AB3F4")} // reset to initial color
       >
         <span>Login with Twitter</span>
-        <img src={"/twitter.svg"} alt="Twitter Logo" style={{ marginLeft: "8px", marginRight: "3px" }} />
+        <img src={"/twitter.svg"} alt="Twitter Logo" style={{ marginLeft: "8px", marginRight: "3px", width: '20px', height: '20px' }} /> {/* reduced size of the logo */}
       </button>
     </div>
   )

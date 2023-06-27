@@ -7,7 +7,7 @@ import { ClaimButton } from "../components/ClaimButton"
 import { Item } from "../components/Item"
 import { RoundedBox } from "../components/RoundedBox"
 import { useWalletClassification } from "../hooks/useWalletClassification"
-import { Link as MuiLink, styled } from "@mui/material"
+import { Link as MuiLink, styled,Box, Typography } from "@mui/material"
 import Link from "next/link"
 import WalletIcon from "@mui/icons-material/AccountBalanceWallet"
 import FaucetIcon from "@mui/icons-material/Opacity"
@@ -95,11 +95,20 @@ const Home: NextPage = () => {
   return (
     <div>
       <NavBar></NavBar>
+      <Box px={2} py={1} marginTop={7} marginBottom={7}>
+        <Typography variant="h2" align="center" color="white">
+          Sepolia Faucet
+        </Typography>
+        <Typography variant="h5" align="center" color="white">
+          Fast and Reliable Source of Sepolia. 0.1ETH/day
+        </Typography>
+      </Box>
+      
       <RoundedBox>
         <Item>
           <WalletIcon />
 
-          <span> Wallet balance</span>
+          <span> Your wallet balance</span>
           <span>{balance ? formatEther(balance) : <>&ndash;</>} ETH</span>
         </Item>
         <Item>
@@ -114,6 +123,10 @@ const Home: NextPage = () => {
         <ClaimButton onSuccess={handleSuccess} onError={handleError} />
         {renderAlert()}
       </RoundedBox>
+
+
+      
+
     </div>
   )
 }

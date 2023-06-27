@@ -14,13 +14,11 @@ const HeaderDiv = styled("div")(({ theme }) => ({
 }))
 
 export const Header = () => {
-  return 
-  (
-    <HeaderDiv>
+  return  <HeaderDiv>
       <Typography variant="h1">Claim Sepolia ETH</Typography>
       <Typography variant="body2">
         <b>Claim Sepolia Testnet ETH to support your DApps development</b>.
       </Typography>
     </HeaderDiv>
-  )
+  
 }
