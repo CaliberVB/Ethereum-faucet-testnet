@@ -96,12 +96,13 @@ const Home: NextPage = () => {
     <div>
       <NavBar></NavBar>
       <Box px={2} py={1} marginTop={7} marginBottom={7}>
-        <Typography variant="h2" align="center" color="white">
-          Sepolia Faucet
-        </Typography>
-        <Typography variant="h5" align="center" color="white">
-          Fast and Reliable Source of Sepolia. 0.1ETH/day
-        </Typography>
+      <Typography variant="h2" align="center" color="white" sx={{ fontWeight: 'bold' }}>
+  Sepolia Faucet
+</Typography>
+<Typography variant="h5" align="center" color="white" sx={{ fontWeight: 'bold' }}>
+  Fast and Reliable Source of Sepolia. 0.1ETH/day
+</Typography>
+
       </Box>
       
       <RoundedBox>

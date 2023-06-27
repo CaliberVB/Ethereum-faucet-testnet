@@ -1,10 +1,11 @@
 import { Box, Typography, Button } from "@mui/material"
 import Image from 'next/image'
 import { signIn } from "next-auth/react"
-
-  
+import { useSession } from "next-auth/react"
 
 export const NavBar = () => {
+  const { data: session, status } = useSession()
+
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     signIn("twitter")
@@ -26,7 +27,7 @@ export const NavBar = () => {
           <img src='./Caliber_White.png' alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />     
         </Box>
       </Box>
-      <Button 
+      {status === "unauthenticated"?<Button 
         onClick={handleLogin}
         variant="outlined" 
         sx={{ 
@@ -40,7 +41,7 @@ export const NavBar = () => {
         size="small"
       >
         Twitter Login
-      </Button>
+      </Button>:<p>Signed in as {session?.user?.email}</p>}
     </Box>
   )
 }

@@ -61,7 +61,17 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
 
   if (!account) {
     return (
-      <Button variant="contained" onClick={() => activateBrowserWallet()} fullWidth>
+      <Button variant="contained" onClick={() => activateBrowserWallet()} fullWidth style={{
+        display: "inline-flex",
+        alignItems: "center",
+        margin:"2px",
+        padding: "3px", // reduced padding
+        paddingLeft: "10px", // reduced padding
+        backgroundColor: "lightblue", // lighter background color
+        color: "white",
+        borderRadius: "8px",
+        textDecoration: "none"
+      }}>
         Connect wallet
       </Button>
     )
@@ -69,14 +79,34 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
 
   if (chainId !== Sepolia.chainId) {
     return (
-      <Button variant="contained" onClick={() => switchNetwork(Sepolia.chainId)} fullWidth>
+      <Button variant="contained" onClick={() => switchNetwork(Sepolia.chainId)} fullWidth style={{
+        display: "inline-flex",
+        alignItems: "center",
+        margin:"2px",
+        padding: "3px", // reduced padding
+        paddingLeft: "10px", // reduced padding
+        backgroundColor: "lightblue", // lighter background color
+        color: "white",
+        borderRadius: "8px",
+        textDecoration: "none"
+      }}>
         Switch to Sepolia network
       </Button>
     )
   }
 
   return (
-    <Button variant="contained" onClick={claimSepoliaEth} fullWidth>
+    <Button variant="contained" onClick={claimSepoliaEth} fullWidth style={{
+      display: "inline-flex",
+      alignItems: "center",
+      margin:"2px",
+      padding: "3px", // reduced padding
+      paddingLeft: "10px", // reduced padding
+      backgroundColor: "lightblue", // lighter background color
+      color: "white",
+      borderRadius: "8px",
+      textDecoration: "none"
+    }}>
       Claim Sepolia ETH
     </Button>
   )

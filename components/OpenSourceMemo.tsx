@@ -28,11 +28,8 @@ export const OpenSourceMemo = () => (
         <p>-------------------------------------------------------------------------------------------------------------------------------------------</p>
 
         <b>The faucet confirmed that it sent me test tokens, but I still have not received them. Why is that?</b>
-        <p>The time it takes for you to receive your test tokens may vary! This is because the network may be congested at this time, or the amount of gas we have set for these transactions may be a little low compared to other transactions that miners may choose to validate instead. If it has been over a few hours and you still have not received your testnet tokens, please fill out this <span><a className="faucet-banner-link" target="_blank" rel="noopener noreferrer" href="https://alchemyapi.typeform.com/faucetfeedback">form</a></span> and we will send some!</p>
-        <p>-------------------------------------------------------------------------------------------------------------------------------------------</p>
-
-        <b>I got a “403 error.” What does that mean? What should I do?</b>
-        <p>A 403 error is usually has to do with the browser not having cookies enabled. This just means your request did not pass our validations. Please enable browser cookies, refresh the page and try again!</p>
+        <p>The time it takes for you to receive your test tokens may vary! This is because the network may be congested at this time, or the amount of gas we have set for these transactions may be a little low compared to other transactions that miners may choose to validate instead. </p>
+        
 
         <p>-------------------------------------------------------------------------------------------------------------------------------------------</p>
 
