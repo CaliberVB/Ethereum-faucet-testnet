@@ -67,7 +67,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
         margin:"2px",
         padding: "3px", // reduced padding
         paddingLeft: "10px", // reduced padding
-        backgroundColor: "lightblue", // lighter background color
+        backgroundColor: "#0061e2", // lighter background color
         color: "white",
         borderRadius: "8px",
         textDecoration: "none"
@@ -85,7 +85,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
         margin:"2px",
         padding: "3px", // reduced padding
         paddingLeft: "10px", // reduced padding
-        backgroundColor: "lightblue", // lighter background color
+        backgroundColor: "#0061e2", // lighter background color
         color: "white",
         borderRadius: "8px",
         textDecoration: "none"
@@ -102,7 +102,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
       margin:"2px",
       padding: "3px", // reduced padding
       paddingLeft: "10px", // reduced padding
-      backgroundColor: "lightblue", // lighter background color
+      backgroundColor: "#0061e2", // lighter background color
       color: "white",
       borderRadius: "8px",
       textDecoration: "none"

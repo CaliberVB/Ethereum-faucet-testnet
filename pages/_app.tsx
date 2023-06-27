@@ -19,6 +19,9 @@ const config: Config = {
   pollingInterval
 }
 const theme = createTheme({
+  typography: {
+    fontFamily: '"Barlow", sans-serif',  // Use Barlow font
+  },
   palette: {
     background: {
       default: 'white', 

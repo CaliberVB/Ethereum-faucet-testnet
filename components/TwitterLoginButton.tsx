@@ -20,10 +20,11 @@ const TwitterLoginButton = () => {
           margin:"2px",
           padding: "3px", // reduced padding
           paddingLeft: "10px", // reduced padding
-          backgroundColor: "lightblue", // lighter background color
+          backgroundColor: "#0061e2", // lighter background color
           color: "white",
           borderRadius: "8px",
-          textDecoration: "none"
+          textDecoration: "none",
+          fontWeight:'bold'
         }}
         fullWidth
         onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#39a1f2")} // adjusted hover color
