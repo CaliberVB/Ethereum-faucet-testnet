@@ -100,7 +100,7 @@ const Home: NextPage = () => {
   Sepolia Faucet
 </Typography>
 <Typography variant="h5" align="center" color="white" sx={{ fontWeight: 'bold' }}>
-  Fast and Reliable Source of Sepolia. 0.1ETH/day
+  Fast and Reliable Source of Sepolia 0.1 ETH/day
 </Typography>
 
       </Box>

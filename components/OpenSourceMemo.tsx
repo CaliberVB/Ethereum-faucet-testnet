@@ -16,7 +16,7 @@ export const OpenSourceMemo = () => (
         <p>---------------------------------------------------------------------------------------------------------------------</p>
 
         <b>How does it work?</b>
-        <p>You can request 0.1 Sepolia ETH every 24h with a twitter account and an address of your own!</p>
+        <p>You can request 0.1 Sepolia ETH every 24h with a Twitter account and an address of your own!</p>
         <p>---------------------------------------------------------------------------------------------------------------------</p>
 
         <b>What is a testnet Ethereum faucet?</b>
@@ -38,7 +38,7 @@ export const OpenSourceMemo = () => (
         <p></p>
         <p>---------------------------------------------------------------------------------------------------------------------</p>
         <b>
-        Also, if you have plenty of ETH, consider donate back to us at our faucet vault:{" "}
+        Also, if you have plenty of ETH, consider donating back to us at our faucet vault:{" "}
         {process.env.NEXT_PUBLIC_WALLET_ADDRESS}
       </b>
         
