@@ -1,14 +1,14 @@
 import { Box, Typography, Button, Link } from "@mui/material"
-import Image from 'next/image'
-import { signIn } from "next-auth/react"
-import { useSession } from "next-auth/react"
+// import Image from 'next/image'
+// import { signIn } from "next-auth/react"
+// import { useSession } from "next-auth/react"
 
 export const NavBar = () => {
-  const { data: session, status } = useSession()
+  // const { data: session, status } = useSession()
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    signIn("twitter")
+    window.open('https://twitter.com/CaliberBuild', '_blank');
   }
   return (
     <Box 
@@ -32,7 +32,7 @@ export const NavBar = () => {
         
       </Box>
       </Link>
-      {status === "unauthenticated"?<Button 
+      <Button 
         onClick={handleLogin}
         variant="outlined" 
         sx={{ 
@@ -47,8 +47,8 @@ export const NavBar = () => {
         }}
         size="small"
       >
-        Twitter Login
-      </Button>:<p>Signed in as {session?.user?.email}</p>}
+        Follow us!
+      </Button>
     </Box>
   )
 }
