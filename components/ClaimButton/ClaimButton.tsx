@@ -16,9 +16,9 @@ const ClaimButtonComponent = (props: ClaimButtonProps) => {
     return <Spinner /> // You can replace this with a loading spinner or similar
   }
 
-  if (status === "unauthenticated") {
-    return <TwitterLoginButton /> // Or a sign-in prompt
-  }
+  // if (status === "unauthenticated") {
+  //   return <TwitterLoginButton /> // Or a sign-in prompt
+  // }
 
   switch (process.env.NEXT_PUBLIC_ENABLE_CAPTCHA) {
     case "recaptcha_v3": {
