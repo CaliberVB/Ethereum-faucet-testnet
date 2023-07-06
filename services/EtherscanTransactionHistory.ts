@@ -36,12 +36,16 @@ export class EtherscanTransactionHistory implements TransactionHistory {
     // check if the wallet is at least one month old
     const firstTx = transactions[transactions.length - 1] // assuming the last element is the earliest
     // @ts-ignore
-    if (!firstTx || now - firstTx.timestamp < monthInSeconds) {
+    //|| now - firstTx.timestamp < monthInSeconds
+    if (!firstTx ) {
+      // @ts-ignore
+      console.log(firstTx, now - firstTx.timestamp)
       return false
     }
 
     // check if the wallet has at least 10 transactions
     if (transactions.length < requiredTxCount) {
+      console.log(transactions.length)
       return false
     }
 
