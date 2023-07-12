@@ -13,5 +13,16 @@ const FooterDiv = styled("footer")(({ theme }) => ({
 }))
 
 export const Footer = () => {
-  return <FooterDiv>Made with ❤️</FooterDiv>
-}
+
+  return (
+    <FooterDiv>
+      <MuiLink
+        href='https://github.com/CaliberVB/Ethereum-faucet-testnet'
+        underline='none'
+        sx={{ color: 'white' }}
+      >
+        Made with ❤️ by Caliber team
+      </MuiLink>
+    </FooterDiv>
+  );
+  }
