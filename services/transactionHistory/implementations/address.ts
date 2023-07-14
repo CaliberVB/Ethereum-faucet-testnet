@@ -1,11 +1,10 @@
 import Redis from "ioredis"
-import { defaultMillisecondsLayover } from "../consts/env"
-import { TransactionHistory } from "../interfaces/TransactionHistory"
+import { ITransactionHistoryService } from "../interfaces"
 // @ts-ignore
-export class IpTransactionHistory implements TransactionHistory {
+export class AddressTransactionHistory implements ITransactionHistoryService {
   constructor(private readonly redis: Redis) {}
 
-  async hasReceivedTokens(address: string, minLayover: number = defaultMillisecondsLayover): Promise<boolean> {
+  async hasReceivedTokens(address: string, minLayover: number): Promise<boolean> {
     const timeString = await this.redis.get(address)
 
     if (timeString === null) {

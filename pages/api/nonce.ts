@@ -1,13 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import { NonceResponseBody } from "../../interfaces/Nonce"
 import { DefaultResponse } from "../../interfaces/Response"
-import { TimestampNonce } from "../../services/TimestampNonce"
+import { INonceResponseBody, getNonceService } from "../../services/nonce"
 
 // @ts-ignore
-type NonceResponse = DefaultResponse<NonceResponseBody>
+type NonceResponse = DefaultResponse<INonceResponseBody>
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<NonceResponse>) => {
-  const nonceService = new TimestampNonce()
+  const nonceService = getNonceService()
   const nonce = await nonceService.generate()
 
   res.status(200).json({
