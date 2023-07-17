@@ -22,8 +22,8 @@ export class EtherscanTransactionHistory implements TransactionHistory {
 
   async checkWalletActivity(
     address: string,
-    requiredTxCount: number = 1,
-    requiredDaysOld: number = 1
+    requiredTxCount: number = 5,
+    requiredDaysOld: number = 30
   ): Promise<boolean> {
     const now = Math.floor(Date.now() / 1000) // current timestamp in seconds
     const monthInSeconds = requiredDaysOld * 24 * 60 * 60
