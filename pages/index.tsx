@@ -1,7 +1,7 @@
 import type { NextPage } from "next"
 import { formatEther } from "@ethersproject/units"
 import { useEtherBalance, useEthers } from "@usedapp/core"
-import { useCallback, useReducer } from "react"
+import { useCallback, useReducer, useState } from "react"
 import { Alert } from "../components/Alert"
 import { ClaimButton } from "../components/ClaimButton"
 import { Item } from "../components/Item"
@@ -62,7 +62,8 @@ const Home: NextPage = () => {
   const balance = useEtherBalance(account, { refresh: "everyBlock" })
   const faucetBalance = useEtherBalance(faucet, { refresh: "everyBlock" })
 
-  const [retrieveAmount] = useWalletClassification()
+  const [network, setNetwork] = useState("sepolia");
+  const [retrieveAmount] = useWalletClassification(network);
 
   const handleSuccess = (txHash: string) => dispatch({ type: "success", txHash })
 
@@ -119,7 +120,7 @@ const Home: NextPage = () => {
         </Item>
         <Item>
           <ClaimIcon /> <span> Claimable Sepolia ETH</span>
-          <span>{formatEther(retrieveAmount(account))} ETH</span>
+          <span>{retrieveAmount(account)} ETH</span>
         </Item>
         <ClaimButton onSuccess={handleSuccess} onError={handleError} />
         {renderAlert()}

@@ -1,8 +1,8 @@
-import { Nonce } from "../interfaces/Nonce"
+import { INonceService } from "../interfaces"
 
 const timeTolerance = 600 // 10 minutes
 
-export class TimestampNonce implements Nonce {
+export class TimestampNonce implements INonceService {
   constructor() {}
 
   async verify(input: string) {

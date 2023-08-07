@@ -7,9 +7,11 @@ import { Header } from "../components/Header"
 import { Footer } from "../components/Footer"
 import { Layout } from "../components/Layout"
 import { Content } from "../components/Content"
-import { pollingInterval } from "../consts/env"
 import { CaptchaProvider } from "../components/CaptchaProvider"
 import { SessionProvider } from "next-auth/react"
+import { getAppConfig } from "../config"
+
+const { pollingInterval } = getAppConfig();
 
 const config: Config = {
   readOnlyChainId: Sepolia.chainId,
