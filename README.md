@@ -6,6 +6,14 @@
 - Typescript
 - EthersJS
 
+## Rate
+
+- Daily rate: 0.1ETH/wallet/IP
+- Daily rate limiter options by IP/ wallet address: once every 24 hours
+- Check current wallet balance/activity (number of transactions): at least 5 transactions (either on mainnet/sepolia)
+- Check wallet age (from first transaction-request date): the oldest transaction needs to be at least 1 month ago (either mainnet/sepolia)
+- ReCaptcha (Only goes live when the domain is finalized)
+
 ## Getting Started
 
 1. First, create a new Ethereum wallet to get the private key for faucet or put your own private key on the env:
@@ -119,8 +127,7 @@ NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT=64 # 64 ETH per claim
 ```
 
 ### How to define privileged wallets?
-
-At the current moment, you will need to fork this repository and add wallet addresses into [consts/wallets.ts](consts/wallets.ts) file.
+Add wallet addresses into [consts/wallets.ts](consts/wallets.ts) file.
 
 ```
 # Example
@@ -132,3 +139,5 @@ export const privilegedWallets = [
   "0x0000000000000000000000000000000000000000000000000000000000009999"
 ]
 ```
+
+
