@@ -1,5 +1,4 @@
 FROM node:18-alpine as builder
-
 RUN apk add --no-cache
 WORKDIR /app
 COPY package.json .
@@ -13,7 +12,7 @@ RUN yarn build
 FROM node:18-alpine
 RUN apk add --no-cache
 WORKDIR /app
-COPY --from=builder /app/package.json /app/
+COPY package.json .
 COPY yarn.lock .
 COPY .yarnrc.yml .yarnrc.yml
 COPY .yarn/releases ./.yarn/releases
