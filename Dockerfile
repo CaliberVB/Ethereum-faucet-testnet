@@ -3,8 +3,6 @@ RUN apk add --no-cache
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
-COPY .yarnrc.yml .yarnrc.yml
-COPY .yarn/releases ./.yarn/releases
 RUN yarn install
 COPY . .
 RUN yarn build
@@ -14,8 +12,6 @@ RUN apk add --no-cache
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
-COPY .yarnrc.yml .yarnrc.yml
-COPY .yarn/releases ./.yarn/releases
 RUN yarn install \
   && rm -rf /var/cache/apk/* \
   && rm -rf /usr/local/share/.cache/yarn/*
