@@ -29,6 +29,6 @@ COPY yarn.lock .
 RUN yarn install \
   && rm -rf /var/cache/apk/* \
   && rm -rf /usr/local/share/.cache/yarn/*
-COPY --from=builder /app/.next /.next
+COPY --from=builder /app/.next /app/.next
 COPY --from=builder /app/public ./public
 CMD ["yarn", "start"]
