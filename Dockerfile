@@ -17,8 +17,6 @@ RUN apk add --no-cache
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
-COPY .yarnrc.yml .yarnrc.yml
-COPY .yarn/releases ./.yarn/releases
 RUN yarn install
 COPY . .
 RUN NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS NEXT_PUBLIC_ALCHEMY_SEPOLIA=$NEXT_PUBLIC_ALCHEMY_SEPOLIA NEXT_PUBLIC_DEFAULT_WALLET_ETH_AMOUNT=$NEXT_PUBLIC_DEFAULT_WALLET_ETH_AMOUNT NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT=$NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT NEXT_PUBLIC_ENABLE_CAPTCHA=$NEXT_PUBLIC_ENABLE_CAPTCHA NEXT_PUBLIC_RECAPTCHA_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_SITE_KEY yarn build
@@ -28,8 +26,6 @@ RUN apk add --no-cache
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
-COPY .yarnrc.yml .yarnrc.yml
-COPY .yarn/releases ./.yarn/releases
 RUN yarn install \
   && rm -rf /var/cache/apk/* \
   && rm -rf /usr/local/share/.cache/yarn/*
