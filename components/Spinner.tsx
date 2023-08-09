@@ -1,23 +1,23 @@
 /* eslint-disable react/no-unknown-property */
 
-const Spinner = () => {
+export const Spinner = () => {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "50vh"
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
       }}
     >
       <div
         style={{
-          border: "16px solid #f3f3f3",
-          borderRadius: "50%",
-          borderTop: "16px solid #3498db",
-          width: "60px",
-          height: "60px",
-          animation: "spin 2s linear infinite"
+          border: '16px solid #f3f3f3',
+          borderRadius: '50%',
+          borderTop: '16px solid #3498db',
+          width: '60px',
+          height: '60px',
+          animation: 'spin 2s linear infinite',
         }}
       />
       <style jsx>{`
@@ -31,7 +31,5 @@ const Spinner = () => {
         }
       `}</style>
     </div>
-  )
-}
-
-export default Spinner
+  );
+};

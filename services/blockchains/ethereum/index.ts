@@ -1,22 +1,20 @@
-import { ethers } from "ethers";
-import { IBlockchainConfig } from "../../../config";
-import { IBlockchainService } from "../interfaces";
-import { INonceService, getNonceService } from "../../nonce";
-import { recoverPersonalSignature } from "@metamask/eth-sig-util";
-import { NonceExpiredError } from "../../../errors/NonceExpiredError";
-import { SignatureMismatchError } from "../../../errors/SignatureMismatchError";
-import { extractNonceFromMessage } from "../../../utils/textMessage";
+import { ethers } from 'ethers';
+import { recoverPersonalSignature } from '@metamask/eth-sig-util';
+
+import { IBlockchainConfig } from '@/config';
+import { INonceService, getNonceService } from '@/services/nonce';
+import { extractNonceFromMessage } from '@/utils/textMessage';
+import { IBlockchainService } from '../interfaces';
+import { NonceExpiredError } from '@/errors';
 
 export default class Ethereum implements IBlockchainService {
   wallet: ethers.Wallet;
   config: IBlockchainConfig;
   nonceService: INonceService;
 
-  constructor(
-    networkConfig: IBlockchainConfig,
-  ) {
+  constructor(networkConfig: IBlockchainConfig) {
     this.config = networkConfig;
-    const {providerUrl, networkId, walletPrivateKey} = this.config;
+    const { providerUrl, networkId, walletPrivateKey } = this.config;
     const provider = new ethers.providers.JsonRpcProvider(providerUrl, networkId);
     this.wallet = new ethers.Wallet(walletPrivateKey, provider);
     this.nonceService = getNonceService();
@@ -29,15 +27,15 @@ export default class Ethereum implements IBlockchainService {
   getNetworkConfig(): IBlockchainConfig {
     return this.config;
   }
-  
-  async transfer(address: string, amount: number) : Promise<string> {
+
+  async transfer(address: string, amount: number): Promise<string> {
     const value = ethers.utils.parseEther(amount.toString());
 
     const transaction = {
       to: address,
-      value
-    }
-    const tx = await this.wallet.sendTransaction(transaction)
+      value,
+    };
+    const tx = await this.wallet.sendTransaction(transaction);
     console.log(tx.hash);
 
     return tx.hash;
@@ -50,18 +48,18 @@ export default class Ethereum implements IBlockchainService {
   }
 
   async verifyMessage(address: string, message: string, signature: string): Promise<boolean> {
-    const nonce = extractNonceFromMessage(message)
-    const isValid = await this.nonceService.verify(nonce)
+    const nonce = extractNonceFromMessage(message);
+    const isValid = await this.nonceService.verify(nonce);
 
     if (!isValid) {
-      throw new NonceExpiredError()
+      throw new NonceExpiredError();
     }
 
     const recoveredAddress = recoverPersonalSignature({
       data: message,
-      signature
-    })
+      signature,
+    });
 
-    return address.toLowerCase() !== recoveredAddress.toLowerCase()
+    return address.toLowerCase() !== recoveredAddress.toLowerCase();
   }
 }

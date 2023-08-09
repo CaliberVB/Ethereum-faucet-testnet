@@ -1,21 +1,21 @@
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
-import { BaseClaimButton } from "./_BaseClaimButton"
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import { BaseClaimButton } from './_BaseClaimButton';
 
 type GoogleReCaptchaClaimButtonProps = {
-  onSuccess: (message: string) => void
-  onError: (message: string) => void
-}
+  onSuccess: (message: string) => void;
+  onError: (message: string) => void;
+};
 
 export const GoogleReCaptchaClaimButton = (props: GoogleReCaptchaClaimButtonProps) => {
-  const { executeRecaptcha } = useGoogleReCaptcha()
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const retrieveCaptcha = async () => {
     if (!executeRecaptcha) {
-      throw new Error("Couldn’t generate captcha")
+      throw new Error('Couldn’t generate captcha');
     }
 
-    return await executeRecaptcha("claim")
-  }
+    return await executeRecaptcha('claim');
+  };
 
-  return <BaseClaimButton {...props} retrieveCaptcha={retrieveCaptcha} />
-}
+  return <BaseClaimButton {...props} retrieveCaptcha={retrieveCaptcha} />;
+};

@@ -1,2 +1,2 @@
-export * from "./interfaces";
-export * from "./faucetService";
+export * from './interfaces';
+export * from './faucetService';
