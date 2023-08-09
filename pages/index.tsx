@@ -6,7 +6,7 @@ import { Alert } from "../components/Alert"
 import { ClaimButton } from "../components/ClaimButton"
 import { Item } from "../components/Item"
 import { RoundedBox } from "../components/RoundedBox"
-import { useWalletClassification } from "../hooks/useWalletClassification"
+import {useFaucet} from "../hooks/useFaucet"
 import { Link as MuiLink, styled,Box, Typography } from "@mui/material"
 import Link from "next/link"
 import WalletIcon from "@mui/icons-material/AccountBalanceWallet"
@@ -63,7 +63,7 @@ const Home: NextPage = () => {
   const faucetBalance = useEtherBalance(faucet, { refresh: "everyBlock" })
 
   const [network, setNetwork] = useState("sepolia");
-  const [retrieveAmount] = useWalletClassification(network);
+  const {retrieveAmount, nativeAsset} = useFaucet(network);
 
   const handleSuccess = (txHash: string) => dispatch({ type: "success", txHash })
 
@@ -105,29 +105,29 @@ const Home: NextPage = () => {
 </Typography>
 
       </Box>
-      
+
       <RoundedBox>
         <Item>
           <WalletIcon />
 
           <span> Your wallet balance</span>
-          <span>{balance ? formatEther(balance) : <>&ndash;</>} ETH</span>
+          <span>{balance ? formatEther(balance) : <>&ndash;</>} {nativeAsset}</span>
         </Item>
         <Item>
           <FaucetIcon />
           <span> Faucet balance</span>
-          <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} ETH</span>
+          <span>{faucetBalance ? formatEther(faucetBalance) : <>&ndash;</>} {nativeAsset}</span>
         </Item>
         <Item>
           <ClaimIcon /> <span> Claimable Sepolia ETH</span>
-          <span>{retrieveAmount(account)} ETH</span>
+          <span>{retrieveAmount} {nativeAsset}</span>
         </Item>
         <ClaimButton onSuccess={handleSuccess} onError={handleError} />
         {renderAlert()}
       </RoundedBox>
 
 
-      
+
 
     </div>
   )

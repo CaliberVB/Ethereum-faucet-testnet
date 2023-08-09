@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const hasMetamask = () => {
+export const useHasMetamask = () => {
   const [installed, setInstalled] = useState(false)
 
   useEffect(() => {

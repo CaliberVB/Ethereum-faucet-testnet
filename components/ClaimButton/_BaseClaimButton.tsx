@@ -3,7 +3,7 @@ import LoadingButton from "@mui/lab/LoadingButton"
 import { Sepolia, useEthers } from "@usedapp/core"
 import { isNil } from "lodash"
 import Link from "next/link"
-import { hasMetamask } from "../../hooks/hasMetamask"
+import { useHasMetamask } from "../../hooks/hasMetamask"
 import { claimTokens, retrieveNonce } from "../../services/HttpClient"
 import { messageTemplate } from "../../utils/textMessage"
 import { ethers } from "ethers"
@@ -16,7 +16,7 @@ type BaseClaimButtonProps = {
 
 export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseClaimButtonProps) => {
   const { account, library, isLoading: loading, activateBrowserWallet, switchNetwork, chainId } = useEthers()
-  const installed = hasMetamask()
+  const installed = useHasMetamask()
 
   const claimSepoliaEth = async () => {
     try {
