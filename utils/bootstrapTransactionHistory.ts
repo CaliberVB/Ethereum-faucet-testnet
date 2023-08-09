@@ -21,33 +21,21 @@ export const bootstrapTransactionHistory = (
       return etherscanService
     }
     case "redis": {
-      const redis = new Redis(process.env.REDIS_URL as string, {
-        tls: {
-          rejectUnauthorized: false
-        }
-      })
+      const redis = new Redis(process.env.REDIS_URL as string)
       const redisService = new RedisTransactionHistory(redis)
       console.log("redis")
       // @ts-ignore
       return redisService
     }
     case "ip": {
-      const redis = new Redis(process.env.REDIS_URL as string, {
-        tls: {
-          rejectUnauthorized: false
-        }
-      })
+      const redis = new Redis(process.env.REDIS_URL as string)
       const ipService = new IpTransactionHistory(redis)
       console.log("ip")
       // @ts-ignores
       return ipService
     }
     case "twitter": {
-      const redis = new Redis(process.env.REDIS_URL as string, {
-        tls: {
-          rejectUnauthorized: false
-        }
-      })
+      const redis = new Redis(process.env.REDIS_URL as string)
       const twitterService = new TwitterTransactionHistory(redis)
       console.log("ip")
       // @ts-ignore
