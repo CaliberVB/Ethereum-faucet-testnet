@@ -1,5 +1,7 @@
 FROM node:18-alpine as builder
 
+ENV NODE_ENV="production"
+
 ARG NEXT_PUBLIC_WALLET_ADDRESS
 ARG NEXT_PUBLIC_ALCHEMY_SEPOLIA
 ARG NEXT_PUBLIC_DEFAULT_WALLET_ETH_AMOUNT
@@ -13,7 +15,6 @@ ENV NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT=$NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_
 ENV NEXT_PUBLIC_ENABLE_CAPTCHA=$NEXT_PUBLIC_ENABLE_CAPTCHA
 ENV NEXT_PUBLIC_RECAPTCHA_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
-RUN apk add --no-cache
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
@@ -22,13 +23,15 @@ COPY . .
 RUN NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS NEXT_PUBLIC_ALCHEMY_SEPOLIA=$NEXT_PUBLIC_ALCHEMY_SEPOLIA NEXT_PUBLIC_DEFAULT_WALLET_ETH_AMOUNT=$NEXT_PUBLIC_DEFAULT_WALLET_ETH_AMOUNT NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT=$NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT NEXT_PUBLIC_ENABLE_CAPTCHA=$NEXT_PUBLIC_ENABLE_CAPTCHA NEXT_PUBLIC_RECAPTCHA_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_SITE_KEY yarn build
 
 FROM node:18-alpine
-RUN apk add --no-cache
+
+ENV NODE_ENV="production"
+
 WORKDIR /app
-COPY package.json .
-COPY yarn.lock .
-RUN yarn install \
-  && rm -rf /var/cache/apk/* \
-  && rm -rf /usr/local/share/.cache/yarn/*
-COPY --from=builder /app/.next /app/.next
+# COPY package.json .
+# COPY yarn.lock .
+# RUN yarn install \
+#   && rm -rf /var/cache/apk/* \
+#   && rm -rf /usr/local/share/.cache/yarn/*
+COPY --from=builder /app/.next/standalone .
 COPY --from=builder /app/public ./public
-CMD ["yarn", "start"]
+CMD [ "node", "./server.js" ]
