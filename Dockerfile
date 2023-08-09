@@ -23,11 +23,6 @@ RUN NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS NEXT_PUBLIC_ALCHEMY_S
 FROM node:18-alpine
 
 WORKDIR /app
-# COPY package.json .
-# COPY yarn.lock .
-# RUN yarn install \
-#   && rm -rf /var/cache/apk/* \
-#   && rm -rf /usr/local/share/.cache/yarn/*
 COPY --from=builder /app/.next/standalone .
 COPY --from=builder /app/public ./public
 CMD [ "node", "./server.js" ]
