@@ -6,9 +6,8 @@ import { ITransactionHistoryService } from './interfaces';
 import { AddressTransactionHistory } from './implementations/address';
 
 export function getTransactionHistoryService(type: string): ITransactionHistoryService {
-  const { redisUrl, redisOptions } = getAppConfig();
-  console.log('redis', redisUrl);
-  const redis = new Redis(redisUrl, redisOptions);
+  const { redisUrl } = getAppConfig();
+  const redis = new Redis(redisUrl);
 
   switch (type) {
     case 'ip':

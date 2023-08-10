@@ -60,6 +60,6 @@ export default class Ethereum implements IBlockchainService {
       signature,
     });
 
-    return address.toLowerCase() !== recoveredAddress.toLowerCase();
+    return address.toLowerCase() === recoveredAddress.toLowerCase();
   }
 }

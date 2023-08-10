@@ -1,4 +1,3 @@
-import requestIp from 'request-ip';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SignatureMismatchError } from '../../errors/SignatureMismatchError';
 import { DefaultResponse } from '../../interfaces/Response';
