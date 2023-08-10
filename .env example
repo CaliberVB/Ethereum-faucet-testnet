@@ -15,6 +15,7 @@ ETHERSCAN_API_KEY=00000000000000000000000000
 
 # Create free Redis db on upstash (up to 10k commands/day)
 REDIS_URL=redis://username:password@server:port
+REDIS_PASSWORD=password
 
 #Captcha
 NEXT_PUBLIC_ENABLE_CAPTCHA=none
