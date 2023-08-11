@@ -1,54 +1,25 @@
-import { Box, Typography, Button, Link } from "@mui/material"
-// import Image from 'next/image'
-// import { signIn } from "next-auth/react"
-// import { useSession } from "next-auth/react"
+import { styled, Typography } from '@mui/material';
+
+const NabBarElement = styled('nav')(({ theme }) => ({
+  margin: `0 auto`,
+  padding: `${theme.spacing(3)} ${theme.spacing(2)}`,
+  minWidth: theme.spacing(40),
+  maxWidth: theme.spacing(70),
+  width: '100%',
+  '& > h1': {
+    ...theme.typography.h4,
+    marginBottom: theme.spacing(2),
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+}));
 
 export const NavBar = () => {
-  // const { data: session, status } = useSession()
-
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    window.open('https://twitter.com/CaliberBuild', '_blank');
-  }
   return (
-    <Box 
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      px={2}
-      bgcolor="rgba(202, 236, 220, 0.2)" // semi-transparent background      color="inherit"
-      height={40}
-    >
-      <Link href='caliber.build/' underline='none'>
-      <Box display="flex" alignItems="center">
-        
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: "0.85rem", marginRight: 1, color:'white', fontWeight:'bold' }}>
-          Powered by
-        </Typography>
-        
-        <Box width={90} height={20}>
-          <img src='./Caliber_White.png' alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />     
-        </Box>
-        
-      </Box>
-      </Link>
-      <Button 
-        onClick={handleLogin}
-        variant="outlined" 
-        sx={{ 
-          color: 'white',
-          borderColor: 'white',
-          fontWeight:'bold',
-          '&:hover': {
-            color: 'black',
-            backgroundColor: 'white',
-            
-          }
-        }}
-        size="small"
-      >
-        Follow us!
-      </Button>
-    </Box>
-  )
-}
+    <NabBarElement>
+      <Typography variant="h1">Claim Sepolia ETH</Typography>
+      <Typography variant="body2">
+        <b>Claim Sepolia Testnet ETH to support your DApps development</b>.
+      </Typography>
+    </NabBarElement>
+  );
+};

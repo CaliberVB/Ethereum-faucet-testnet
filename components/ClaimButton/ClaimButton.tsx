@@ -1,37 +1,27 @@
-import { useSession } from "next-auth/react"
-import { BaseClaimButton } from "./_BaseClaimButton"
-import { GoogleReCaptchaClaimButton } from "./_GoogleReCaptchaClaimButton"
-import TwitterLoginButton from "../TwitterLoginButton"
-import Spinner from "../Spinner"
+import { useSession } from 'next-auth/react';
 
-type ClaimButtonProps = {
-  onSuccess: (message: string) => void
-  onError: (message: string) => void
+import { BaseClaimButton } from './_BaseClaimButton';
+import { GoogleReCaptchaClaimButton } from './_GoogleReCaptchaClaimButton';
+import { Spinner } from '@/components';
+
+import { getAppConfig } from '@/config';
+
+interface ClaimButtonProps {
+  onSuccess: (message: string) => void;
+  onError: (message: string) => void;
 }
+export const ClaimButton: React.FunctionComponent<ClaimButtonProps> = (props) => {
+  const { status } = useSession();
+  const enableCaptcha = getAppConfig().enableCaptcha;
 
-const ClaimButtonComponent = (props: ClaimButtonProps) => {
-  const { data: session, status } = useSession()
-
-  if (status === "loading") {
-    return <Spinner /> // You can replace this with a loading spinner or similar
+  if (status === 'loading') {
+    return <Spinner />;
   }
 
-  // if (status === "unauthenticated") {
-  //   return <TwitterLoginButton /> // Or a sign-in prompt
-  // }
+  if (enableCaptcha) return <GoogleReCaptchaClaimButton {...props} />;
+  const retrieveCaptcha = async (): Promise<string> => {
+    return Promise.resolve('');
+  };
 
-  switch (process.env.NEXT_PUBLIC_ENABLE_CAPTCHA) {
-    case "recaptcha_v3": {
-      return <GoogleReCaptchaClaimButton {...props} />
-    }
-    default: {
-      const retrieveCaptcha = async (): Promise<string> => {
-        return new Promise((resolve) => resolve(""))
-      }
-
-      return <BaseClaimButton {...props} retrieveCaptcha={retrieveCaptcha} />
-    }
-  }
-}
-
-export const ClaimButton = ClaimButtonComponent
+  return <BaseClaimButton {...props} retrieveCaptcha={retrieveCaptcha} />;
+};

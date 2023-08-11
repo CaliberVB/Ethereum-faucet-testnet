@@ -1,1 +1,1 @@
-export { ClaimButton } from "./ClaimButton"
+export * from './ClaimButton';
