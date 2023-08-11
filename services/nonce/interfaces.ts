@@ -1,12 +1,8 @@
 export interface INonceResponseBody {
-  nonce: string
+  nonce: string;
 }
 
 export interface INonceService {
-  generate: () => Promise<string>
-  verify: (nonce: string) => Promise<boolean>
-}
-
-export interface INonceResponseBody {
-  nonce: string
+  generate: () => Promise<string>;
+  verify: (nonce: string) => Promise<boolean>;
 }

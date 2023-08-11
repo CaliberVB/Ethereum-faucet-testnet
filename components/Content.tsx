@@ -1,5 +1,5 @@
-import { styled } from "@mui/material"
+import { styled } from '@mui/material';
 
-export const Content = styled("div")(() => ({
-  flex: 1
-}))
+export const Content = styled('main')(() => ({
+  flex: 1,
+}));

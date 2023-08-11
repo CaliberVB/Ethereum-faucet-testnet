@@ -1,7 +1,7 @@
-import { getBlockchainNetworkConfig } from "../../config";
-import { WrongNetworkConfigError } from "../../errors/WrongNetworkConfigError";
-import Ethereum from "./ethereum";
-import { IBlockchainService } from "./interfaces";
+import { getBlockchainNetworkConfig } from '@/config';
+import Ethereum from './ethereum';
+import { IBlockchainService } from './interfaces';
+import { WrongNetworkConfigError } from '@/errors';
 
 export function getBlockchainService(networkName: string): IBlockchainService {
   const networkConfig = getBlockchainNetworkConfig(networkName);

@@ -1,11 +1,11 @@
 export interface SuccessResponse {
-  status: "ok"
-  message: string
+  status: 'ok';
+  message: string;
 }
 
 export interface ErrorResponse {
-  status: "error"
-  message: string
+  status: 'error';
+  message: string;
 }
 
-export type DefaultResponse = SuccessResponse | ErrorResponse
+export type DefaultResponse = SuccessResponse | ErrorResponse;

@@ -1,4 +1,4 @@
-import { IBlockchainConfig } from "../../config";
+import { IBlockchainConfig } from '@/config';
 
 export interface IBlockchainService {
   getNetworkConfig(): IBlockchainConfig;
