@@ -1,5 +1,5 @@
 import { getAppConfig } from '@/config';
-import { WalletAlreadyFunded } from '@/errors';
+import { WalletAlreadyFunded } from '@errors';
 import { normalizeAddress } from '@/utils/ethAddressUtils';
 import { IBlockchainService } from '../blockchains';
 import { ITransactionHistoryService } from '../transactionHistory';

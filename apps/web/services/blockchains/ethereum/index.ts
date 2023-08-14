@@ -5,7 +5,7 @@ import { IBlockchainConfig } from '@/config';
 import { INonceService, getNonceService } from '@/services/nonce';
 import { extractNonceFromMessage } from '@/utils/textMessage';
 import { IBlockchainService } from '../interfaces';
-import { NonceExpiredError } from '@/errors';
+import { NonceExpiredError } from '@errors';
 
 export default class Ethereum implements IBlockchainService {
   wallet: ethers.Wallet;
