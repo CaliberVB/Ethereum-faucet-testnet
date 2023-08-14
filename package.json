@@ -7,6 +7,7 @@
     "create-wallet": "ts-node ./_scripts/createWallet.ts",
     "dev": "nx serve web --port=3000",
     "build": "nx build web",
+    "lint": "nx lint web",
     "husky-install": "husky install & npx husky add .husky/pre-commit 'yarn run lint-staged'"
   },
   "dependencies": {
