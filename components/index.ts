@@ -5,7 +5,6 @@ export * from './OpenSourceMemo';
 export * from './Spinner';
 export * from './TwitterLoginButton';
 export * from './RoundedBox';
-export * from '../containers/ClaimButton';
 export * from './FaucetTitle';
 export * from './BalanceItem';
 export * from './NetworkIcon';

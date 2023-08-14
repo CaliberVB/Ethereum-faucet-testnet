@@ -37,7 +37,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
       setIsSwitching(false);
     }
   };
-  const claimSepoliaEth = async () => {
+  const handleClaim = async () => {
     try {
       if (isNil(library) || isNil(account)) {
         throw new Error('Wallet is not connected');
@@ -50,8 +50,14 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
 
       const signer = (library as ethers.providers.JsonRpcProvider).getSigner();
       const signature = await signer.signMessage(message);
-
-      const txHash = await claimTokens(account as string, message, signature, captchaToken);
+      // account as string, message, signature, captchaToken
+      const txHash = await claimTokens({
+        address: account,
+        message: message,
+        network: networkChain.name,
+        signature: signature,
+        captcha: captchaToken,
+      });
       console.log(txHash.message);
       onSuccess(txHash.message);
     } catch (e: any) {
@@ -96,7 +102,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
       fullWidth
       variant="contained"
       loading={isClaiming}
-      onClick={claimSepoliaEth}
+      onClick={handleClaim}
       loadingPosition="end"
       endIcon={<span></span>}
     >

@@ -5,7 +5,7 @@ import SepoliaIcon from '@/public/assets/images/svg/sepolia.svg';
 import ArbitrumIcon from '@/public/assets/images/svg/arbitrum.svg';
 import BaseIcon from '@/public/assets/images/svg/base.svg';
 import OptimisticIcon from '@/public/assets/images/svg/optimistic.svg';
-import MumbaiIcon from '@/public/assets/images/svg/mumbai.svg';
+import BnbIcon from '@/public/assets/images/svg/bnb.svg';
 import { Network } from '@/config';
 
 const IconMapping = {
@@ -14,7 +14,7 @@ const IconMapping = {
   arbitrum: <ArbitrumIcon />,
   base: <BaseIcon />,
   optimistic: <OptimisticIcon />,
-  mumbai: <MumbaiIcon />,
+  bnb: <BnbIcon />,
 };
 
 interface NetworkIconProps {

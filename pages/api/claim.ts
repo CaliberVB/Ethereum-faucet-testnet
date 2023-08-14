@@ -5,15 +5,15 @@ import { WalletNotEligible } from '../../errors/WalletNotEligible';
 import { validateRequest } from '../../services/security';
 import { getBlockchainService } from '../../services/blockchains';
 import FaucetService from '../../services/faucet/faucetService';
-import { getAppConfig } from '../../config';
+import { Network, getAppConfig } from '../../config';
 import { getTransactionHistoryService } from '../../services/transactionHistory';
 
-type ClaimParams = {
+export type ClaimParams = {
   address: string;
   message: string;
   signature: string;
   captcha: string;
-  network?: string;
+  network?: Network;
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {

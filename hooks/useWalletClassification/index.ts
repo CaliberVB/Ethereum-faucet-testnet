@@ -2,9 +2,9 @@ import { useCallback } from 'react';
 import { getBlockchainService } from '@/services/blockchains';
 import { getTransactionHistoryService } from '@/services/transactionHistory';
 import FaucetService from '@/services/faucet/faucetService';
-import { getAppConfig } from '@/config';
+import { Network, getAppConfig } from '@/config';
 
-export const useWalletClassification = (network: string) => {
+export const useWalletClassification = (network: Network) => {
   const { transactionHistoryType } = getAppConfig();
   const blockchainService = getBlockchainService(network);
   const transactionHistoryService = getTransactionHistoryService(transactionHistoryType);
