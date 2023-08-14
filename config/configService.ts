@@ -1,4 +1,4 @@
-import { IAppConfig, IBlockchainConfig } from './interfaces';
+import { IAppConfig, IBlockchainConfig, Network } from './interfaces';
 import appConfig from './appConfig';
 import { WrongNetworkConfigError } from '../errors/WrongNetworkConfigError';
 
@@ -6,7 +6,7 @@ export function getAppConfig(): IAppConfig {
   return appConfig;
 }
 
-export function getBlockchainNetworkConfig(name: string): IBlockchainConfig {
+export function getBlockchainNetworkConfig(name: Network): IBlockchainConfig {
   const blockchainNetworks = appConfig.blockchainNetworks;
   if (!blockchainNetworks.hasOwnProperty(name)) {
     throw new WrongNetworkConfigError();

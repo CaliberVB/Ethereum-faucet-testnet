@@ -1,4 +1,5 @@
+import { Network } from '@/config';
 export interface ITransactionHistoryService {
-  hasReceivedTokens(address: string, minLayover?: number): Promise<boolean>;
-  recordTransaction(address: string): Promise<void>;
+  hasReceivedTokens(network: Network, address: string, minLayover?: number): Promise<boolean>;
+  recordTransaction(network: Network, address: string): Promise<void>;
 }

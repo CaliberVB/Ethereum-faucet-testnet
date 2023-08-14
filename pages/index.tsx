@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 
-import { FaucetTitle, RoundedBox } from '@/components';
-import { ClaimFaucet, FaucetBalance } from '@/containers';
+import { RoundedBox } from '@/components';
+import { ClaimFaucet, FaucetBalance, FaucetTitle } from '@/containers';
 
 const Home: NextPage = () => {
   return (
     <div>
-      <FaucetTitle title="Sepolia Faucet" subTitle="Fast and Reliable Source of Sepolia 0.1 ETH/day" />
+      <FaucetTitle />
       <RoundedBox>
         <FaucetBalance />
         <ClaimFaucet />
