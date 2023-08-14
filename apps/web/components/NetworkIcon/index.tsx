@@ -1,13 +1,13 @@
 import { SvgIcon } from '@mui/material';
 import React from 'react';
-import GoerliIcon from '@/public/assets/images/svg/goerli.svg';
-import SepoliaIcon from '@/public/assets/images/svg/sepolia.svg';
-import ArbitrumIcon from '@/public/assets/images/svg/arbitrum.svg';
-import BaseIcon from '@/public/assets/images/svg/base.svg';
-import OptimisticIcon from '@/public/assets/images/svg/optimism.svg';
-import BnbIcon from '@/public/assets/images/svg/bnb.svg';
-import MumbaiIcon from '@/public/assets/images/svg/mumbai.svg';
-import { Network } from '@/config';
+import GoerliIcon from '../../public/assets/images/svg/goerli.svg';
+import SepoliaIcon from '../../public/assets/images/svg/sepolia.svg';
+import ArbitrumIcon from '../../public/assets/images/svg/arbitrum.svg';
+import BaseIcon from '../../public/assets/images/svg/base.svg';
+import OptimisticIcon from '../../public/assets/images/svg/optimism.svg';
+import BnbIcon from '../../public/assets/images/svg/bnb.svg';
+import MumbaiIcon from '../../public/assets/images/svg/mumbai.svg';
+import { Network } from '../../config';
 
 const IconMapping = {
   goerli: <GoerliIcon />,
