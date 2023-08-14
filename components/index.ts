@@ -10,3 +10,4 @@ export * from './BalanceItem';
 export * from './NetworkIcon';
 export * from './Select';
 export * from './Button';
+export * from './ErrorBoundary';
