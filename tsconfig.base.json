@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./apps/web/*"]
+      "@/*": ["./apps/web/*"],
+      "@errors": ["libs/errors/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
