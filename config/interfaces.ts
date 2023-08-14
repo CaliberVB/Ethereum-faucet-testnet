@@ -1,4 +1,4 @@
-export type Network = 'sepolia' | 'goerli' | 'base' | 'arbitrum' | 'bnb';
+export type Network = 'sepolia' | 'goerli' | 'base' | 'arbitrum' | 'bnb' | 'mumbai' | 'optimism';
 export interface IAppConfig {
   authUrl: string;
   authSecret: string;

@@ -6,7 +6,7 @@ import { generateKey } from '@/utils';
 export class AddressTransactionHistory implements ITransactionHistoryService {
   constructor(private readonly redis: Redis) {}
 
-  async hasReceivedTokens(network: Network, address: string, minLayover: number): Promise<boolean> {
+  async hasReceivedTokens(network: Network, address: string, minLayover: number = 86400000): Promise<boolean> {
     const key = generateKey(network, address);
     const timeString = await this.redis.get(key);
     if (!timeString) return false;

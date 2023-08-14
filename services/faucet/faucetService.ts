@@ -4,6 +4,7 @@ import { normalizeAddress } from '@/utils/ethAddressUtils';
 import { IBlockchainService } from '../blockchains';
 import { ITransactionHistoryService } from '../transactionHistory';
 import { IFaucetService } from './interfaces';
+import { getErrorMessage } from '@/utils';
 
 export default class FaucetService implements IFaucetService {
   privilegedWallets: string[];
@@ -25,7 +26,9 @@ export default class FaucetService implements IFaucetService {
     if (
       await this.transactionHistoryService.hasReceivedTokens(this.blockchainService.getNetworkConfig().name, address)
     ) {
-      throw new WalletAlreadyFunded();
+      let err = new WalletAlreadyFunded();
+      err.message = getErrorMessage(this.blockchainService.getNetworkConfig(), err.message);
+      throw err;
     }
 
     // Additional faucet policy check at blockchain level

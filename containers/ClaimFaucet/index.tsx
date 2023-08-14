@@ -63,7 +63,7 @@ export const ClaimFaucet = () => {
   return (
     <div>
       <ClaimButton onSuccess={handleSuccess} onError={handleError} />
-      {faucetStatus}
+      <div style={{ marginTop: 16 }}>{faucetStatus}</div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { useFaucet } from '@/hooks/useFaucet';
 import { useNetWork } from '@/hooks';
 import { IBlockchainConfig, getAppConfig } from '@/config';
 import BlockChainIcon from '@/public/assets/images/svg/blockchain.svg';
+import { displayNetworkChainAndSymbol } from '@/utils';
 
 const Option: React.FunctionComponent<IBlockchainConfig> = ({ name }) => {
   return (
@@ -78,7 +79,7 @@ export const FaucetBalance: React.FunctionComponent<FaucetBalanceProps> = () => 
       />
       <BalanceItem
         icon={<ClaimIcon />}
-        title="Claimable Sepolia ETH"
+        title={`Claimable ${displayNetworkChainAndSymbol(networkChain)}`}
         balance={retrieveAmount?.toString()}
         symbol={nativeAsset}
       />
