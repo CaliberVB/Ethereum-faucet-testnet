@@ -29,13 +29,11 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (account?.accessToken) {
-        (token[account.provider] as { [key: string]: any }).accessToken =
-          account.accessToken;
+        (token[account.provider] as { [key: string]: any }).accessToken = account.accessToken;
       }
 
       if (account?.refreshToken) {
-        (token[account.provider] as { [key: string]: any }).refreshToken =
-          account.refreshToken;
+        (token[account.provider] as { [key: string]: any }).refreshToken = account.refreshToken;
       }
 
       return token;

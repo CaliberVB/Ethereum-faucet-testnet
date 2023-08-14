@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { signIn } from 'next-auth/react';
 import { Button } from '@mui/material';
-
 const TwitterLoginButton = () => {
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ const TwitterLoginButton = () => {
       >
         <span>Login with Twitter</span>
         <Image
-          src={'/twitter.svg'}
+          src={'/assets/images/svg/twitter.svg'}
           alt="Twitter Logo"
           width={20}
           height={20}

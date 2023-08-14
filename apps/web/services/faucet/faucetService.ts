@@ -22,7 +22,9 @@ export default class FaucetService implements IFaucetService {
       return true;
     }
 
-    if (await this.transactionHistoryService.hasReceivedTokens(address)) {
+    if (
+      await this.transactionHistoryService.hasReceivedTokens(this.blockchainService.getNetworkConfig().name, address)
+    ) {
       throw new WalletAlreadyFunded();
     }
 
@@ -40,7 +42,7 @@ export default class FaucetService implements IFaucetService {
     const amout = (await this.isPrivileged(address)) ? privilegedDailyAmount : defaultDailyAmount;
     const txHash = await this.blockchainService.transfer(address, amout);
 
-    await this.transactionHistoryService.recordTransaction(address);
+    await this.transactionHistoryService.recordTransaction(this.blockchainService.getNetworkConfig().name, address);
     return txHash;
   }
 }

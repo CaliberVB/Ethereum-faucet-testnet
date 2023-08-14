@@ -16,6 +16,7 @@
     "@mui/icons-material": "latest",
     "@mui/lab": "latest",
     "@mui/material": "latest",
+    "@mui/styles": "^5.14.4",
     "@types/cookie-session": "^2.0.44",
     "@usedapp/core": "latest",
     "axios": "latest",
@@ -39,7 +40,9 @@
     "@nx/linter": "16.6.0",
     "@nx/next": "16.6.0",
     "@nx/react": "16.6.0",
+    "@nx/webpack": "^16.6.0",
     "@nx/workspace": "16.6.0",
+    "@svgr/webpack": "^8.0.1",
     "@testing-library/react": "14.0.0",
     "@types/lodash": "latest",
     "@types/node": "18.14.2",
@@ -61,7 +64,8 @@
     "nx": "16.6.0",
     "prettier": "^2.6.2",
     "ts-node": "10.9.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "url-loader": "^4.1.1"
   },
   "postinstall": "husky install",
   "lint-staged": {

@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import { Layout } from '@/components';
+import { Layout } from '@/layout';
 import { theme } from '@/config';
 import { BlockchainNetworkProvider, CaptchaProvider, DAppProvider } from '@/contexts';
 
