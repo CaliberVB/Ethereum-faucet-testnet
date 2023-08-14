@@ -42,7 +42,6 @@
     "@nx/react": "16.6.0",
     "@nx/webpack": "^16.6.0",
     "@nx/workspace": "16.6.0",
-    "@svgr/webpack": "^8.0.1",
     "@testing-library/react": "14.0.0",
     "@types/lodash": "latest",
     "@types/node": "18.14.2",

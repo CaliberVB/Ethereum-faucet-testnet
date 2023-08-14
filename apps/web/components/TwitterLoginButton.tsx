@@ -31,7 +31,7 @@ const TwitterLoginButton = () => {
       >
         <span>Login with Twitter</span>
         <Image
-          src={'/assets/images/svg/twitter.svg'}
+          src={'/twitter.svg'}
           alt="Twitter Logo"
           width={20}
           height={20}

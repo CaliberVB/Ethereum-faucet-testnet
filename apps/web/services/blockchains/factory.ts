@@ -13,6 +13,8 @@ export function getBlockchainService(networkName: Network): IBlockchainService {
     case 'bnb':
     case 'arbitrum':
     case 'base':
+    case 'mumbai':
+    case 'optimism':
       return new Ethereum(networkConfig);
     default:
       throw new WrongNetworkConfigError();
