@@ -1,21 +1,35 @@
+import { SvgIcon } from '@mui/material';
 import React from 'react';
-
-import { Network } from '@/config';
-import Image from 'next/image';
+import GoerliIcon from '../../public/assets/images/svg/goerli.svg';
+import SepoliaIcon from '../../public/assets/images/svg/sepolia.svg';
+import ArbitrumIcon from '../../public/assets/images/svg/arbitrum.svg';
+import BaseIcon from '../../public/assets/images/svg/base.svg';
+import OptimisticIcon from '../../public/assets/images/svg/optimistic.svg';
+import BnbIcon from '../../public/assets/images/svg/bnb.svg';
+import { Network } from '../../config';
 
 const IconMapping = {
-  goerli: '/assets/images/svg/goerli.svg',
-  sepolia: '/assets/images/svg/sepolia.svg',
-  arbitrum: '/assets/images/svg/arbitrum.svg',
-  base: '/assets/images/svg/base.svg',
-  optimistic: '/assets/images/svg/optimistic.svg',
-  bnb: '/assets/images/svg/bnb.svg',
+  goerli: <GoerliIcon />,
+  sepolia: <SepoliaIcon />,
+  arbitrum: <ArbitrumIcon />,
+  base: <BaseIcon />,
+  optimistic: <OptimisticIcon />,
+  bnb: <BnbIcon />,
 };
 
 interface NetworkIconProps {
   name: Network;
 }
-
 export const NetworkIcon: React.FunctionComponent<NetworkIconProps> = ({ name }) => {
-  return <Image width={24} height={24} color="text.secondary" alt="icon" src={IconMapping[name]} />;
+  return (
+    <SvgIcon
+      sx={{
+        width: 24,
+        height: 24,
+        color: 'text.secondary',
+      }}
+    >
+      {IconMapping[name]}
+    </SvgIcon>
+  );
 };

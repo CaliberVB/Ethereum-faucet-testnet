@@ -1,13 +1,13 @@
 import { formatEther } from 'ethers/lib/utils';
 import { useEtherBalance, useEthers } from '@usedapp/core';
 import ClaimIcon from '@mui/icons-material/GetApp';
-import { Box, FormControl, MenuItem } from '@mui/material';
+import { Box, FormControl, SvgIcon, MenuItem } from '@mui/material';
 import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { BalanceItem, Item, NetworkIcon, Select } from '@/components';
 import { useFaucet } from '@/hooks/useFaucet';
 import { useNetWork } from '@/hooks';
 import { IBlockchainConfig, getAppConfig } from '@/config';
-import Image from 'next/image';
+import BlockchainIcon from '../../public/assets/images/svg/blockchain.svg';
 
 const Option: React.FunctionComponent<IBlockchainConfig> = ({ name }) => {
   return (
@@ -43,7 +43,9 @@ export const FaucetBalance: React.FunctionComponent<FaucetBalanceProps> = () => 
           padding: '0 0 0 16px',
         }}
       >
-        <Image src={'/assets/images/svg/blockchain.svg'} width={24} height={24} alt="blockchain" />
+        <SvgIcon>
+          <BlockchainIcon />
+        </SvgIcon>
         <span>Network</span>
         <FormControl size="small">
           <Select

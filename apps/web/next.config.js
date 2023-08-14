@@ -6,9 +6,6 @@ const withNx = require('@nx/next/plugins/with-nx');
  **/
 const nextConfig = {
   reactStrictMode: true,
-  nx: {
-    svgr: true,
-  },
 };
 
 module.exports = withNx(nextConfig);
