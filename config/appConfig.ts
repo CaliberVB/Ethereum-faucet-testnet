@@ -1,4 +1,4 @@
-import { Sepolia, Goerli, BaseGoerli, ArbitrumGoerli } from '@usedapp/core';
+import { Sepolia, Goerli, BaseGoerli, ArbitrumGoerli, BSCTestnet } from '@usedapp/core';
 import { IAppConfig } from './interfaces';
 import { privilegedWallets } from './wallets';
 
@@ -74,6 +74,17 @@ const config: IAppConfig = {
       blockscanUrl: `${ArbitrumGoerli.blockExplorerUrl}?apiKey=${process.env.ETHERSCAN_API_KEY}`,
       walletPrivateKey: process.env.WALLET_PRIVATE_KEY || '',
       chainId: ArbitrumGoerli.chainId,
+    },
+    bnb: {
+      name: 'bnb',
+      displayName: 'BNB Smart Chain',
+      providerUrl: process.env.NEXT_PUBLIC_BNB_RPC || '',
+      nativeAsset: 'BNB',
+      defaultDailyAmount: parseFloat(process.env.NEXT_PUBLIC_DEFAULT_WALLET_BNB_AMOUNT as string) || 0.01,
+      privilegedDailyAmount: parseFloat(process.env.NEXT_PUBLIC_PRIVILEGED_WALLET_ETH_AMOUNT as string) || 0.2,
+      blockscanUrl: `${BSCTestnet.blockExplorerUrl}`,
+      walletPrivateKey: process.env.WALLET_PRIVATE_KEY || '',
+      chainId: BSCTestnet.chainId,
     },
   },
   privilegedWallets,

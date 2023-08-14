@@ -1,8 +1,9 @@
-import { ClaimButton } from '@/components';
 import { Alert } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { Link as MuiLink } from '@mui/material';
 import Link from 'next/link';
+import { useNetWork } from '@/hooks';
+import { ClaimButton } from '../ClaimButton';
 
 type FaucetState =
   | {
@@ -23,6 +24,7 @@ const initialState: FaucetState = {
 
 export const ClaimFaucet = () => {
   const [faucetState, setFaucetState] = useState<FaucetState>(initialState);
+  const { networkChain } = useNetWork();
 
   const handleSuccess = (txHash: string) => {
     setFaucetState(() => ({
@@ -43,12 +45,12 @@ export const ClaimFaucet = () => {
     if (faucetState.status === 'success')
       return (
         <Alert severity="success">
-          Sepolia ETH has been dispatched to your wallet. <br />
+          {networkChain.displayName} {networkChain.nativeAsset} has been dispatched to your wallet. <br />
           You should receive it within 1-3 minutes.
           <br />
           TxHash:
           <br />{' '}
-          <Link href={`https://sepolia.etherscan.io/tx/${faucetState.txHash}`} passHref>
+          <Link href={`${networkChain.blockscanUrl}/tx/${faucetState.txHash}`} passHref>
             <MuiLink target="_blank" rel="noopener referrer">
               {faucetState.txHash}
             </MuiLink>
@@ -56,7 +58,7 @@ export const ClaimFaucet = () => {
         </Alert>
       );
     return null;
-  }, [faucetState]);
+  }, [faucetState, networkChain]);
 
   return (
     <div>

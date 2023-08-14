@@ -10,7 +10,7 @@ export function getBlockchainService(networkName: Network): IBlockchainService {
     //EVM networks
     case 'sepolia':
     case 'goerli':
-    case 'mumbai':
+    case 'bnb':
     case 'arbitrum':
     case 'base':
       return new Ethereum(networkConfig);

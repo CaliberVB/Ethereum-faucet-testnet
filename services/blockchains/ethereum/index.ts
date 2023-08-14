@@ -15,6 +15,7 @@ export default class Ethereum implements IBlockchainService {
   constructor(networkConfig: IBlockchainConfig) {
     this.config = networkConfig;
     const { providerUrl, chainId, walletPrivateKey } = this.config;
+
     const provider = new ethers.providers.JsonRpcProvider(providerUrl, chainId);
     this.wallet = new ethers.Wallet(walletPrivateKey, provider);
     this.nonceService = getNonceService();
