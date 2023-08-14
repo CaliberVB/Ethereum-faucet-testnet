@@ -1,3 +1,4 @@
+export type Network = 'sepolia' | 'goerli' | 'base' | 'arbitrum';
 export interface IAppConfig {
   authUrl: string;
   authSecret: string;
@@ -10,18 +11,16 @@ export interface IAppConfig {
   defaultMillisecondsLayover: number;
   defaultBlockLayover: number;
   pollingInterval: number;
-  blockchainNetworks: {
-    [key: string]: IBlockchainConfig;
-  };
+  blockchainNetworks: Record<Network, IBlockchainConfig>;
   privilegedWallets: string[];
   walletAddress: string | undefined;
 }
 
 export interface IBlockchainConfig {
-  key: string;
-  name: string;
+  name: Network;
+  displayName: string;
   providerUrl: string;
-  networkId?: string;
+  chainId: number;
   walletPrivateKey: string;
   nativeAsset: string;
   defaultDailyAmount: number;

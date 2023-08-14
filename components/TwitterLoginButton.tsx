@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { signIn } from 'next-auth/react';
 import { Button } from '@mui/material';
-
 const TwitterLoginButton = () => {
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
