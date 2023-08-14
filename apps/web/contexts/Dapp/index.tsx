@@ -1,7 +1,7 @@
 import { Config, DAppProvider as DAppProviderCore } from '@usedapp/core';
 
 import { useNetWork } from '@/hooks';
-import { getAppConfig } from '@/config';
+import { getAppConfig } from '@config';
 export const DAppProvider: React.FunctionComponent<React.PropsWithChildren<{}>> = ({ children }) => {
   const { networkChain } = useNetWork();
   const { blockchainNetworks } = getAppConfig();

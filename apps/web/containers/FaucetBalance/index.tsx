@@ -6,7 +6,7 @@ import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { BalanceItem, Item, NetworkIcon, Select } from '@/components';
 import { useFaucet } from '@/hooks/useFaucet';
 import { useNetWork } from '@/hooks';
-import { IBlockchainConfig, getAppConfig } from '@/config';
+import { IBlockchainConfig, getAppConfig } from '@config';
 import BlockChainIcon from '../../public/assets/images/svg/blockchain.svg';
 import { displayNetworkChainAndSymbol } from '@/utils';
 

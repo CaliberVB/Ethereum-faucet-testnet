@@ -1,4 +1,4 @@
-import { getAppConfig } from '@/config';
+import { getAppConfig } from '@config';
 import { PropsWithChildren } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 

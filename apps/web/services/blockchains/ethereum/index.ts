@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { recoverPersonalSignature } from '@metamask/eth-sig-util';
 
-import { IBlockchainConfig } from '@/config';
+import { IBlockchainConfig } from '@config';
 import { INonceService, getNonceService } from '@/services/nonce';
 import { extractNonceFromMessage } from '@/utils/textMessage';
 import { IBlockchainService } from '../interfaces';

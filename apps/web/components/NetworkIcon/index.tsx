@@ -7,7 +7,7 @@ import BaseIcon from '../../public/assets/images/svg/base.svg';
 import OptimisticIcon from '../../public/assets/images/svg/optimism.svg';
 import BnbIcon from '../../public/assets/images/svg/bnb.svg';
 import MumbaiIcon from '../../public/assets/images/svg/mumbai.svg';
-import { Network } from '../../config';
+import { Network } from '../../../../libs/config/src';
 
 const IconMapping = {
   goerli: <GoerliIcon />,

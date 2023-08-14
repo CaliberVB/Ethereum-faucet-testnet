@@ -1,4 +1,4 @@
-import { IBlockchainConfig, getAppConfig } from '@/config';
+import { IBlockchainConfig, getAppConfig } from '@config';
 import { createContext, useState, useMemo } from 'react';
 
 export interface BlockchainNetworkProviderProps {

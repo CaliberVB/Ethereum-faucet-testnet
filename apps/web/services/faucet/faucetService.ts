@@ -1,4 +1,4 @@
-import { getAppConfig } from '@/config';
+import { getAppConfig } from '@config';
 import { WalletAlreadyFunded } from '@errors';
 import { normalizeAddress } from '@/utils/ethAddressUtils';
 import { IBlockchainService } from '../blockchains';

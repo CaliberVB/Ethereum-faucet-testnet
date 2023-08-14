@@ -4,7 +4,7 @@ import { DefaultResponse } from '../../interfaces/Response';
 import { validateRequest } from '../../services/security';
 import { getBlockchainService } from '../../services/blockchains';
 import FaucetService from '../../services/faucet/faucetService';
-import { Network, getAppConfig } from '../../config';
+import { Network, getAppConfig } from '../../../../libs/config/src';
 import { getTransactionHistoryService } from '../../services/transactionHistory';
 import { getErrorMessage } from '@/utils';
 

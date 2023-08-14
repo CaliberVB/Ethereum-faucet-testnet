@@ -1,5 +1,5 @@
 import { Redis } from 'ioredis';
-import { getAppConfig } from '@/config';
+import { getAppConfig } from '@config';
 
 import { IpTransactionHistory } from './implementations/ip';
 import { ITransactionHistoryService } from './interfaces';
