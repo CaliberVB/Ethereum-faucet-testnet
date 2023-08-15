@@ -1,7 +1,7 @@
 import { getAppConfig } from '@config';
 import { WalletAlreadyFunded } from '@errors';
 import { normalizeAddress } from '@/utils/ethAddressUtils';
-import { IBlockchainService } from '../blockchains';
+import { IBlockchainService } from '@blockchainService';
 import { ITrackingService } from '@trackingService';
 import { IFaucetService } from './interfaces';
 import { getErrorMessage } from '@/utils';

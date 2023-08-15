@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./apps/web/*"],
+      "@blockchainService": ["libs/blockchain-service/src/index.ts"],
       "@config": ["libs/config/src/index.ts"],
       "@errors": ["libs/errors/src/index.ts"],
       "@nonceService": ["libs/nonce-service/src/index.ts"],

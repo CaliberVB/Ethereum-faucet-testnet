@@ -3,9 +3,18 @@ import { recoverPersonalSignature } from '@metamask/eth-sig-util';
 
 import { IBlockchainConfig } from '@config';
 import { INonceService, getNonceService } from '@nonceService';
-import { extractNonceFromMessage } from '@/utils/textMessage';
 import { IBlockchainService } from '../interfaces';
 import { NonceExpiredError } from '@errors';
+
+export const messageTemplate = (nonce: string = '') =>
+  `Please sign this message to confirm you own this wallet.\n\n\nNonce: ${nonce}`;
+
+export const extractNonceFromMessage = (message: string) => {
+  const truncate = messageTemplate();
+  const nonce = message.replace(truncate, '');
+
+  return nonce.trim();
+};
 
 export default class Ethereum implements IBlockchainService {
   wallet: ethers.Wallet;
@@ -48,6 +57,7 @@ export default class Ethereum implements IBlockchainService {
     return true;
   }
 
+  // TODO: send nonce instead of full raw message
   async verifyMessage(address: string, message: string, signature: string): Promise<boolean> {
     const nonce = extractNonceFromMessage(message);
     const isValid = await this.nonceService.verify(nonce);

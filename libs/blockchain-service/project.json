@@ -1,0 +1,26 @@
+{
+  "name": "blockchain-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blockchain-service/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/blockchain-service",
+        "main": "libs/blockchain-service/src/index.ts",
+        "tsConfig": "libs/blockchain-service/tsconfig.lib.json",
+        "assets": ["libs/blockchain-service/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/blockchain-service/**/*.ts", "libs/blockchain-service/package.json"]
+      }
+    }
+  },
+  "tags": []
+}

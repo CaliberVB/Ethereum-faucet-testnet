@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { getBlockchainService } from '@/services/blockchains';
+import { getBlockchainService } from '@blockchainService';
 import { getTrackingService } from '@trackingService';
 import FaucetService from '@/services/faucet/faucetService';
 import { Network, getAppConfig } from '@config';
