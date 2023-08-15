@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SignatureMismatchError, InsufficientFundsError, WalletNotEligible } from '@errors';
 import { DefaultResponse } from '../../interfaces/Response';
-import { validateRequest } from '../../services/security';
+import { validateRequest } from '@securityService';
 import { getBlockchainService } from '../../services/blockchains';
 import FaucetService from '../../services/faucet/faucetService';
 import { Network, getAppConfig } from '@config';

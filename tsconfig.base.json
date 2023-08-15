@@ -19,6 +19,7 @@
       "@config": ["libs/config/src/index.ts"],
       "@errors": ["libs/errors/src/index.ts"],
       "@nonceService": ["libs/nonce-service/src/index.ts"],
+      "@securityService": ["libs/security-service/src/index.ts"],
       "@trackingService": ["libs/tracking-service/src/index.ts"]
     }
   },
