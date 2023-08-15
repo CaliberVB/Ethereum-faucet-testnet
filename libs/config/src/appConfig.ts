@@ -15,7 +15,7 @@ const config: IAppConfig = {
       rejectUnauthorized: false,
     },
   },
-  transactionHistoryType: 'address',
+  trackingType: 'address',
   defaultMillisecondsLayover: 86400000,
   defaultBlockLayover: 5400,
   pollingInterval: 20_000,

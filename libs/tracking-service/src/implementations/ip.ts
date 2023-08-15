@@ -1,8 +1,9 @@
 import Redis from 'ioredis';
-import { ITransactionHistoryService } from '../interfaces';
+import { ITrackingService } from '../interfaces';
 import { Network } from '@config';
+
 // @ts-ignore
-export class IpTransactionHistory implements ITransactionHistoryService {
+export class IpTrackingService implements ITrackingService {
   constructor(private readonly redis: Redis) {}
 
   async hasReceivedTokens(network: Network, ipAddress: string, minLayover: number): Promise<boolean> {

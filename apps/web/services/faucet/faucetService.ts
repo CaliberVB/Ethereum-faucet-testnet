@@ -2,7 +2,7 @@ import { getAppConfig } from '@config';
 import { WalletAlreadyFunded } from '@errors';
 import { normalizeAddress } from '@/utils/ethAddressUtils';
 import { IBlockchainService } from '../blockchains';
-import { ITransactionHistoryService } from '../transactionHistory';
+import { ITrackingService } from '@trackingService';
 import { IFaucetService } from './interfaces';
 import { getErrorMessage } from '@/utils';
 
@@ -11,7 +11,7 @@ export default class FaucetService implements IFaucetService {
 
   constructor(
     private readonly blockchainService: IBlockchainService,
-    private readonly transactionHistoryService: ITransactionHistoryService,
+    private readonly transactionHistoryService: ITrackingService,
   ) {
     const { privilegedWallets } = getAppConfig();
     this.privilegedWallets = privilegedWallets;
@@ -19,7 +19,7 @@ export default class FaucetService implements IFaucetService {
 
   async isEligible(address: string): Promise<boolean> {
     // Privileged wallets aren’t checked for eligibility
-    if (await this.isPrivileged(address)) {
+    if (this.isPrivileged(address)) {
       return true;
     }
 
@@ -42,7 +42,7 @@ export default class FaucetService implements IFaucetService {
 
   async sendFaucet(address: string): Promise<string> {
     const { defaultDailyAmount, privilegedDailyAmount } = this.blockchainService.getNetworkConfig();
-    const amout = (await this.isPrivileged(address)) ? privilegedDailyAmount : defaultDailyAmount;
+    const amout = this.isPrivileged(address) ? privilegedDailyAmount : defaultDailyAmount;
     const txHash = await this.blockchainService.transfer(address, amout);
 
     await this.transactionHistoryService.recordTransaction(this.blockchainService.getNetworkConfig().name, address);

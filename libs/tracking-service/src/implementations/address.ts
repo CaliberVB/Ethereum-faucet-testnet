@@ -1,9 +1,12 @@
 import Redis from 'ioredis';
-import { ITransactionHistoryService } from '../interfaces';
+import { ITrackingService } from '../interfaces';
 import { Network } from '@config';
-import { generateKey } from '@/utils';
-// @ts-ignore
-export class AddressTransactionHistory implements ITransactionHistoryService {
+
+export function generateKey(network: Network, address: string): string {
+  return `${network}|${address}`;
+}
+
+export class AddressTrackingService implements ITrackingService {
   constructor(private readonly redis: Redis) {}
 
   async hasReceivedTokens(network: Network, address: string, minLayover: number = 86400000): Promise<boolean> {
