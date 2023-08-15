@@ -4,7 +4,7 @@ import { BaseClaimButton } from './_BaseClaimButton';
 import { GoogleReCaptchaClaimButton } from './_GoogleReCaptchaClaimButton';
 import { Spinner } from '@/components';
 
-import { getAppConfig } from '@/config';
+import { getAppConfig } from '@config';
 
 interface ClaimButtonProps {
   onSuccess: (message: string) => void;

@@ -1,13 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { SignatureMismatchError } from '../../errors/SignatureMismatchError';
+import { SignatureMismatchError, InsufficientFundsError, WalletNotEligible } from '@errors';
 import { DefaultResponse } from '../../interfaces/Response';
-import { WalletNotEligible } from '../../errors/WalletNotEligible';
 import { validateRequest } from '../../services/security';
 import { getBlockchainService } from '../../services/blockchains';
 import FaucetService from '../../services/faucet/faucetService';
-import { Network, getAppConfig } from '../../config';
+import { Network, getAppConfig } from '@config';
 import { getTransactionHistoryService } from '../../services/transactionHistory';
-import { InsufficientFundsError } from '@/errors';
 import { getErrorMessage } from '@/utils';
 
 export type ClaimParams = {

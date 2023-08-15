@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { InvalidCaptcha } from '@/errors';
+import { InvalidCaptcha } from '@errors';
 
 export interface Captcha {
   verifyCaptcha(token: string): Promise<void>;

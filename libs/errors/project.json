@@ -1,0 +1,26 @@
+{
+  "name": "errors",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/errors/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/errors",
+        "main": "libs/errors/src/index.ts",
+        "tsConfig": "libs/errors/tsconfig.lib.json",
+        "assets": ["libs/errors/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/errors/**/*.ts", "libs/errors/package.json"]
+      }
+    }
+  },
+  "tags": []
+}

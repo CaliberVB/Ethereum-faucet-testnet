@@ -1,4 +1,4 @@
-import { IBlockchainConfig } from '@/config';
+import { IBlockchainConfig } from '@config';
 
 export const messageTemplate = (nonce: string = '') =>
   `Please sign this message to confirm you own this wallet.\n\n\nNonce: ${nonce}`;

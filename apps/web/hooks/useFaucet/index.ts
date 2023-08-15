@@ -1,4 +1,4 @@
-import { Network, getAppConfig } from '@/config';
+import { Network, getAppConfig } from '@config';
 
 export const useFaucet = (network: Network) => {
   const networkConfigs = getAppConfig().blockchainNetworks[network];

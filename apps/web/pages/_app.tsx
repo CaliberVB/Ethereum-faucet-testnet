@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Layout } from '@/layout';
-import { theme } from '@/config';
+import { theme } from '@config';
 import { BlockchainNetworkProvider, CaptchaProvider, DAppProvider } from '@/contexts';
 import { ErrorBoundary } from '@/components';
 

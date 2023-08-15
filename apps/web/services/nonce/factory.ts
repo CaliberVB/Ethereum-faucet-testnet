@@ -1,4 +1,4 @@
-import { getAppConfig } from '@/config';
+import { getAppConfig } from '@config';
 import { TimestampNonce } from './implementations/timestamp';
 import { INonceService } from './interfaces';
 

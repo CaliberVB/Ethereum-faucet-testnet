@@ -1,4 +1,4 @@
-import { Network } from '@/config';
+import { Network } from '@config';
 export function generateKey(network: Network, address: string): string {
   return `${network}|${address}`;
 }

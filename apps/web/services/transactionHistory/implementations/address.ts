@@ -1,6 +1,6 @@
 import Redis from 'ioredis';
 import { ITransactionHistoryService } from '../interfaces';
-import { Network } from '@/config';
+import { Network } from '@config';
 import { generateKey } from '@/utils';
 // @ts-ignore
 export class AddressTransactionHistory implements ITransactionHistoryService {

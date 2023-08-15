@@ -1,6 +1,6 @@
 import { IAppConfig, IBlockchainConfig, Network } from './interfaces';
 import appConfig from './appConfig';
-import { WrongNetworkConfigError } from '../errors/WrongNetworkConfigError';
+import { WrongNetworkConfigError } from '@errors';
 
 export function getAppConfig(): IAppConfig {
   return appConfig;
