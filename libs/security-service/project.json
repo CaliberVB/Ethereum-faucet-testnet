@@ -1,0 +1,26 @@
+{
+  "name": "security-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/security-service/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/security-service",
+        "main": "libs/security-service/src/index.ts",
+        "tsConfig": "libs/security-service/tsconfig.lib.json",
+        "assets": ["libs/security-service/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/security-service/**/*.ts", "libs/security-service/package.json"]
+      }
+    }
+  },
+  "tags": []
+}

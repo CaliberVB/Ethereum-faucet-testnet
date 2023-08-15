@@ -1,0 +1,26 @@
+{
+  "name": "tracking-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/tracking-service/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/tracking-service",
+        "main": "libs/tracking-service/src/index.ts",
+        "tsConfig": "libs/tracking-service/tsconfig.lib.json",
+        "assets": ["libs/tracking-service/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/tracking-service/**/*.ts", "libs/tracking-service/package.json"]
+      }
+    }
+  },
+  "tags": []
+}

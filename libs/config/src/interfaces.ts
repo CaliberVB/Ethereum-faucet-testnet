@@ -5,7 +5,7 @@ export interface IAppConfig {
   enableCaptcha: boolean;
   captchaSecretKey: string;
   nonceType: string;
-  transactionHistoryType: string;
+  trackingType: string;
   redisUrl: string;
   redisOptions?: any;
   defaultMillisecondsLayover: number;

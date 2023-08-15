@@ -1,28 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SignatureMismatchError, InsufficientFundsError, WalletNotEligible } from '@errors';
-import { DefaultResponse } from '../../interfaces/Response';
-import { validateRequest } from '../../services/security';
-import { getBlockchainService } from '../../services/blockchains';
-import FaucetService from '../../services/faucet/faucetService';
-import { Network, getAppConfig } from '@config';
-import { getTransactionHistoryService } from '../../services/transactionHistory';
-import { getErrorMessage } from '@/utils';
-
-export type ClaimParams = {
-  address: string;
-  message: string;
-  signature: string;
-  captcha: string;
-  network?: Network;
-};
+import { DefaultResponse, ClaimParams } from '@interface';
+import { validateRequest } from '@securityService';
+import { getBlockchainService } from '@blockchainService';
+import { FaucetService } from '@faucetService';
+import { getAppConfig } from '@config';
+import { getTrackingService } from '@trackingService';
+import { getErrorMessage } from '@utils';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
   const networkName = req.body.network || 'sepolia';
   const blockchainService = getBlockchainService(networkName);
   try {
     await validateRequest(req);
-    const { transactionHistoryType } = getAppConfig();
-    const transactionHistoryService = getTransactionHistoryService(transactionHistoryType);
+    const { trackingType } = getAppConfig();
+    const transactionHistoryService = getTrackingService(trackingType);
     const faucetService = new FaucetService(blockchainService, transactionHistoryService);
 
     const { address, message, signature }: ClaimParams = req.body;

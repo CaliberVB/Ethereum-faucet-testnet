@@ -1,6 +1,6 @@
 import { Title } from '@/components';
 import { useNetWork } from '@/hooks';
-import { displayNetworkChainAndSymbol } from '@/utils';
+import { displayNetworkChainAndSymbol } from '@utils';
 
 export const FaucetTitle = () => {
   const { networkChain } = useNetWork();

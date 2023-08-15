@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { DefaultResponse } from '../../interfaces/Response';
-import { INonceResponseBody, getNonceService } from '../../services/nonce';
+import { DefaultResponse } from '../../../../libs/interface/src/Response';
+import { INonceResponseBody, getNonceService } from '@nonceService';
 
 // @ts-ignore
 type NonceResponse = DefaultResponse<INonceResponseBody>;
