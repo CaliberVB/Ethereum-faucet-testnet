@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import { recoverPersonalSignature } from '@metamask/eth-sig-util';
 
 import { IBlockchainConfig } from '@config';
-import { INonceService, getNonceService } from '@/services/nonce';
+import { INonceService, getNonceService } from '@nonceService';
 import { extractNonceFromMessage } from '@/utils/textMessage';
 import { IBlockchainService } from '../interfaces';
 import { NonceExpiredError } from '@errors';

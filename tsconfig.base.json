@@ -17,7 +17,8 @@
     "paths": {
       "@/*": ["./apps/web/*"],
       "@config": ["libs/config/src/index.ts"],
-      "@errors": ["libs/errors/src/index.ts"]
+      "@errors": ["libs/errors/src/index.ts"],
+      "@nonceService": ["libs/nonce-service/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

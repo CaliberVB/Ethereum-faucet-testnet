@@ -1,0 +1,26 @@
+{
+  "name": "nonce-service",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nonce-service/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nonce-service",
+        "main": "libs/nonce-service/src/index.ts",
+        "tsConfig": "libs/nonce-service/tsconfig.lib.json",
+        "assets": ["libs/nonce-service/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nonce-service/**/*.ts", "libs/nonce-service/package.json"]
+      }
+    }
+  },
+  "tags": []
+}
