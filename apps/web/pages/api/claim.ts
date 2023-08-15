@@ -3,7 +3,7 @@ import { SignatureMismatchError, InsufficientFundsError, WalletNotEligible } fro
 import { DefaultResponse } from '../../interfaces/Response';
 import { validateRequest } from '@securityService';
 import { getBlockchainService } from '@blockchainService';
-import FaucetService from '../../services/faucet/faucetService';
+import { FaucetService } from '@faucetService';
 import { Network, getAppConfig } from '@config';
 import { getTrackingService } from '@trackingService';
 import { getErrorMessage } from '@utils';

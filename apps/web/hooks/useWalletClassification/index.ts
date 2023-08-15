@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { getBlockchainService } from '@blockchainService';
 import { getTrackingService } from '@trackingService';
-import FaucetService from '@/services/faucet/faucetService';
+import { FaucetService } from '@faucetService';
 import { Network, getAppConfig } from '@config';
 
 export const useWalletClassification = (network: Network) => {
@@ -12,6 +12,7 @@ export const useWalletClassification = (network: Network) => {
 
   const retriveAmount = useCallback((address: string | undefined) => {
     return blockchainService.getFaucetAmount(faucetService.isPrivileged(address || ''));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return [retriveAmount];

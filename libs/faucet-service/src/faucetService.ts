@@ -5,7 +5,7 @@ import { IBlockchainService } from '@blockchainService';
 import { ITrackingService } from '@trackingService';
 import { IFaucetService } from './interfaces';
 
-export default class FaucetService implements IFaucetService {
+export class FaucetService implements IFaucetService {
   privilegedWallets: string[];
 
   constructor(
