@@ -1,4 +1,4 @@
-import { ClaimParams } from '@/pages/api/claim';
+import { ClaimParams } from '@interface';
 import axios from 'axios';
 
 const httpClient = axios.create({ baseURL: '/api' });

@@ -1,20 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { SignatureMismatchError, InsufficientFundsError, WalletNotEligible } from '@errors';
-import { DefaultResponse } from '../../interfaces/Response';
+import { DefaultResponse, ClaimParams } from '@interface';
 import { validateRequest } from '@securityService';
 import { getBlockchainService } from '@blockchainService';
 import { FaucetService } from '@faucetService';
-import { Network, getAppConfig } from '@config';
+import { getAppConfig } from '@config';
 import { getTrackingService } from '@trackingService';
 import { getErrorMessage } from '@utils';
-
-export type ClaimParams = {
-  address: string;
-  message: string;
-  signature: string;
-  captcha: string;
-  network?: Network;
-};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
   const networkName = req.body.network || 'sepolia';

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { DefaultResponse } from '../../interfaces/Response';
+import { DefaultResponse } from '../../../../libs/interface/src/Response';
 import { INonceResponseBody, getNonceService } from '@nonceService';
 
 // @ts-ignore

@@ -7,7 +7,7 @@ import { useEthers } from '@usedapp/core';
 import { Button } from '@mui/material';
 
 import { useHasMetamask } from '@/hooks/useHasMetamask';
-import { claimTokens, retrieveNonce } from '@/httpClient';
+import { claimTokens, retrieveNonce } from '@apiService';
 import { messageTemplate } from '@utils';
 import { useState } from 'react';
 import { LoadingButton } from '@/components';
