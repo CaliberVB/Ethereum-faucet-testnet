@@ -6,7 +6,7 @@ import { getBlockchainService } from '@blockchainService';
 import FaucetService from '../../services/faucet/faucetService';
 import { Network, getAppConfig } from '@config';
 import { getTrackingService } from '@trackingService';
-import { getErrorMessage } from '@/utils';
+import { getErrorMessage } from '@utils';
 
 export type ClaimParams = {
   address: string;

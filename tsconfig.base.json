@@ -21,7 +21,8 @@
       "@errors": ["libs/errors/src/index.ts"],
       "@nonceService": ["libs/nonce-service/src/index.ts"],
       "@securityService": ["libs/security-service/src/index.ts"],
-      "@trackingService": ["libs/tracking-service/src/index.ts"]
+      "@trackingService": ["libs/tracking-service/src/index.ts"],
+      "@utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

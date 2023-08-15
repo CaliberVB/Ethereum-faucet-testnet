@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 
 import { useHasMetamask } from '@/hooks/useHasMetamask';
 import { claimTokens, retrieveNonce } from '@/httpClient';
-import { messageTemplate } from '@/utils/textMessage';
+import { messageTemplate } from '@utils';
 import { useState } from 'react';
 import { LoadingButton } from '@/components';
 import { useNetWork } from '@/hooks';

@@ -1,10 +1,9 @@
 import { getAppConfig } from '@config';
 import { WalletAlreadyFunded } from '@errors';
-import { normalizeAddress } from '@/utils/ethAddressUtils';
+import { normalizeAddress, getErrorMessage } from '@utils';
 import { IBlockchainService } from '@blockchainService';
 import { ITrackingService } from '@trackingService';
 import { IFaucetService } from './interfaces';
-import { getErrorMessage } from '@/utils';
 
 export default class FaucetService implements IFaucetService {
   privilegedWallets: string[];
