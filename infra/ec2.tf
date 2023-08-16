@@ -21,7 +21,7 @@ resource "aws_instance" "app-server" {
     #!/bin/bash
     set -ex
     sudo yum update -y
-    sudo yum -y install docker
+    sudo yum -y install docker git htop
     sudo service docker start
     sudo usermod -a -G docker ec2-user
     chkconfig docker on
