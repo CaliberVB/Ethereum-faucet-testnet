@@ -24,7 +24,6 @@ WORKDIR /app
 COPY .yarnrc.yml .yarnrc.yml
 COPY .yarn/releases ./.yarn/releases
 COPY --from=builder /app/dist/package.json /app/
-COPY --from=builder /app/dist/yarn.lock /app/
 RUN yarn install \
   && rm -rf /var/cache/apk/* \
   && rm -rf /usr/local/share/.cache/yarn/*
