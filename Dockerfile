@@ -1,14 +1,25 @@
 FROM node:18-alpine as builder
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
+COPY .yarnrc.yml .yarnrc.yml
+COPY .yarn/releases ./.yarn/releases
 RUN yarn install
 COPY . .
 RUN yarn build
+RUN cat dist/package.json
+RUN ls -lha dist
 
 ###################
 FROM node:18-alpine
-WORKDIR /app
+
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+
 WORKDIR /app
 COPY --from=builder /app/dist/package.json /app/
 RUN yarn install \
