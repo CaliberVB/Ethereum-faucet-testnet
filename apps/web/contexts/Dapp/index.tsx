@@ -6,7 +6,7 @@ export const DAppProvider: React.FunctionComponent<React.PropsWithChildren<{}>> 
   const { networkChain } = useNetWork();
   const { blockchainNetworks } = getAppConfig();
   let config: Config = {
-    readOnlyChainId: networkChain.chainId,
+    readOnlyChainId: networkChain.chainId ?? blockchainNetworks.sepolia.chainId,
     readOnlyUrls: {
       [blockchainNetworks.goerli.chainId]: blockchainNetworks.goerli.providerUrl || '',
       [blockchainNetworks.sepolia.chainId]: blockchainNetworks.sepolia.providerUrl || '',

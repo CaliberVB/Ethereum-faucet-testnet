@@ -1,15 +1,14 @@
 import type { NextPage } from 'next';
-
 import { RoundedBox } from '@/components';
-import { ClaimFaucet, FaucetBalance, FaucetTitle } from '@/containers';
+import { FaucetTitle } from '@/containers';
+import { Faucet } from '@/containers/Faucet';
 
 const Home: NextPage = () => {
   return (
     <div>
       <FaucetTitle />
       <RoundedBox>
-        <FaucetBalance />
-        <ClaimFaucet />
+        <Faucet />
       </RoundedBox>
     </div>
   );
