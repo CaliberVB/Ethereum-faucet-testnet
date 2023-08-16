@@ -13,6 +13,4 @@ LICENSE
 .env*
 *.swp
 _scripts
-.yarnrc.yml
-.yarn
 infra
