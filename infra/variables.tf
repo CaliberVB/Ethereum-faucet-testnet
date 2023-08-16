@@ -4,11 +4,17 @@ variable "number_computer" {
 }
 
 variable "private_key_path" {
-  type = string
+  type    = string
   default = "~/.ssh/id_rsa"
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "ap-southeast-1"
+}
+
+variable "project" {
+  description = "The project namespace to use for unique resource naming"
+  default     = "faucet"
+  type        = string
 }

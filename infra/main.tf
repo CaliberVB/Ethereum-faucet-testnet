@@ -18,8 +18,15 @@ terraform {
   required_version = ">= 1.2.0"
 }
 provider "aws" {
-  region  = var.region
+  region = var.region
 }
+
+locals {
+  tags = {
+    project = var.project
+  }
+}
+
 
 data "aws_vpc" "default" {
   default = true
@@ -54,15 +61,16 @@ resource "aws_key_pair" "ssh_key" {
 }
 
 resource "aws_instance" "app-server" {
-  count                       = var.number_computer
-  ami                         = "ami-091a58610910a87a9"
-  instance_type               = "t3.medium"
-  vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
-  key_name                    = aws_key_pair.ssh_key.key_name
+  count                  = var.number_computer
+  ami                    = "ami-091a58610910a87a9"
+  instance_type          = "t3.medium"
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  key_name               = aws_key_pair.ssh_key.key_name
 
-  tags = {
-    Name = "app-server-${count.index}"
-  }
+  tags = merge(
+    { Name = "app-server-${count.index}" },
+    local.tags
+  )
 
   ebs_block_device {
     device_name = "/dev/sda1"
@@ -92,9 +100,10 @@ resource "aws_eip" "app-server-eip" {
     aws_instance.app-server
   ]
 
-  tags = {
-    Name = "eip-app-server-${count.index}"
-  }
+  tags = merge(
+    { Name = "eip-app-server-${count.index}" },
+    local.tags
+  )
 }
 
 
