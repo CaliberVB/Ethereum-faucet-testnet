@@ -10,10 +10,10 @@ resource "aws_instance" "app-server" {
     local.tags
   )
 
-  ebs_block_device {
-    device_name = "/dev/sda1"
-    volume_size = 60
+  root_block_device {
+    volume_size = 50
   }
+
 
   user_data = <<-EOF
     #!/bin/bash
