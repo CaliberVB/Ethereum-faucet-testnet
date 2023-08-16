@@ -21,6 +21,8 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
 WORKDIR /app
+COPY .yarnrc.yml .yarnrc.yml
+COPY .yarn/releases ./.yarn/releases
 COPY --from=builder /app/dist/package.json /app/
 RUN yarn install \
   && rm -rf /var/cache/apk/* \
