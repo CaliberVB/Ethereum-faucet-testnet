@@ -1,7 +1,5 @@
 FROM node:18-alpine as builder
 
-ENV NEXT_TELEMETRY_DISABLED 1
-
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
@@ -17,8 +15,6 @@ RUN ls -lha dist
 FROM node:18-alpine
 
 ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
 WORKDIR /app
 COPY .yarnrc.yml .yarnrc.yml
