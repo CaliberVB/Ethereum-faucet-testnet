@@ -1,15 +1,24 @@
 FROM node:18-alpine as builder
+
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
+COPY .yarnrc.yml .yarnrc.yml
+COPY .yarn/releases ./.yarn/releases
 RUN yarn install
 COPY . .
 RUN yarn build
+RUN cat dist/package.json
+RUN ls -lha dist
 
 ###################
 FROM node:18-alpine
+
+ENV NODE_ENV production
+
 WORKDIR /app
-WORKDIR /app
+COPY .yarnrc.yml .yarnrc.yml
+COPY .yarn/releases ./.yarn/releases
 COPY --from=builder /app/dist/package.json /app/
 RUN yarn install \
   && rm -rf /var/cache/apk/* \
