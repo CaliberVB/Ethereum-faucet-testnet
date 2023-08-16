@@ -12,12 +12,11 @@ import { messageTemplate } from '@utils';
 import { useState } from 'react';
 import { LoadingButton } from '@/components';
 import { useNetWork } from '@/hooks';
+import { ClaimButtonProps } from './ClaimButton';
 
-type BaseClaimButtonProps = {
-  onSuccess: (message: string) => void;
-  onError: (message: string) => void;
-  retrieveCaptcha: () => Promise<string>;
-};
+export interface BaseClaimButtonProps extends ClaimButtonProps {
+  retrieveCaptcha?: () => Promise<string>;
+}
 
 export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseClaimButtonProps) => {
   const { account, library, isLoading: isConnecting, activateBrowserWallet, switchNetwork, chainId } = useEthers();
@@ -43,7 +42,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
         throw new Error('Wallet is not connected');
       }
       setIsClaiming(true);
-      const captchaToken = await retrieveCaptcha();
+      const captchaToken = await retrieveCaptcha?.();
 
       const nonce = await retrieveNonce();
       const message = messageTemplate(nonce);
@@ -58,7 +57,6 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
         signature: signature,
         captcha: captchaToken,
       });
-      console.log(txHash.message);
       onSuccess(txHash.message);
     } catch (e: any) {
       if (e.name === 'AxiosError' && e.response.data.message) {

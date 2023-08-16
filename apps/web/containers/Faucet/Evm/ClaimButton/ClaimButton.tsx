@@ -6,7 +6,7 @@ import { Spinner } from '@/components';
 
 import { getAppConfig } from '@config';
 
-interface ClaimButtonProps {
+export interface ClaimButtonProps {
   onSuccess: (message: string) => void;
   onError: (message: string) => void;
 }
@@ -22,6 +22,5 @@ export const ClaimButton: React.FunctionComponent<ClaimButtonProps> = (props) =>
   const retrieveCaptcha = async (): Promise<string> => {
     return Promise.resolve('');
   };
-
   return <BaseClaimButton {...props} retrieveCaptcha={retrieveCaptcha} />;
 };

@@ -1,11 +1,11 @@
-import { ethers } from 'ethers';
-import { recoverPersonalSignature } from '@metamask/eth-sig-util';
+import { FaucetClient, AptosClient } from 'aptos';
 
 import { IBlockchainConfig } from '@config';
 import { INonceService, getNonceService } from '@nonceService';
 import { IBlockchainService } from '../interfaces';
 import { NonceExpiredError } from '@errors';
 
+export const FAUCET_URL = 'https://faucet.testnet.aptoslabs.com';
 export const messageTemplate = (nonce: string = '') =>
   `Please sign this message to confirm you own this wallet.\n\n\nNonce: ${nonce}`;
 
@@ -16,18 +16,19 @@ export const extractNonceFromMessage = (message: string) => {
   return nonce.trim();
 };
 
-export default class Ethereum implements IBlockchainService {
-  wallet: ethers.Wallet;
+export default class Atops implements IBlockchainService {
+  aptopsClient: AptosClient;
   config: IBlockchainConfig;
   nonceService: INonceService;
+  faucetClient: FaucetClient;
 
   constructor(networkConfig: IBlockchainConfig) {
     this.config = networkConfig;
-    const { providerUrl, chainId, walletPrivateKey } = this.config;
+    const { providerUrl } = this.config;
 
-    const provider = new ethers.providers.JsonRpcProvider(providerUrl, chainId);
-    this.wallet = new ethers.Wallet(walletPrivateKey, provider);
+    this.aptopsClient = new AptosClient(providerUrl);
     this.nonceService = getNonceService();
+    this.faucetClient = new FaucetClient(providerUrl, FAUCET_URL);
   }
   getFaucetAmount(isPrivileged: boolean): number {
     const { defaultDailyAmount, privilegedDailyAmount } = this.config;
@@ -39,14 +40,8 @@ export default class Ethereum implements IBlockchainService {
   }
 
   async transfer(address: string, amount: number): Promise<string> {
-    const value = ethers.utils.parseEther(amount.toString());
-
-    const transaction = {
-      to: address,
-      value,
-    };
-    const tx = await this.wallet.sendTransaction(transaction);
-    return tx.hash;
+    const tx = await this.faucetClient.fundAccount(address, 100_000_000 * amount);
+    return tx[0];
   }
 
   async isEligible(address: string): Promise<boolean> {
@@ -63,12 +58,12 @@ export default class Ethereum implements IBlockchainService {
     if (!isValid) {
       throw new NonceExpiredError();
     }
+    return true;
+    // const recoveredAddress = recoverPersonalSignature({
+    //   data: message,
+    //   signature,
+    // });
 
-    const recoveredAddress = recoverPersonalSignature({
-      data: message,
-      signature,
-    });
-
-    return address.toLowerCase() === recoveredAddress.toLowerCase();
+    // return address.toLowerCase() === recoveredAddress.toLowerCase();
   }
 }

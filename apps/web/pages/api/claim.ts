@@ -15,6 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     await validateRequest(req);
     const { trackingType } = getAppConfig();
     const transactionHistoryService = getTrackingService(trackingType);
+
     const faucetService = new FaucetService(blockchainService, transactionHistoryService);
 
     const { address, message, signature }: ClaimParams = req.body;
