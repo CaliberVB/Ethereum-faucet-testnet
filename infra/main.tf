@@ -29,7 +29,7 @@ locals {
 
 resource "aws_key_pair" "ssh_key" {
   key_name   = "ssh_key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("~/.ssh/deployer.pub")
 }
 
 output "public_ip" {

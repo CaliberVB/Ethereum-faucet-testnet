@@ -4,6 +4,8 @@ resource "aws_instance" "app-server" {
   instance_type          = "t3.medium"
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   key_name               = aws_key_pair.ssh_key.key_name
+  availability_zone      = var.azs[count.index]
+  subnet_id              = aws_subnet.public_subnets[count.index].id
 
   tags = merge(
     { Name = "app-server-${count.index}" },
