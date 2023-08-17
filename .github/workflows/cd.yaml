@@ -26,3 +26,4 @@ jobs:
             git pull
             docker-compose build faucet
             docker-compose up -d faucet
+            docker rmi -f $(docker images -a -q)
