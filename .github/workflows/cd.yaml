@@ -1,7 +1,19 @@
-name: Node.js CI/CD
+name: CICD deployment
 
 on:
   push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      hubAddressGroupObject:
+        type: choice
+        description: 'Deploy service 🚀🚀🚀'
+        required: true
+        default: 'deploy'
+        options:
+          - 'deploy'
+
     branches:
       - main
 
@@ -26,4 +38,3 @@ jobs:
             git pull
             docker-compose build faucet
             docker-compose up -d faucet
-            docker rmi -f $(docker images -a -q)
