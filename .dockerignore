@@ -13,3 +13,4 @@ LICENSE
 .env*
 *.swp
 _scripts
+infra

@@ -8,8 +8,6 @@ COPY .yarn/releases ./.yarn/releases
 RUN yarn install
 COPY . .
 RUN yarn build
-RUN cat dist/package.json
-RUN ls -lha dist
 
 ###################
 FROM node:18-alpine

@@ -12,17 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "16"
-          
-      - name: Install dependencies
-        run: yarn install
-        
-      - name: Build
-        run: yarn build
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
@@ -31,10 +20,10 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd Ethereum-faucet-testnet
+            cd faucet-testnet
+            git add . && git reset HEAD --hard
+            git checkout main
             git pull
-            yarn pm2 delete faucet
-            yarn cache clean
-            yarn install
-            yarn build
-            yarn pm2 start yarn --interpreter bash --name faucet -- start
+            docker-compose build faucet
+            docker-compose up -d faucet
+            docker rmi -f $(docker images -a -q)
