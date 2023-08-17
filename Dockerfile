@@ -1,5 +1,8 @@
 FROM node:18-alpine as builder
 
+ARG NEXT_PUBLIC_WALLET_ADDRESS
+ENV NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS
+
 WORKDIR /app
 COPY package.json .
 COPY yarn.lock .
@@ -7,7 +10,7 @@ COPY .yarnrc.yml .yarnrc.yml
 COPY .yarn/releases ./.yarn/releases
 RUN yarn install
 COPY . .
-RUN yarn build
+RUN NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS yarn build
 
 ###################
 FROM node:18-alpine

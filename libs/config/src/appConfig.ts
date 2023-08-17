@@ -3,7 +3,7 @@ import { IAppConfig } from './interfaces';
 import { privilegedWallets } from './wallets';
 
 const config: IAppConfig = {
-  walletAddress: '0x846d99dae7E7D7380680A75202a3f1A3ce0973b6',
+  walletAddress: process.env['NEXT_PUBLIC_WALLET_ADDRESS'],
   authUrl: process.env['NEXTAUTH_URL'] ?? '',
   authSecret: process.env['NEXTAUTH_SECRET'] ?? '',
   enableCaptcha: false,

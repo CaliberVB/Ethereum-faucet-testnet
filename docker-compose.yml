@@ -9,6 +9,8 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
+      args:
+        NEXT_PUBLIC_WALLET_ADDRESS: ${NEXT_PUBLIC_WALLET_ADDRESS}
     environment:
       WALLET_PRIVATE_KEY: ${WALLET_PRIVATE_KEY}
       ENABLE_TRANSACTION_CHECKS: ${ENABLE_TRANSACTION_CHECKS}
