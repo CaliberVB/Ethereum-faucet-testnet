@@ -20,12 +20,15 @@ import { claimTokens, retrieveNonce } from '@apiService';
 import { messageTemplate } from '@utils';
 import { useNetWork } from '@/hooks';
 import { BaseClaimButtonProps } from '../../Evm/ClaimButton/_BaseClaimButton';
-import { LoadingButton } from '@/components';
+import { LoadingButton, TwitterLogin } from '@/components';
+import { useSession } from 'next-auth/react';
 
 export const ClaimButton: React.FunctionComponent<BaseClaimButtonProps> = ({ onError, onSuccess, retrieveCaptcha }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
   const { wallets, connect, wallet, signMessage, account } = useWallet();
+  const { status } = useSession();
+
   const { networkChain } = useNetWork();
   const handleConnectWallet = async (wallet: Wallet) => {
     try {
@@ -64,6 +67,7 @@ export const ClaimButton: React.FunctionComponent<BaseClaimButtonProps> = ({ onE
       setIsClaiming(false);
     }
   };
+  if (status === 'unauthenticated') return <TwitterLogin />;
   return (
     <Box>
       <LoadingButton

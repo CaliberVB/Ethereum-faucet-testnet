@@ -1,6 +1,7 @@
 import Redis from 'ioredis';
 import { ITrackingService } from '../interfaces';
 import { Network } from '@config';
+import { TTL_24_HOURS } from './address';
 
 // @ts-ignore
 export class IpTrackingService implements ITrackingService {
@@ -24,6 +25,6 @@ export class IpTrackingService implements ITrackingService {
     const dataStored = {
       [ipAddress]: nowTime,
     };
-    await this.redis.set(network, JSON.stringify(dataStored));
+    await this.redis.set(network, JSON.stringify(dataStored), 'EX', TTL_24_HOURS);
   }
 }
