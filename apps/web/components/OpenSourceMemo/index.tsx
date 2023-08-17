@@ -19,7 +19,7 @@ export const OpenSourceMemo = () => (
         -------------------------------------------------------------------------------------------------------------------
       </p>
 
-      <b>How does this process work???</b>
+      <b>How does this process work</b>
       <p>
         Well, you can request 0.1 Sepolia ETH every 24 hours using your Twitter account and an address that belongs to
         you. it’s like your daily drip of crypto!
