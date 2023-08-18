@@ -1,19 +1,18 @@
-resource "aws_instance" "app-server" {
-  count                  = var.number_computer
+resource "aws_instance" "rancher" {
   ami                    = "ami-091a58610910a87a9"
   instance_type          = "t3.medium"
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   key_name               = aws_key_pair.ssh_key.key_name
-  availability_zone      = var.azs[count.index]
-  subnet_id              = aws_subnet.public_subnets[count.index].id
+  availability_zone      = var.azs[1]
+  subnet_id              = aws_subnet.public_subnets[1].id
 
   tags = merge(
-    { Name = "app-server-${count.index}" },
+    { Name = "rancher" },
     local.tags
   )
 
   root_block_device {
-    volume_size = 50
+    volume_size = 100
   }
 
 
@@ -31,18 +30,15 @@ resource "aws_instance" "app-server" {
   EOF
 }
 
-resource "aws_eip" "app-server-eip" {
-  count = var.number_computer
-
-  instance = aws_instance.app-server[count.index].id
+resource "aws_eip" "rancher-eip" {
+  instance = aws_instance.rancher.id
   vpc      = true
   depends_on = [
-    aws_instance.app-server
+    aws_instance.rancher
   ]
 
   tags = merge(
-    { Name = "eip-app-server-${count.index}" },
+    { Name = "eip-rancher" },
     local.tags
   )
 }
-
