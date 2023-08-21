@@ -10,26 +10,27 @@ export class FaucetService implements IFaucetService {
 
   constructor(
     private readonly blockchainService: IBlockchainService,
-    private readonly transactionHistoryService: ITrackingService,
+    private readonly transactionHistoryServices: ITrackingService[],
   ) {
     const { privilegedWallets } = getAppConfig();
     this.privilegedWallets = privilegedWallets;
   }
 
-  async isEligible(address: string): Promise<boolean> {
+  async isEligible(address: string, params: string[]): Promise<boolean> {
     // Privileged wallets aren’t checked for eligibility
     if (this.isPrivileged(address)) {
       return true;
     }
-
-    if (
-      await this.transactionHistoryService.hasReceivedTokens(this.blockchainService.getNetworkConfig().name, address)
-    ) {
-      let err = new WalletAlreadyFunded();
-      err.message = getErrorMessage(this.blockchainService.getNetworkConfig(), err.message);
-      throw err;
+    let i = 0;
+    for (const service of this.transactionHistoryServices) {
+      const hasReceive = await service.hasReceivedTokens(this.blockchainService.getNetworkConfig().name, params[i]);
+      if (hasReceive) {
+        let err = new WalletAlreadyFunded();
+        err.message = getErrorMessage(this.blockchainService.getNetworkConfig(), err.message);
+        throw err;
+      }
+      i++;
     }
-
     // Additional faucet policy check at blockchain level
     return this.blockchainService.isEligible(address);
   }
@@ -39,12 +40,15 @@ export class FaucetService implements IFaucetService {
     return this.privilegedWallets.includes(normalizedAddress);
   }
 
-  async sendFaucet(address: string): Promise<string> {
+  async sendFaucet(address: string, params: string[]): Promise<string> {
+    let i = 0;
     const { defaultDailyAmount, privilegedDailyAmount } = this.blockchainService.getNetworkConfig();
-    const amout = this.isPrivileged(address) ? privilegedDailyAmount : defaultDailyAmount;
-    const txHash = await this.blockchainService.transfer(address, amout);
-
-    await this.transactionHistoryService.recordTransaction(this.blockchainService.getNetworkConfig().name, address);
+    const amount = this.isPrivileged(address) ? privilegedDailyAmount : defaultDailyAmount;
+    const txHash = await this.blockchainService.transfer(address, amount);
+    for (const service of this.transactionHistoryServices) {
+      await service.recordTransaction(this.blockchainService.getNetworkConfig().name, params[i]);
+      i++;
+    }
     return txHash;
   }
 }

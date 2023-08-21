@@ -11,4 +11,8 @@ export const LoadingButton = styled(MaterialLoadingButton)(() => ({
   color: 'white',
   borderRadius: '8px',
   textDecoration: 'none',
+  '&.Mui-disabled': {
+    cursor: 'not-allowed',
+    pointerEvents: 'auto !important',
+  },
 }));

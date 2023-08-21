@@ -1,11 +1,13 @@
 export type Network = 'sepolia' | 'goerli' | 'base' | 'arbitrum' | 'bnb' | 'mumbai' | 'optimism' | 'aptos';
+type TrackingType = 'ip' | 'address';
+export type TrackingConfig = Record<TrackingType, boolean>;
 export interface IAppConfig {
   authUrl: string;
   authSecret: string;
   enableCaptcha: boolean;
   captchaSecretKey: string;
   nonceType: string;
-  trackingType: string;
+  trackingType: TrackingConfig;
   redisUrl: string;
   redisOptions?: any;
   defaultMillisecondsLayover: number;

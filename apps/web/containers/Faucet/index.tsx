@@ -5,6 +5,7 @@ import { IBlockchainConfig, getAppConfig } from '@config';
 import BlockChainIcon from '../../public/assets/images/svg/blockchain.svg';
 import { EvmFaucet } from './Evm';
 import { AptosFaucet } from './Aptos';
+import { FaucetProvider } from '@/contexts';
 
 const Option: React.FunctionComponent<IBlockchainConfig> = ({ name }) => {
   return (
@@ -54,8 +55,10 @@ export const Faucet: React.FunctionComponent<FaucetProps> = () => {
           </Select>
         </FormControl>
       </Item>
-      {networkChain.name === 'aptos' && <AptosFaucet />}
-      {networkChain.name !== 'aptos' && <EvmFaucet />}
+      <FaucetProvider>
+        {networkChain.name === 'aptos' && <AptosFaucet />}
+        {networkChain.name !== 'aptos' && <EvmFaucet />}
+      </FaucetProvider>
     </div>
   );
 };
