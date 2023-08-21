@@ -17,6 +17,13 @@ on:
     branches:
       - main
 
+env:
+  NAME_SERVICE: faucet_testnet
+  IMAGE_TAG_LATEST: latest
+  DOCKER_BUILDKIT: 1
+  AWS_REGION: ap-southeast-1
+  BRANCH_CD_REPOSITORY: main
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -24,6 +31,30 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secret.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secret.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1.5.3
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        timeout-minutes: 15 #####
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          IMAGE_TAG=$(echo ${{ github.sha }} | cut -c1-9)
+          ECR_REPOSITORY="${NAME_SERVICE}"
+          docker build -t ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG} -f ./Dockerfile .
+          docker tag ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG} ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG_LATEST}
+          docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+          docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG_LATEST}
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
