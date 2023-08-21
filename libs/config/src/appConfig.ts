@@ -15,7 +15,10 @@ const config: IAppConfig = {
       rejectUnauthorized: false,
     },
   },
-  trackingType: 'address',
+  trackingType: {
+    address: true,
+    ip: true,
+  },
   defaultMillisecondsLayover: 86400000,
   defaultBlockLayover: 5400,
   pollingInterval: 20_000,

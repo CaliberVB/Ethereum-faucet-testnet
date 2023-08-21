@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import ClaimIcon from '@mui/icons-material/GetApp';
 import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import { BalanceItem } from '@/components';
@@ -5,16 +6,16 @@ import { displayNetworkChainAndSymbol } from '@utils';
 import { IBlockchainConfig } from '@config';
 
 interface BalanceProps {
-  balance: {
-    walletBalance: string;
-    faucetBalance: string;
-    retrieveAmount: string;
-  };
+  walletBalance: string;
+  faucetBalance: string;
+  retrieveAmount: string;
   networkChain: IBlockchainConfig;
 }
 
-export const Balance: React.FunctionComponent<BalanceProps> = ({
-  balance: { faucetBalance, retrieveAmount, walletBalance },
+export const BalanceComponent: React.FunctionComponent<BalanceProps> = ({
+  faucetBalance,
+  retrieveAmount,
+  walletBalance,
   networkChain,
 }) => {
   return (
@@ -40,3 +41,4 @@ export const Balance: React.FunctionComponent<BalanceProps> = ({
     </>
   );
 };
+export const Balance = memo(BalanceComponent);

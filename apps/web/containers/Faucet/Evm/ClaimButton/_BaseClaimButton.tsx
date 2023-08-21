@@ -11,7 +11,7 @@ import { claimTokens, retrieveNonce } from '@apiService';
 import { messageTemplate } from '@utils';
 import { useState } from 'react';
 import { LoadingButton } from '@/components';
-import { useNetWork } from '@/hooks';
+import { useFaucet, useNetWork } from '@/hooks';
 import { ClaimButtonProps } from './ClaimButton';
 
 export interface BaseClaimButtonProps extends ClaimButtonProps {
@@ -24,6 +24,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
   const [isSwitching, setIsSwitching] = useState(false);
   const installed = useHasMetamask();
   const { networkChain } = useNetWork();
+  const { isInsufficientFund } = useFaucet(networkChain.name);
 
   const handleChangeNetwork = async () => {
     try {
@@ -37,6 +38,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
     }
   };
   const handleClaim = async () => {
+    if (isInsufficientFund) return;
     try {
       if (isNil(library) || isNil(account)) {
         throw new Error('Wallet is not connected');
@@ -103,8 +105,13 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
       onClick={handleClaim}
       loadingPosition="end"
       endIcon={<span></span>}
+      disabled={isInsufficientFund}
     >
-      {isClaiming ? 'Claiming...' : `Claim ${networkChain.name}  ${networkChain.nativeAsset}`}
+      {isInsufficientFund
+        ? 'Insufficient Fund'
+        : isClaiming
+        ? 'Claiming...'
+        : `Claim ${networkChain.name}  ${networkChain.nativeAsset}`}
     </LoadingButton>
   );
 };
