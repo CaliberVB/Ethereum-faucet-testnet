@@ -29,7 +29,7 @@ env:
   AWS_REGION: ap-southeast-1
   BRANCH_CD_REPOSITORY: main
   CD_REPOSITORY: CaliberVB/argocd
-  ROOT_PATH_CD_REPOSITORY: argocd
+  ROOT_PATH_CD_REPOSITORY: faucet-testnet
 jobs:
   build-prod:
     runs-on: ubuntu-latest
