@@ -16,10 +16,11 @@ export const OpenSourceMemo = () => {
 
         <b>How do i use this platform?</b>
         <p>
-            1. Login with your Twitter account to verify yourself as a real human!<br>
-            2. Connect and sign message off-chain in your wallet provider (Metamask) to confirm your wallet ownership<br>
-            3. View balance of the faucet and press claim!
-            Very simple right?
+          1. Login with your Twitter account to verify yourself as a real human!
+          <br />
+          2. Connect and sign message off-chain in your wallet provider (Metamask) to confirm your wallet ownership
+          <br />
+          3. View balance of the faucet and press claim! Very simple right?
         </p>
 
         <p>
@@ -28,8 +29,8 @@ export const OpenSourceMemo = () => {
 
         <b>How does this process work</b>
         <p>
-          Well, you can request 0.1 testnet ETH (Sepolia every 24 hours using your Twitter account and an address that belongs to
-          you. it’s like your daily drip of crypto!
+          Well, you can request 0.1 testnet ETH (Sepolia every 24 hours using your Twitter account and an address that
+          belongs to you. it’s like your daily drip of crypto!
         </p>
         <p>
           -------------------------------------------------------------------------------------------------------------------
@@ -47,7 +48,10 @@ export const OpenSourceMemo = () => {
 
         <b>What is a testnet token?</b>
         <p>
-          Testnet tokens are a test currency that allows you to test your application before going live on the mainnet. Testnet tokens can be used in place of mainnet Ether tokens on testnets like Sepolia/Goerli. The Caliber testnet faucet currently supports Sepolia, Goerli, Mumbai, Base, Arbitrum, Optimism, and the Bnb Network. You can read more about testnets here.{' '}
+          Testnet tokens are a test currency that allows you to test your application before going live on the mainnet.
+          Testnet tokens can be used in place of mainnet Ether tokens on testnets like Sepolia/Goerli. The Caliber
+          testnet faucet currently supports Sepolia, Goerli, Mumbai, Base, Arbitrum, Optimism, and the Bnb Network. You
+          can read more about testnets here.{' '}
           <a href="https://www.alchemy.com/overviews/what-are-testnets" target="_blank" rel="noopener noreferrer">
             here
           </a>
