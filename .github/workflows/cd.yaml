@@ -54,7 +54,6 @@ jobs:
           NEXT_PUBLIC_WALLET_ADDRESS=0x7324ECC7AA87a76087D5bB4BDE0adB7a3f0fcB96
 
           echo "Build image ${ECR_REPOSITORY}"
-          echo $NEXT_PUBLIC_WALLET_ADDRESS
 
           docker build --pull --build-arg NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS \
           -t ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG} -f ./Dockerfile .
