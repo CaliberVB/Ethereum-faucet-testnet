@@ -35,7 +35,7 @@ export const AptosDonate = () => {
       const pendingTransaction = await signAndSubmitTransaction(transaction);
 
       // In most cases a dApp will want to wait for the transaction, in these cases you can use the typescript sdk
-      const txn = await aptosClient.waitForTransactionWithResult(pendingTransaction.hash);
+      const txn = await aptosClient.waitForTransactionWithResult(pendingTransaction?.hash);
       if (txn?.hash) {
         onSuccess(txn?.hash);
         onChangeAmount('');
@@ -57,7 +57,7 @@ export const AptosDonate = () => {
         title="Available Amount"
       />
       <AptosInputAmount />
-      <AptosConnectWallet onClick={handleDonate} text="Donate" isLoading={isDonating} />;
+      <AptosConnectWallet onClick={handleDonate} text="Donate" isLoading={isDonating} />
       <DonateAlert status={alertState} network={networkChain} />
     </>
   );
