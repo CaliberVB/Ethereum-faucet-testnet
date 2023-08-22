@@ -6,32 +6,32 @@ const initialState: FaucetStatus = {
   status: 'default',
 };
 
-export const useFaucetAlert = () => {
-  const [faucetState, setFaucetState] = useState<FaucetStatus>(initialState);
+export const useAlert = () => {
+  const [alertState, setAlertStateState] = useState<FaucetStatus>(initialState);
   const { networkChain } = useNetWork();
 
   const onSuccess = (txHash: string) => {
-    setFaucetState(() => ({
+    setAlertStateState(() => ({
       status: 'success',
       txHash,
     }));
   };
 
   const onError = (error: string) => {
-    setFaucetState(() => ({
+    setAlertStateState(() => ({
       status: 'error',
       error: error,
     }));
   };
 
   useEffect(() => {
-    setFaucetState(initialState);
+    setAlertStateState(initialState);
   }, [networkChain.name]);
 
   return {
     onSuccess,
     onError,
     networkChain,
-    faucetState,
+    alertState,
   };
 };

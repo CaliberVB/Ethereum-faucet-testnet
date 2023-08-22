@@ -11,9 +11,7 @@ export const AptosBalance: React.FunctionComponent<FaucetBalanceProps> = () => {
   const { networkChain } = useNetWork();
   const { onSetIsInsufficientFund } = useFaucet(networkChain.name);
   const { balance } = useAptosBalance();
-  const { balance: faucetBalance } = useAptosBalance(
-    '0x93b88aa53f39625881fdc69de59245cb680ea3e3f8418a48786a898138971824',
-  );
+  const { balance: faucetBalance } = useAptosBalance(networkChain.walletAddress);
   useEffect(() => {
     onSetIsInsufficientFund(isInsufficientFund(networkChain, faucetBalance));
 

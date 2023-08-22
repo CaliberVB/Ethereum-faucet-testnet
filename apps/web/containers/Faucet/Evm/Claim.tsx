@@ -1,14 +1,14 @@
-import { useFaucetAlert } from '@/hooks';
+import { useAlert } from '@/hooks';
 import { ClaimButton } from './ClaimButton';
 import { FaucetAlert } from '@/components';
 
 export const ClaimFaucet = () => {
-  const { faucetState, networkChain, onError, onSuccess } = useFaucetAlert();
+  const { alertState, networkChain, onError, onSuccess } = useAlert();
   return (
     <div>
       <ClaimButton onSuccess={onSuccess} onError={onError} />
       <div style={{ marginTop: 16 }}>
-        <FaucetAlert status={faucetState} network={networkChain} />
+        <FaucetAlert status={alertState} network={networkChain} />
       </div>
     </div>
   );

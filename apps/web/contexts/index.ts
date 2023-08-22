@@ -3,3 +3,4 @@ export * from './BlockChainNetwork';
 export * from './Dapp';
 export * from './AptosWallet';
 export * from './Faucet';
+export * from './Donate';

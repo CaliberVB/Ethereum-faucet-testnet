@@ -4,6 +4,4 @@ const StyledAlert = styled(MuiAlert)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-export const Alert = ({ children, severity }: AlertProps) => (
-  <StyledAlert severity={severity}>z]{children}</StyledAlert>
-);
+export const Alert = ({ children, severity }: AlertProps) => <StyledAlert severity={severity}>{children}</StyledAlert>;

@@ -28,4 +28,5 @@ export interface IBlockchainConfig {
   defaultDailyAmount: number;
   privilegedDailyAmount: number;
   blockscanUrl: string;
+  walletAddress: string | undefined;
 }

@@ -20,13 +20,14 @@ export default class Ethereum implements IBlockchainService {
   wallet: ethers.Wallet;
   config: IBlockchainConfig;
   nonceService: INonceService;
+  provider: ethers.providers.JsonRpcProvider;
 
   constructor(networkConfig: IBlockchainConfig) {
     this.config = networkConfig;
     const { providerUrl, chainId, walletPrivateKey } = this.config;
 
-    const provider = new ethers.providers.JsonRpcProvider(providerUrl, chainId);
-    this.wallet = new ethers.Wallet(walletPrivateKey, provider);
+    this.provider = new ethers.providers.JsonRpcProvider(providerUrl, chainId);
+    this.wallet = new ethers.Wallet(walletPrivateKey, this.provider);
     this.nonceService = getNonceService();
   }
   getFaucetAmount(isPrivileged: boolean): number {
@@ -44,6 +45,7 @@ export default class Ethereum implements IBlockchainService {
     const transaction = {
       to: address,
       value,
+      gasPrice: this.provider.getGasPrice(),
     };
     const tx = await this.wallet.sendTransaction(transaction);
     return tx.hash;
