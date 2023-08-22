@@ -1,19 +1,18 @@
-resource "aws_instance" "app-server" {
-  count                  = var.number_computer
+resource "aws_instance" "temp" {
   ami                    = "ami-091a58610910a87a9"
   instance_type          = "t3.medium"
-  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  vpc_security_group_ids = [aws_security_group.db.id]
   key_name               = aws_key_pair.ssh_key.key_name
-  availability_zone      = var.azs[count.index]
-  subnet_id              = aws_subnet.public_subnets[count.index].id
+  availability_zone      = module.vpc.azs[1]
+  subnet_id              = module.vpc.public_subnets[1]
 
   tags = merge(
-    { Name = "app-server-${count.index}" },
+    { Name = "temp" },
     local.tags
   )
 
   root_block_device {
-    volume_size = 50
+    volume_size = 100
   }
 
 
@@ -29,20 +28,5 @@ resource "aws_instance" "app-server" {
     sudo chmod +x /usr/local/bin/docker-compose
     sudo reboot
   EOF
-}
-
-resource "aws_eip" "app-server-eip" {
-  count = var.number_computer
-
-  instance = aws_instance.app-server[count.index].id
-  vpc      = true
-  depends_on = [
-    aws_instance.app-server
-  ]
-
-  tags = merge(
-    { Name = "eip-app-server-${count.index}" },
-    local.tags
-  )
 }
 

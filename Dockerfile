@@ -14,7 +14,7 @@ RUN NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS yarn build
 
 ###################
 FROM node:18-alpine
-
+RUN apk add --no-cache curl
 ENV NODE_ENV production
 
 WORKDIR /app

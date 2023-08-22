@@ -1,13 +1,12 @@
 import { useCallback } from 'react';
 import { getBlockchainService } from '@blockchainService';
-import { getTrackingService } from '@trackingService';
+import { getTrackingServices } from '@trackingService';
 import { FaucetService } from '@faucetService';
-import { Network, getAppConfig } from '@config';
+import { Network } from '@config';
 
 export const useWalletClassification = (network: Network) => {
-  const { trackingType } = getAppConfig();
   const blockchainService = getBlockchainService(network);
-  const trackingService = getTrackingService(trackingType);
+  const trackingService = getTrackingServices();
   const faucetService = new FaucetService(blockchainService, trackingService);
 
   const retriveAmount = useCallback((address: string | undefined) => {

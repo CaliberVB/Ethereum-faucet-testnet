@@ -17,24 +17,46 @@ on:
     branches:
       - main
 
+env:
+  NAME_SERVICE: faucet-testnet
+  IMAGE_TAG_LATEST: latest
+  DOCKER_BUILDKIT: 1
+  AWS_REGION: ap-southeast-1
+  BRANCH_CD_REPOSITORY: main
+
 jobs:
-  build-and-deploy:
+  build-prod:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@master
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            cd faucet-testnet
-            git add . && git reset HEAD --hard
-            git checkout main
-            git pull
-            docker-compose build faucet
-            docker-compose up -d faucet
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1.5.3
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        timeout-minutes: 15 #####
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          IMAGE_TAG=$(echo ${{ github.sha }} | cut -c1-9)
+          ECR_REPOSITORY="${NAME_SERVICE}"
+          NEXT_PUBLIC_WALLET_ADDRESS=0x7324ECC7AA87a76087D5bB4BDE0adB7a3f0fcB96
+
+          echo "Build image ${ECR_REPOSITORY}"
+
+          docker build --pull --build-arg NEXT_PUBLIC_WALLET_ADDRESS=$NEXT_PUBLIC_WALLET_ADDRESS \
+          -t ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG} -f ./Dockerfile .
+          docker tag ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG} ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG_LATEST}
+          docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+          docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG_LATEST}
