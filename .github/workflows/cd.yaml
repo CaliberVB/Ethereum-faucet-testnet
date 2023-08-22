@@ -18,7 +18,7 @@ on:
       - main
 
 env:
-  NAME_SERVICE: faucet_testnet
+  NAME_SERVICE: faucet-testnet
   IMAGE_TAG_LATEST: latest
   DOCKER_BUILDKIT: 1
   AWS_REGION: ap-southeast-1
