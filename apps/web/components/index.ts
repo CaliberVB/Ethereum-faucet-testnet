@@ -13,3 +13,5 @@ export * from './Title';
 export * from './Balance';
 export * from './FaucetAlert';
 export * from './TwitterLogin';
+export * from './Copy';
+export * from './AptosConnectWallet';

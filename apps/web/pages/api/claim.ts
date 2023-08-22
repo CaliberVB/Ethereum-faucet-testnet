@@ -35,6 +35,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse
     const txHash = await faucetService.sendFaucet(address, serviceParams);
     return res.status(200).json({ status: 'ok', message: txHash });
   } catch (e: any) {
+    console.error('🚀 ~ file: claim.ts:38 ~ handler ~ e:', e);
     if (e.code === 'INSUFFICIENT_FUNDS') {
       const error = new InsufficientFundsError();
       return res
