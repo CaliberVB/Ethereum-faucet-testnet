@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - apps/**
+      - libs/**
+      - package.json
+
   workflow_dispatch:
     inputs:
       hubAddressGroupObject:
