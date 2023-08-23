@@ -27,7 +27,7 @@ env:
   IMAGE_TAG_LATEST: latest
   DOCKER_BUILDKIT: 1
   AWS_REGION: ap-southeast-1
-  BRANCH_CD_REPOSITORY: main
+  BRANCH_CD_REPOSITORY: master
   CD_REPOSITORY: CaliberVB/argocd
   ROOT_PATH_CD_REPOSITORY: faucet-testnet
 jobs:
@@ -93,7 +93,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: ${{ env.CD_REPOSITORY }}
-          ref: master
+          ref: ${{ env.BRANCH_CD_REPOSITORY }}
           token: ${{ secrets.ACTION_TOKEN }}
           path: ${{ env.ROOT_PATH_CD_REPOSITORY }}
 
