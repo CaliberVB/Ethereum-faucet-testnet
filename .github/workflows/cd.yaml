@@ -105,9 +105,11 @@ jobs:
 
           cd overlays/prod
 
+          ls -lha
+
           kustomize edit set image faucet-testnet=${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
 
-          cd ...
+          cd ../..
 
           kustomize build ./overlays/prod > manifests/prod/output.yaml
 
