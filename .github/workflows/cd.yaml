@@ -101,6 +101,8 @@ jobs:
         run: |
           pwd
 
+          ls -lha
+
 
           # if [[ -z $(git status -s) ]]; then
           #   echo -e '[WARNING] Nothing commit for deployments ArgoCD, working tree clean'
