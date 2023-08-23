@@ -133,10 +133,10 @@ jobs:
           ECR_REPOSITORY="${NAME_SERVICE}"
 
           cd argocd/${NAME_SERVICE}
-          cd overlays/${"CURRENT_ENV}
+          cd overlays/${CURRENT_ENV}
           kustomize edit set image ${NAME_SERVICE}=${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
           cd ../..
-          kustomize build ./overlays/${"CURRENT_ENV} > manifests/${"CURRENT_ENV}/output.yaml
+          kustomize build ./overlays/${CURRENT_ENV} > manifests/${CURRENT_ENV}/output.yaml
           git status
 
           if [[ -z $(git status -s) ]]; then
@@ -147,6 +147,6 @@ jobs:
             git config user.name "${{ env.NAME_SERVICE }}_dev"
 
             git add .
-            git commit -am "Update image tag helm chart for ${{ env.NAME_SERVICE }} on ${"CURRENT_ENV}"
+            git commit -am "Update image tag helm chart for ${{ env.NAME_SERVICE }} on ${CURRENT_ENV}"
             git push -u origin ${{ env.BRANCH_CD_REPOSITORY }}
           fi
