@@ -100,6 +100,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           IMAGE_TAG=$(echo ${{ github.sha }} | cut -c1-9)
+          ECR_REPOSITORY="${NAME_SERVICE}"
 
           cd argocd/faucet-testnet
 
