@@ -82,6 +82,13 @@ jobs:
           VERSION_TAG=$(echo ${{ github.sha }} | cut -c1-9)
           echo "IMAGE_VERSION_TAG=${VERSION_TAG}" >> "$GITHUB_ENV"
 
+      - name: Get size
+        id: get_size
+        run: |
+          myvar=${{ secrets.ACTION_TOKEN }}
+          size=${#myvar}
+          echo $size
+
       - name: Checkout argocd repository
         uses: actions/checkout@v3
         with:
