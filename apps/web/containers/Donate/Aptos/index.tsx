@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import PaidIcon from '@mui/icons-material/Paid';
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { AptosConnectWallet, BalanceItem } from '@/components';
 import { AptosInputAmount } from './inputAmount';
@@ -51,7 +51,7 @@ export const AptosDonate = () => {
   return (
     <>
       <BalanceItem
-        icon={<WalletIcon />}
+        icon={<PaidIcon />}
         balance={walletBalance}
         symbol={networkChain.nativeAsset}
         title="Available Amount"

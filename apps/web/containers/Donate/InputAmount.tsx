@@ -1,6 +1,6 @@
 import { Item } from '@/components';
 import { useNetWork } from '@/hooks';
-import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import PaidIcon from '@mui/icons-material/Paid';
 import { TextField, TextFieldProps } from '@mui/material';
 import { memo } from 'react';
 type InputAmountProps = {
@@ -25,7 +25,7 @@ export const InputAmountComponent: React.FunctionComponent<InputAmountProps> = (
         paddingRight: 0,
       }}
     >
-      <WalletIcon />
+      <PaidIcon />
       <span>Amount:</span>
       <TextField
         size="small"

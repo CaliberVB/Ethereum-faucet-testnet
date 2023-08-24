@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import ClaimIcon from '@mui/icons-material/GetApp';
 import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import PaidIcon from '@mui/icons-material/Paid';
 import { BalanceItem } from '@/components';
 import { displayNetworkChainAndSymbol } from '@utils';
 import { IBlockchainConfig } from '@config';
@@ -27,7 +28,7 @@ export const BalanceComponent: React.FunctionComponent<BalanceProps> = ({
         symbol={networkChain.nativeAsset}
       />
       <BalanceItem
-        icon={<WalletIcon />}
+        icon={<PaidIcon />}
         title="Faucet balance"
         balance={faucetBalance}
         symbol={networkChain.nativeAsset}
