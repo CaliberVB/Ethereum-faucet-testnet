@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useEtherBalance, useEthers, useSendTransaction } from '@usedapp/core';
 import { ethers } from 'ethers';
-import WalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import PaidIcon from '@mui/icons-material/Paid';
 import { Button } from '@mui/material';
 import { formatEther } from 'ethers/lib/utils';
 
@@ -113,7 +113,7 @@ export const EvmDonate = () => {
   return (
     <>
       <BalanceItem
-        icon={<WalletIcon />}
+        icon={<PaidIcon />}
         balance={accountBalanceStr}
         symbol={networkChain.nativeAsset}
         title="Available Amount"
