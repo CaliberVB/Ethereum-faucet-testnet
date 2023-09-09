@@ -2,7 +2,11 @@ import { Link as MuiLink } from '@mui/material';
 import Link from 'next/link';
 import { RoundedBox } from '../RoundedBox';
 import { getAppConfig } from '@config';
+import { styled } from '@mui/material';
 
+export const Dashed = styled('p')(() => ({
+  borderBottom: '1px dashed',
+}));
 export const OpenSourceMemo = () => {
   const { walletAddress } = getAppConfig();
 
@@ -10,9 +14,7 @@ export const OpenSourceMemo = () => {
     <section>
       <RoundedBox textAlign="justify">
         <h2 className="alchemy-dialog-title">FAQs</h2>
-        <p>
-          -------------------------------------------------------------------------------------------------------------------
-        </p>
+        <Dashed></Dashed>
 
         <b>How do i use this platform?</b>
         <p>
@@ -23,18 +25,14 @@ export const OpenSourceMemo = () => {
           3. View balance of the faucet and press claim! Very simple right?
         </p>
 
-        <p>
-          -------------------------------------------------------------------------------------------------------------------
-        </p>
+        <Dashed></Dashed>
 
         <b>How does this process work</b>
         <p>
           Well, you can request 0.1 testnet ETH (Sepolia every 24 hours using your Twitter account and an address that
           belongs to you. it’s like your daily drip of crypto!
         </p>
-        <p>
-          -------------------------------------------------------------------------------------------------------------------
-        </p>
+        <Dashed></Dashed>
 
         <b>What exactly is an Ethereum testnet faucet?</b>
         <p>
@@ -42,9 +40,7 @@ export const OpenSourceMemo = () => {
           Ether (ETH) which you can use to test and troubleshoot your decentralized app or protocol before launching it
           on the Ethereum mainnet. This way, you don’t need to risk real Ether during the testing process.{' '}
         </p>
-        <p>
-          -------------------------------------------------------------------------------------------------------------------
-        </p>
+        <Dashed></Dashed>
 
         <b>What is a testnet token?</b>
         <p>
@@ -57,9 +53,7 @@ export const OpenSourceMemo = () => {
           </a>
           .
         </p>
-        <p>
-          -------------------------------------------------------------------------------------------------------------------
-        </p>
+        <Dashed></Dashed>
 
         <b>The faucet confirmed that it sent me test tokens, but i still have not received them. Why is that?</b>
         <p>
@@ -68,9 +62,7 @@ export const OpenSourceMemo = () => {
           transactions that miners validate first. But hang in there, your tokens should arrive eventually!{' '}
         </p>
 
-        <p>
-          -------------------------------------------------------------------------------------------------------------------
-        </p>
+        <Dashed></Dashed>
 
         <b>What if i run into any other issues, or have questions?</b>
         <p style={{ marginBottom: '0px', paddingBottom: '0px' }}>
@@ -78,13 +70,26 @@ export const OpenSourceMemo = () => {
           <Link href="mailto:hello@caliber.build">hello@caliber.build</Link>. We’re here to help!
         </p>
         <p></p>
-        <p>
-          -------------------------------------------------------------------------------------------------------------------
-        </p>
+        <Dashed></Dashed>
         <b>
-          And hey, if you find yourself rolling in testnet ETH, consider giving back to our faucet vault at{' '}
-          {walletAddress}.
+          <span
+            style={{
+              textAlign: 'left',
+            }}
+          >
+            And hey, if you find yourself rolling in testnet ETH, consider giving back to our faucet vault at:
+          </span>
         </b>
+        <b>
+          <span
+            style={{
+              wordWrap: 'break-word',
+            }}
+          >
+            {walletAddress}.
+          </span>
+        </b>
+
         <b>
           <p> </p>Every bit helps us keep this public service running smoothly!
         </b>
