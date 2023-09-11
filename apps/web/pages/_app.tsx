@@ -27,14 +27,14 @@ const EthereumFaucet = ({ Component, pageProps }: AppProps) => (
         <meta property="og:url" content="https://faucet.caliber.build/" />
         <meta property="og:title" content={MetaDataConfigs.title} />
         <meta property="og:description" content={MetaDataConfigs.description} />
-        <meta property="og:image" content="/assets/images/seo-image.png" />
+        <meta property="og:image" content="/assets/images/seo-banner.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@Caliber" />
         <meta property="twitter:url" content="https://faucet.caliber.build/" />
         <meta property="twitter:title" content={MetaDataConfigs.title} />
         <meta property="twitter:description" content={MetaDataConfigs.description} />
-        <meta property="twitter:image" content="/assets/images/seo-image.png" />
+        <meta property="twitter:image" content="/assets/images/seo-banner.png" />
         <link rel="canonical" href="https://faucet.caliber.build/" />
       </Head>
       <CaptchaProvider>
