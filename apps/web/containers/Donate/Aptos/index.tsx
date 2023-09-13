@@ -40,9 +40,7 @@ export const AptosDonate = () => {
         onSuccess(txn?.hash);
         onChangeAmount('');
       }
-      console.log('🚀 ~ file: index.tsx:40 ~ handleDonate ~ txn:', txn);
     } catch (error) {
-      console.log('🚀 ~ file: index.tsx:28 ~ handleDonate ~ error:', error);
       onError(error?.message);
     } finally {
       setIsDonating(false);

@@ -34,7 +34,7 @@ export const ClaimButton: React.FunctionComponent<BaseClaimButtonProps> = ({ onE
       onSuccess(txHash.message);
     } catch (error) {
       console.error('Faucet APT error', error);
-      onError(error.response.data.message);
+      onError(error?.response?.data?.message);
     } finally {
       setIsClaiming(false);
     }

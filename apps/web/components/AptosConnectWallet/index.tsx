@@ -16,7 +16,7 @@ import { useWallet, Wallet } from '@aptos-labs/wallet-adapter-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import { LoadingButton } from '@/components';
+import { ConfirmConnectWallet, LoadingButton } from '@/components';
 
 interface AptosConnectWalletProps {
   onClick: () => void;
@@ -26,6 +26,7 @@ interface AptosConnectWalletProps {
 
 export const AptosConnectWallet: React.FunctionComponent<AptosConnectWalletProps> = ({ text, onClick, isLoading }) => {
   const [openDialog, setOpenDialog] = useState(false);
+  const [openModalConfirm, setOpenModalConfirm] = useState(false);
   const { wallets, connect, wallet } = useWallet();
 
   const handleConnectWallet = async (wallet: Wallet) => {
@@ -47,7 +48,7 @@ export const AptosConnectWallet: React.FunctionComponent<AptosConnectWalletProps
         fullWidth
         variant="contained"
         onClick={() => {
-          if (!wallet) return handleToggleDialogConnectWallet(true);
+          if (!wallet) return setOpenModalConfirm(true);
           onClick();
         }}
         loadingPosition="end"
@@ -56,6 +57,14 @@ export const AptosConnectWallet: React.FunctionComponent<AptosConnectWalletProps
       >
         {wallet ? text : 'Connect Wallet'}
       </LoadingButton>
+      <ConfirmConnectWallet
+        isOpen={openModalConfirm}
+        onToggle={() => setOpenModalConfirm(false)}
+        onConfirm={() => {
+          setOpenModalConfirm(false);
+          handleToggleDialogConnectWallet(true);
+        }}
+      />
       <Dialog open={openDialog} maxWidth="xs" fullWidth>
         <DialogTitle
           component="div"

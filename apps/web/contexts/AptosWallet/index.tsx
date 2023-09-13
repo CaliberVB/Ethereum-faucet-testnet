@@ -19,7 +19,7 @@ export const AptosWalletProvider: React.FunctionComponent<PropsWithChildren<{}>>
   return (
     <AptosWalletAdapterProvider
       plugins={wallets}
-      autoConnect={true}
+      autoConnect={false}
       onError={(error) => {
         console.error('Aptops wallet connect error', error);
       }}
