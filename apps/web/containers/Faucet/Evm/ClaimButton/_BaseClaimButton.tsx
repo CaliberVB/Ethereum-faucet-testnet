@@ -8,7 +8,7 @@ import { Button } from '@mui/material';
 
 import { useHasMetamask } from '@/hooks/useHasMetamask';
 import { claimTokens, retrieveNonce } from '@apiService';
-import { messageTemplate } from '@utils';
+import { addGaEvent, messageTemplate } from '@utils';
 import { useState } from 'react';
 import { ConfirmConnectWallet, LoadingButton } from '@/components';
 import { useFaucet, useNetWork } from '@/hooks';
@@ -53,6 +53,13 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
       const signer = (library as ethers.providers.JsonRpcProvider).getSigner();
       const signature = await signer.signMessage(message);
       // account as string, message, signature, captchaToken
+      addGaEvent({
+        eventName: 'claim',
+        action: 'Claim Testnet Token',
+        category: networkChain.name,
+        label: '',
+        value: '',
+      });
       const txHash = await claimTokens({
         address: account,
         message: message,

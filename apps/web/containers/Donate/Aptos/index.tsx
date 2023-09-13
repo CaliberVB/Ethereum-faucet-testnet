@@ -5,7 +5,7 @@ import { AptosConnectWallet, BalanceItem } from '@/components';
 import { AptosInputAmount } from './inputAmount';
 import { useAlert, useAptosBalance, useNetWork } from '@/hooks';
 import { DonateContext } from '@/contexts';
-import { getAptosClient } from '@utils';
+import { addGaEvent, getAptosClient } from '@utils';
 import { DonateAlert } from '@/components/DonateAlert';
 
 const aptosClient = getAptosClient();
@@ -33,7 +33,13 @@ export const AptosDonate = () => {
       };
 
       const pendingTransaction = await signAndSubmitTransaction(transaction);
-
+      addGaEvent({
+        eventName: 'donate',
+        action: 'Donate Testnet Token',
+        category: networkChain.name,
+        label: '',
+        value: '',
+      });
       // In most cases a dApp will want to wait for the transaction, in these cases you can use the typescript sdk
       const txn = await aptosClient.waitForTransactionWithResult(pendingTransaction?.hash);
       if (txn?.hash) {
