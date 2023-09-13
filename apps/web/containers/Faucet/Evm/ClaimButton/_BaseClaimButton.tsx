@@ -10,7 +10,7 @@ import { useHasMetamask } from '@/hooks/useHasMetamask';
 import { claimTokens, retrieveNonce } from '@apiService';
 import { messageTemplate } from '@utils';
 import { useState } from 'react';
-import { LoadingButton } from '@/components';
+import { ConfirmConnectWallet, LoadingButton } from '@/components';
 import { useFaucet, useNetWork } from '@/hooks';
 import { ClaimButtonProps } from './ClaimButton';
 
@@ -22,6 +22,7 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
   const { account, library, isLoading: isConnecting, activateBrowserWallet, switchNetwork, chainId } = useEthers();
   const [isClaiming, setIsClaiming] = useState(false);
   const [isSwitching, setIsSwitching] = useState(false);
+  const [openModalConfirm, setOpenModalConfirm] = useState(false);
   const installed = useHasMetamask();
   const { networkChain } = useNetWork();
   const { isInsufficientFund } = useFaucet(networkChain.name);
@@ -83,9 +84,19 @@ export const BaseClaimButton = ({ onSuccess, onError, retrieveCaptcha }: BaseCla
   }
   if (!account && !isSwitching) {
     return (
-      <LoadingButton variant="contained" onClick={() => activateBrowserWallet()} fullWidth loading={isConnecting}>
-        Connect wallet
-      </LoadingButton>
+      <>
+        <LoadingButton variant="contained" onClick={() => setOpenModalConfirm(true)} fullWidth loading={isConnecting}>
+          Connect wallet
+        </LoadingButton>
+        <ConfirmConnectWallet
+          isOpen={openModalConfirm}
+          onToggle={() => setOpenModalConfirm(false)}
+          onConfirm={() => {
+            setOpenModalConfirm(false);
+            activateBrowserWallet();
+          }}
+        />
+      </>
     );
   }
 

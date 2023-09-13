@@ -52,13 +52,11 @@ export const EvmDonate = () => {
         value: amountTransfer,
       };
       const tx = await sendTransaction(transactionParam);
-      console.log('🚀 ~ file: index.tsx:50 ~ handleDonate ~ tx:', tx);
       if (tx?.transactionHash) {
         onSuccess(tx?.transactionHash);
         onChangeAmount('');
       }
     } catch (error) {
-      console.log('🚀 ~ file: index.tsx:54 ~ handleDonate ~ error:', error);
       onError(error?.message);
     } finally {
       setIsDonating(false);
