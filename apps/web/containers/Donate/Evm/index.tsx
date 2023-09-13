@@ -11,6 +11,7 @@ import { DonateContext } from '@/contexts';
 import { useAlert, useHasMetamask, useNetWork } from '@/hooks';
 import { EvmInputAmount } from './InputAmount';
 import { DonateAlert } from '@/components/DonateAlert';
+import { addGaEvent } from '@utils';
 
 export const EvmDonate = () => {
   const installed = useHasMetamask();
@@ -51,6 +52,13 @@ export const EvmDonate = () => {
         to: networkChain.walletAddress,
         value: amountTransfer,
       };
+      addGaEvent({
+        eventName: 'donate',
+        action: 'Donate Testnet Token',
+        category: networkChain.name,
+        label: '',
+        value: '',
+      });
       const tx = await sendTransaction(transactionParam);
       if (tx?.transactionHash) {
         onSuccess(tx?.transactionHash);

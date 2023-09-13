@@ -16,3 +16,4 @@ export * from './TwitterLogin';
 export * from './Copy';
 export * from './AptosConnectWallet';
 export * from './ConfirmConnectWallet';
+export * from './GoogleAnalytics';

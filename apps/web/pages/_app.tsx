@@ -5,7 +5,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { Layout } from '@/layout';
 import { theme } from '@config';
 import { BlockchainNetworkProvider, CaptchaProvider, DAppProvider } from '@/contexts';
-import { ErrorBoundary } from '@/components';
+import { ErrorBoundary, GoogleAnalytics } from '@/components';
 const MetaDataConfigs = {
   title: 'Testnet Faucet',
   description:
@@ -37,6 +37,7 @@ const EthereumFaucet = ({ Component, pageProps }: AppProps) => (
         <meta property="twitter:image" content="/assets/images/seo-banner.png" />
         <link rel="canonical" href="https://faucet.caliber.build/" />
       </Head>
+      <GoogleAnalytics />
       <CaptchaProvider>
         <BlockchainNetworkProvider>
           <DAppProvider>

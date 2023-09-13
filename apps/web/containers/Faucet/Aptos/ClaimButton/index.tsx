@@ -1,7 +1,7 @@
 import { useWallet } from '@aptos-labs/wallet-adapter-react';
 import { useState } from 'react';
 import { claimTokens, retrieveNonce } from '@apiService';
-import { messageTemplate } from '@utils';
+import { addGaEvent, messageTemplate } from '@utils';
 import { useNetWork } from '@/hooks';
 import { BaseClaimButtonProps } from '../../Evm/ClaimButton/_BaseClaimButton';
 import { AptosConnectWallet, TwitterLogin } from '@/components';
@@ -23,6 +23,13 @@ export const ClaimButton: React.FunctionComponent<BaseClaimButtonProps> = ({ onE
       const signedData = await signMessage({
         message: message,
         nonce: nonce,
+      });
+      addGaEvent({
+        eventName: 'claim',
+        action: 'Claim Testnet Token',
+        category: networkChain.name,
+        label: '',
+        value: '',
       });
       const txHash = await claimTokens({
         address: account.address,
