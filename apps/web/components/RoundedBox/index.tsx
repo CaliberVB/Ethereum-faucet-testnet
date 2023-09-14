@@ -9,7 +9,7 @@ export const RoundedBox = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(5),
   paddingRight: theme.spacing(5),
   minWidth: 'auto',
-  maxWidth: theme.spacing(80),
+  maxWidth: theme.spacing(90),
   width: '100%',
 
   ...theme.typography.body2,

@@ -1,0 +1,21 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Donators {
+  id            Int         @id     @default(autoincrement())       @map("id")
+  createdAt     DateTime            @default(now())                 @map("created_at")
+  updatedAt     DateTime            @default(now()) @updatedAt      @map("updated_at")
+  networkName   String      @db.VarChar(20)                         @map("network_name")
+  address       String      @db.VarChar(100)                        @map("address")
+  amount        String      @db.VarChar(20)                         @map("amount")
+  hash          String      @unique                                 @map("hash")
+}

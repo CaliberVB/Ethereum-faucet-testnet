@@ -7,3 +7,11 @@ export type ClaimParams = {
   captcha: string;
   network?: Network;
 };
+
+export type Donator = {
+  address: string;
+  networkName: Network;
+  amount: string;
+  id?: number;
+  hash: string;
+};

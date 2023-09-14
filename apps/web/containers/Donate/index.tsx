@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
-import { DonateProvider } from '@/contexts';
 import { DonateInformation } from './DonateInformation';
 import { EvmDonate } from './Evm';
 import { AptosDonate } from './Aptos';
 import { useNetWork } from '@/hooks';
 
-interface DonateProps {}
+interface DonateProps {
+  onDonateSuccess: () => void;
+}
 
-export const Donate: React.FunctionComponent<DonateProps> = () => {
+export const Donate: React.FunctionComponent<DonateProps> = ({ onDonateSuccess }) => {
   const { networkChain } = useNetWork();
 
   const donateView = useMemo(() => {
@@ -20,9 +21,9 @@ export const Donate: React.FunctionComponent<DonateProps> = () => {
   }, [networkChain.name]);
 
   return (
-    <DonateProvider>
+    <>
       <DonateInformation />
       {donateView}
-    </DonateProvider>
+    </>
   );
 };
