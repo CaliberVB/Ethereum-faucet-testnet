@@ -7,6 +7,8 @@ export interface DonateState {
   onChangeAmount: (amount: string) => void;
   walletAmount: string;
   onSetWalletAmount: (amount: string) => void;
+  onSetDonateId: () => void;
+  donateId: string;
 }
 const DecimalRegex = /^(\d)*(\.)?([0-9])*$/;
 export const DonateContext = createContext<DonateState>({} as DonateState);
@@ -14,6 +16,7 @@ export const DonateProvider: React.FunctionComponent<PropsWithChildren<{}>> = ({
   const { networkChain } = useNetWork();
   const [amount, setAmount] = useState('');
   const [walletAmount, setWalletAmount] = useState('');
+  const [donateId, setDonateId] = useState(new Date().toISOString());
 
   const onChangeAmount = useCallback((amount: string) => {
     if (!DecimalRegex.test(amount)) return;
@@ -28,6 +31,10 @@ export const DonateProvider: React.FunctionComponent<PropsWithChildren<{}>> = ({
     setAmount('');
   }, [networkChain.name]);
 
+  const onSetDonateId = useCallback(() => {
+    setDonateId(new Date().toISOString());
+  }, []);
+
   const value = useMemo(
     () => ({
       amount: amount,
@@ -35,8 +42,10 @@ export const DonateProvider: React.FunctionComponent<PropsWithChildren<{}>> = ({
       address: '',
       walletAmount,
       onSetWalletAmount: onSetWalletAmount,
+      onSetDonateId,
+      donateId,
     }),
-    [amount, onChangeAmount, onSetWalletAmount, walletAmount],
+    [amount, donateId, onChangeAmount, onSetDonateId, onSetWalletAmount, walletAmount],
   );
   return <DonateContext.Provider value={value}>{children}</DonateContext.Provider>;
 };

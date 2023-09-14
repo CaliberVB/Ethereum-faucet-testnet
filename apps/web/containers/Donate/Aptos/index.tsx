@@ -7,12 +7,13 @@ import { useAlert, useAptosBalance, useNetWork } from '@/hooks';
 import { DonateContext } from '@/contexts';
 import { addGaEvent, getAptosClient } from '@utils';
 import { DonateAlert } from '@/components/DonateAlert';
+import { addDonator } from '@apiService';
 
 const aptosClient = getAptosClient();
 export const AptosDonate = () => {
   const { account, signAndSubmitTransaction } = useWallet();
   const { networkChain } = useNetWork();
-  const { onSetWalletAmount, amount, onChangeAmount } = useContext(DonateContext);
+  const { onSetWalletAmount, amount, onChangeAmount, onSetDonateId } = useContext(DonateContext);
   const { alertState, onError, onSuccess } = useAlert();
 
   const { balance: walletBalance } = useAptosBalance(account?.address);
@@ -45,6 +46,14 @@ export const AptosDonate = () => {
       if (txn?.hash) {
         onSuccess(txn?.hash);
         onChangeAmount('');
+        addDonator({
+          address: account?.address,
+          amount: amount,
+          networkName: networkChain.name,
+          hash: txn?.hash,
+        }).then(() => {
+          onSetDonateId();
+        });
       }
     } catch (error) {
       onError(error?.message);

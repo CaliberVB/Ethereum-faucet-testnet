@@ -24,7 +24,12 @@ export const FaucetAlert: React.FunctionComponent<FaucetAlertProps> = ({ status,
   if (status?.status === 'error') return <Alert severity="error">{status?.error}</Alert>;
   if (status?.status === 'success')
     return (
-      <Alert severity="success">
+      <Alert
+        severity="success"
+        sx={{
+          wordBreak: 'break-all',
+        }}
+      >
         {network?.displayName} {network?.nativeAsset} has been dispatched to your wallet. <br />
         You should receive it within 1-3 minutes.
         <br />

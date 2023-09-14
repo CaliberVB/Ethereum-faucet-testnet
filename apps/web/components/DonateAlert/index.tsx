@@ -24,7 +24,13 @@ export const DonateAlert: React.FunctionComponent<DonateAlertProps> = ({ status,
   if (status?.status === 'error') return <Alert severity="error">{status?.error}</Alert>;
   if (status?.status === 'success')
     return (
-      <Alert severity="success">
+      <Alert
+        severity="success"
+        sx={{
+          wordBreak: 'break-all',
+          marginTop: '6px',
+        }}
+      >
         We&apos;re honored by your donation. Thank you for being a part of our mission.
         <br />
         TxHash:

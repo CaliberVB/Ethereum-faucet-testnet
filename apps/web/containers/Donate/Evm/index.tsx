@@ -12,13 +12,14 @@ import { useAlert, useHasMetamask, useNetWork } from '@/hooks';
 import { EvmInputAmount } from './InputAmount';
 import { DonateAlert } from '@/components/DonateAlert';
 import { addGaEvent } from '@utils';
+import { addDonator } from '@apiService';
 
 export const EvmDonate = () => {
   const installed = useHasMetamask();
   const [isSwitching, setIsSwitching] = useState(false);
   const [isDonating, setIsDonating] = useState(false);
   const { networkChain } = useNetWork();
-  const { onSetWalletAmount, amount, onChangeAmount } = useContext(DonateContext);
+  const { onSetWalletAmount, amount, onChangeAmount, onSetDonateId } = useContext(DonateContext);
   const { sendTransaction } = useSendTransaction();
   const { account, isLoading: isConnecting, activateBrowserWallet, switchNetwork, chainId } = useEthers();
   const { alertState, onError, onSuccess } = useAlert();
@@ -64,6 +65,14 @@ export const EvmDonate = () => {
         onSuccess(tx?.transactionHash);
         onChangeAmount('');
       }
+      addDonator({
+        address: account,
+        amount: amount,
+        networkName: networkChain.name,
+        hash: tx?.transactionHash,
+      }).then(() => {
+        onSetDonateId();
+      });
     } catch (error) {
       onError(error?.message);
     } finally {

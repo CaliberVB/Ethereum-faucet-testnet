@@ -7,7 +7,8 @@ import { Tab } from '@mui/material';
 import { TabList, TabPanel } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import { useState } from 'react';
-import { AptosWalletProvider } from '@/contexts';
+import { AptosWalletProvider, DonateProvider } from '@/contexts';
+import { Donators } from '../Donate/Donator';
 
 const TabListStyle = {
   '&.MuiTabs-root': {
@@ -37,6 +38,7 @@ export const App = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
   return (
     <AptosWalletProvider>
       <FaucetTitle />
@@ -65,7 +67,10 @@ export const App = () => {
             <Faucet />
           </TabPanel>
           <TabPanel value="donate">
-            <Donate />
+            <DonateProvider>
+              <Donate onDonateSuccess={() => {}} />
+              <Donators />
+            </DonateProvider>
           </TabPanel>
         </TabContext>
       </RoundedBox>
