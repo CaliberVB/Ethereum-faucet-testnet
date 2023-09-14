@@ -28,4 +28,5 @@ RUN yarn install \
 COPY --from=builder /app/dist /app
 COPY ./prisma ./prisma
 RUN ls -lha
+RUN yarn prisma generate
 CMD ["yarn", "next", "start", "-p", "3000"]
