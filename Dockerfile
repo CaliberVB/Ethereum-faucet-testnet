@@ -25,4 +25,6 @@ RUN yarn install \
   && rm -rf /var/cache/apk/* \
   && rm -rf /usr/local/share/.cache/yarn/*
 COPY --from=builder /app/dist /app
+COPY ./prisma ./prisma
+RUN yarn prisma generate
 CMD ["yarn", "next", "start", "-p", "3000"]
