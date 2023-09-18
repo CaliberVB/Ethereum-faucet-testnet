@@ -1,6 +1,3 @@
-// eslint-disable-next-line
-import { PrismaClient } from '@prisma/client';
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../../prisma/prisma';
 import { Donator } from '@interface';

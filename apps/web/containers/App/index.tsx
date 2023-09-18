@@ -3,7 +3,7 @@ import { RoundedBox } from '@/components';
 import { FaucetTitle } from '../FaucetTitle';
 import { Faucet } from '../Faucet';
 import { Donate } from '../Donate';
-import { Tab } from '@mui/material';
+import { Box, Tab } from '@mui/material';
 import { TabList, TabPanel } from '@mui/lab';
 import TabContext from '@mui/lab/TabContext';
 import { useState } from 'react';
@@ -68,7 +68,13 @@ export const App = () => {
           </TabPanel>
           <TabPanel value="donate">
             <DonateProvider>
-              <Donate onDonateSuccess={() => {}} />
+              <Box
+                sx={{
+                  padding: '24px',
+                }}
+              >
+                <Donate onDonateSuccess={() => {}} />
+              </Box>
               <Donators />
             </DonateProvider>
           </TabPanel>
