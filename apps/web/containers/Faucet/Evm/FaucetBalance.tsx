@@ -1,7 +1,7 @@
 import { formatEther } from 'ethers/lib/utils';
 import { useEtherBalance, useEthers } from '@usedapp/core';
 import { useFaucet } from '@/hooks/useFaucet';
-import { useNetWork } from '@/hooks';
+import { useDoveBalance, useNetWork } from '@/hooks';
 import { getAppConfig } from '@config';
 import { Balance } from '@/components';
 import { isInsufficientFund } from '@utils';
@@ -14,6 +14,7 @@ export const EVMBalance: React.FunctionComponent<FaucetBalanceProps> = () => {
   const { account } = useEthers();
   const { networkChain } = useNetWork();
   const { onSetIsInsufficientFund } = useFaucet(networkChain.name);
+  const { doveBalance, doveFaucetBalance } = useDoveBalance();
 
   const balance = useEtherBalance(account, { refresh: 'everyBlock', chainId: networkChain.chainId });
   const faucetBalance = useEtherBalance(walletAddress, { refresh: 'everyBlock', chainId: networkChain.chainId });
@@ -25,11 +26,13 @@ export const EVMBalance: React.FunctionComponent<FaucetBalanceProps> = () => {
     onSetIsInsufficientFund(isInsufficientFund(networkChain, faucetBalanceStr));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [faucetBalanceStr, networkChain]);
+  const balanceDisplay = networkChain.name === 'dove' ? doveBalance : balance;
+  const faucetBalanceDisplay = networkChain.name === 'dove' ? doveFaucetBalance : faucetBalanceStr;
   return (
     <div>
       <Balance
-        faucetBalance={faucetBalance && faucetBalanceStr}
-        walletBalance={balance && formatEther(balance)}
+        faucetBalance={faucetBalanceDisplay}
+        walletBalance={balanceDisplay && formatEther(balanceDisplay)}
         retrieveAmount={retrieveAmount?.toString()}
         networkChain={networkChain}
       />

@@ -8,6 +8,7 @@ import OptimisticIcon from '../../public/assets/images/svg/optimism.svg';
 import BnbIcon from '../../public/assets/images/svg/bnb.svg';
 import MumbaiIcon from '../../public/assets/images/svg/mumbai.svg';
 import AptosIcon from '../../public/assets/images/svg/aptos.svg';
+import DoveIcon from '../../public/assets/images/svg/dove.svg';
 import { Network } from '@config';
 
 const IconMapping = {
@@ -19,6 +20,7 @@ const IconMapping = {
   bnb: <BnbIcon />,
   mumbai: <MumbaiIcon />,
   aptos: <AptosIcon />,
+  dove: <DoveIcon />,
 };
 
 interface NetworkIconProps {

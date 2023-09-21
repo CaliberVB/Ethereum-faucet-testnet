@@ -5,3 +5,4 @@ export * from './useAlert';
 export * from './useAptosBalance';
 export * from './useCopyToClipboard';
 export * from './useMaxAmountTransfer';
+export * from './useDoveBalance';
