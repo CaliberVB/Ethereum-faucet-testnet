@@ -110,10 +110,10 @@ const config: IAppConfig = {
     dove: {
       name: 'dove',
       displayName: 'Dove',
-      providerUrl: 'http://18.142.25.163:8545',
+      providerUrl: 'https://dove-testnet-rpc.caliber.build',
       nativeAsset: 'DOVE',
-      defaultDailyAmount: 1,
-      privilegedDailyAmount: 1,
+      defaultDailyAmount: 10,
+      privilegedDailyAmount: 10,
       blockscanUrl: 'http://54.254.6.15/tx/{txhash}',
       walletPrivateKey: process.env['WALLET_PRIVATE_KEY'] ?? '',
       chainId: 1888,
