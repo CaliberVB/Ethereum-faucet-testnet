@@ -2,28 +2,29 @@ import { Chain, Config, DAppProvider as DAppProviderCore, DEFAULT_SUPPORTED_CHAI
 
 import { useNetWork } from '@/hooks';
 import { getAppConfig } from '@config';
+const { blockchainNetworks } = getAppConfig();
 
 const DoveChain: Chain = {
-  chainId: 1888,
+  chainId: blockchainNetworks.dove.chainId,
   chainName: 'Dove',
   isTestChain: true,
   isLocalChain: false,
-  multicallAddress: '0xc6e7DF5E7b4f2A278906862b61205850344D4e7d',
-  getExplorerAddressLink: (address: string) => `http://54.254.6.15/address/${address}`,
-  getExplorerTransactionLink: (transactionHash: string) => `http://54.254.6.15/tx/${transactionHash}`,
+  multicallAddress: '',
+  getExplorerAddressLink: (address: string) => `${blockchainNetworks.dove.blockscanUrl}/address/${address}`,
+  getExplorerTransactionLink: (transactionHash: string) =>
+    `${blockchainNetworks.dove.blockscanUrl}/tx/${transactionHash}`,
   // Optional parameters:
-  rpcUrl: 'http://18.142.25.163:8545',
-  blockExplorerUrl: 'http://54.254.6.15',
+  rpcUrl: blockchainNetworks.dove.providerUrl,
+  blockExplorerUrl: blockchainNetworks.dove.blockscanUrl,
   nativeCurrency: {
-    name: 'Dove',
-    symbol: 'DOVE',
+    name: blockchainNetworks.dove.name,
+    symbol: blockchainNetworks.dove.nativeAsset,
     decimals: 18,
   },
 };
 
 export const DAppProvider: React.FunctionComponent<React.PropsWithChildren<{}>> = ({ children }) => {
   const { networkChain } = useNetWork();
-  const { blockchainNetworks } = getAppConfig();
   let config: Config = {
     readOnlyChainId: networkChain.chainId ?? blockchainNetworks.dove.chainId,
     readOnlyUrls: {

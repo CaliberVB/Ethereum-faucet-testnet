@@ -28,7 +28,7 @@ export const useDoveBalance = () => {
     getDoveBalance();
     timerRef.current = setInterval(() => {
       getDoveBalance();
-    }, 5000);
+    }, 8000);
     return () => {
       clearInterval(timerRef.current);
     };
