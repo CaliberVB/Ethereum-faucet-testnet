@@ -3,6 +3,7 @@ import { Box, FormControl, SvgIcon, MenuItem } from '@mui/material';
 import BlockChainIcon from '../../public/assets/images/svg/blockchain.svg';
 import { IBlockchainConfig, getAppConfig } from '@config';
 import { useNetWork } from '@/hooks';
+import Link from 'next/link';
 
 const Option: React.FunctionComponent<IBlockchainConfig> = ({ name }) => {
   return (
@@ -42,8 +43,22 @@ export const SelectBlockchainNetwork = () => {
           >
             {Object.entries(blockchainNetworks).map(([key, value]) => {
               return (
-                <MenuItem key={key} value={value as any} style={{ textTransform: 'capitalize', borderRadius: 6 }}>
-                  <Option {...value} />
+                <MenuItem
+                  key={key}
+                  value={value as any}
+                  style={{ textTransform: 'capitalize', borderRadius: 6, paddingLeft: 0, paddingRight: 0 }}
+                >
+                  <Link
+                    href={`/${value.name}`}
+                    style={{
+                      width: '100%',
+                      padding: '0px 8px',
+                      textDecoration: 'none',
+                      color: '#000',
+                    }}
+                  >
+                    <Option {...value} />
+                  </Link>
                 </MenuItem>
               );
             })}

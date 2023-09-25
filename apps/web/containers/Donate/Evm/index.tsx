@@ -8,7 +8,7 @@ import { formatEther } from 'ethers/lib/utils';
 
 import { BalanceItem, LoadingButton } from '@/components';
 import { DonateContext } from '@/contexts';
-import { useAlert, useHasMetamask, useNetWork } from '@/hooks';
+import { useAlert, useDoveBalance, useHasMetamask, useNetWork } from '@/hooks';
 import { EvmInputAmount } from './InputAmount';
 import { DonateAlert } from '@/components/DonateAlert';
 import { addGaEvent } from '@utils';
@@ -25,11 +25,13 @@ export const EvmDonate = () => {
   const { alertState, onError, onSuccess } = useAlert();
 
   const accountBalance = useEtherBalance(account, { refresh: 'everyBlock', chainId: networkChain.chainId });
-  const accountBalanceStr = accountBalance && formatEther(accountBalance);
+  const { doveFaucetBalance } = useDoveBalance();
 
+  const accountBalanceStr = accountBalance && formatEther(accountBalance);
+  const balanceDisplay = networkChain.name === 'dove' ? doveFaucetBalance : accountBalanceStr;
   useEffect(() => {
-    onSetWalletAmount(accountBalanceStr);
-  }, [accountBalanceStr, onSetWalletAmount]);
+    onSetWalletAmount(balanceDisplay);
+  }, [balanceDisplay, onSetWalletAmount]);
 
   const handleChangeNetwork = async () => {
     try {
@@ -113,7 +115,7 @@ export const EvmDonate = () => {
 
     return (
       <LoadingButton
-        disabled={!+amount || +amount > +accountBalanceStr}
+        disabled={!+amount || +amount > +balanceDisplay}
         fullWidth
         variant="contained"
         loadingPosition="end"
@@ -129,7 +131,7 @@ export const EvmDonate = () => {
     <>
       <BalanceItem
         icon={<PaidIcon />}
-        balance={accountBalanceStr}
+        balance={balanceDisplay}
         symbol={networkChain.nativeAsset}
         title="Available Amount"
       />
