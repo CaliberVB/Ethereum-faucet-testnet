@@ -29,13 +29,7 @@ export const Header = () => {
           </Typography>
 
           <Box width={90} height={20}>
-            <Image
-              src="/assets/images/Caliber_White.png"
-              alt="Caliber Logo"
-              width={90}
-              height={20}
-              objectFit="contain"
-            />
+            <Image src="/assets/images/Caliber_White.png" alt="Caliber Logo" width={90} height={20} />
           </Box>
         </Box>
       </Link>
