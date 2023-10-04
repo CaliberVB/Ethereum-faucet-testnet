@@ -25,14 +25,14 @@ export const EvmDonate = () => {
   const { alertState, onError, onSuccess } = useAlert();
 
   const accountBalance = useEtherBalance(account, { refresh: 'everyBlock', chainId: networkChain.chainId });
-  const { doveFaucetBalance } = useDoveBalance();
-  const { holeskyFaucetBalance } = useHoleskyBalance();
+  const { doveBalance } = useDoveBalance();
+  const { holeskyBalance } = useHoleskyBalance();
 
   const accountBalanceStr = accountBalance && formatEther(accountBalance);
   let balanceDisplay = accountBalanceStr;
-  if (networkChain.name === 'dove') balanceDisplay = doveFaucetBalance;
+  if (networkChain.name === 'dove') balanceDisplay = formatEther(doveBalance || 0);
 
-  if (networkChain.name === 'holesky') balanceDisplay = holeskyFaucetBalance;
+  if (networkChain.name === 'holesky') balanceDisplay = formatEther(holeskyBalance || 0);
   useEffect(() => {
     onSetWalletAmount(balanceDisplay);
   }, [balanceDisplay, onSetWalletAmount]);
