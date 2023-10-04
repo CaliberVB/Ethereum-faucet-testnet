@@ -23,6 +23,25 @@ const DoveChain: Chain = {
   },
 };
 
+const HoleskyChain: Chain = {
+  chainId: blockchainNetworks.holesky.chainId,
+  chainName: 'Holesky',
+  isTestChain: true,
+  isLocalChain: false,
+  multicallAddress: '',
+  getExplorerAddressLink: (address: string) => `${blockchainNetworks.holesky.blockscanUrl}/address/${address}`,
+  getExplorerTransactionLink: (transactionHash: string) =>
+    `${blockchainNetworks.holesky.blockscanUrl}/tx/${transactionHash}`,
+  // Optional parameters:
+  rpcUrl: blockchainNetworks.holesky.providerUrl,
+  blockExplorerUrl: blockchainNetworks.holesky.blockscanUrl,
+  nativeCurrency: {
+    name: blockchainNetworks.holesky.name,
+    symbol: blockchainNetworks.holesky.nativeAsset,
+    decimals: 18,
+  },
+};
+
 export const DAppProvider: React.FunctionComponent<React.PropsWithChildren<{}>> = ({ children }) => {
   const { networkChain } = useNetWork();
   let config: Config = {
@@ -36,8 +55,9 @@ export const DAppProvider: React.FunctionComponent<React.PropsWithChildren<{}>> 
       [blockchainNetworks.bnb.chainId]: blockchainNetworks.bnb.providerUrl || '',
       [blockchainNetworks.optimism.chainId]: blockchainNetworks.optimism.providerUrl || '',
       [blockchainNetworks.dove.chainId]: blockchainNetworks.dove.providerUrl || '',
+      [blockchainNetworks.holesky.chainId]: blockchainNetworks.holesky.providerUrl || '',
     },
-    networks: [...DEFAULT_SUPPORTED_CHAINS, DoveChain],
+    networks: [...DEFAULT_SUPPORTED_CHAINS, DoveChain, HoleskyChain],
   };
 
   return <DAppProviderCore config={config}>{children}</DAppProviderCore>;

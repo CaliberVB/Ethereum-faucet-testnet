@@ -1,4 +1,14 @@
-export type Network = 'sepolia' | 'goerli' | 'base' | 'arbitrum' | 'bnb' | 'mumbai' | 'optimism' | 'dove' | 'aptos';
+export type Network =
+  | 'holesky'
+  | 'sepolia'
+  | 'goerli'
+  | 'base'
+  | 'arbitrum'
+  | 'bnb'
+  | 'mumbai'
+  | 'optimism'
+  | 'dove'
+  | 'aptos';
 type TrackingType = 'ip' | 'address';
 export type TrackingConfig = Record<TrackingType, boolean>;
 export interface IAppConfig {

@@ -17,6 +17,7 @@ export function getBlockchainService(networkName: Network): IBlockchainService {
     case 'mumbai':
     case 'optimism':
     case 'dove':
+    case 'holesky':
       return new Ethereum(networkConfig);
     case 'aptos':
       return new Atops(networkConfig);

@@ -5,7 +5,12 @@ const MetaDataConfigs = {
   default: {
     title: 'Testnet Faucet',
     description:
-      'Our website offers a faucet token test net service on various blockchain networks such as Sepolia, Goerli, Mumbai, ARB, OP, BNB, BASE, and Aptos. Get free test net tokens to experiment and develop your applications on these networks. We also provide detailed information and guides related to blockchain and test net tokens.',
+      'Our website offers a faucet token test net service on various blockchain networks such as Holesky, Sepolia, Goerli, Mumbai, ARB, OP, BNB, BASE, and Aptos. Get free test net tokens to experiment and develop your applications on these networks. We also provide detailed information and guides related to blockchain and test net tokens.',
+  },
+  holesky: {
+    title: 'Holesky Testnet Faucet',
+    description:
+      'A fast and reliable Ethereum Holesky testnet faucet for blockchain developers. Get free test net tokens to experiment and develop your applications on these networks. We also provide token test net service on various blockchain networks such as Sepolia, Goerli, Mumbai, ARB, OP, BNB, BASE, and Aptos',
   },
   sepolia: {
     title: 'Sepolia Testnet Faucet',

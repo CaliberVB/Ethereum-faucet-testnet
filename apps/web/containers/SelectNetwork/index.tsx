@@ -46,7 +46,7 @@ export const SelectBlockchainNetwork = () => {
                 <MenuItem
                   key={key}
                   value={value as any}
-                  style={{ textTransform: 'capitalize', borderRadius: 6, paddingLeft: 0, paddingRight: 0 }}
+                  style={{ textTransform: 'capitalize', borderRadius: 6, paddingLeft: 0, marginRight: 6 }}
                 >
                   <Link
                     href={`/${value.name}`}

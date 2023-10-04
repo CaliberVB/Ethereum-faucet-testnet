@@ -23,6 +23,18 @@ const config: IAppConfig = {
   defaultBlockLayover: 5400,
   pollingInterval: 20_000,
   blockchainNetworks: {
+    holesky: {
+      name: 'holesky',
+      displayName: 'Holesky',
+      providerUrl: 'https://ethereum-holesky.publicnode.com',
+      nativeAsset: 'ETH',
+      defaultDailyAmount: 1,
+      privilegedDailyAmount: 2,
+      blockscanUrl: `https://holesky.beaconcha.in/tx/{txhash}`,
+      walletPrivateKey: process.env['WALLET_PRIVATE_KEY'] ?? '',
+      chainId: 17000,
+      walletAddress: process.env['NEXT_PUBLIC_WALLET_ADDRESS'],
+    },
     sepolia: {
       name: 'sepolia',
       displayName: 'Sepolia',
