@@ -9,7 +9,7 @@ export interface BlockchainNetworkProviderProps {
 }
 const { blockchainNetworks } = getAppConfig();
 const supportNetworks = getSupportNetworks();
-const defaultNetwork = blockchainNetworks.sepolia;
+const defaultNetwork = blockchainNetworks.holesky;
 export const BlockchainNetworkContext = createContext<BlockchainNetworkProviderProps>({
   networkChain: defaultNetwork,
   onSelectNetworkChain: () => {},

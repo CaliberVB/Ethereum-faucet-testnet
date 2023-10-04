@@ -8,7 +8,7 @@ import { formatEther } from 'ethers/lib/utils';
 
 import { BalanceItem, LoadingButton } from '@/components';
 import { DonateContext } from '@/contexts';
-import { useAlert, useDoveBalance, useHasMetamask, useNetWork } from '@/hooks';
+import { useAlert, useDoveBalance, useHasMetamask, useNetWork, useHoleskyBalance } from '@/hooks';
 import { EvmInputAmount } from './InputAmount';
 import { DonateAlert } from '@/components/DonateAlert';
 import { addGaEvent } from '@utils';
@@ -26,9 +26,13 @@ export const EvmDonate = () => {
 
   const accountBalance = useEtherBalance(account, { refresh: 'everyBlock', chainId: networkChain.chainId });
   const { doveFaucetBalance } = useDoveBalance();
+  const { holeskyFaucetBalance } = useHoleskyBalance();
 
   const accountBalanceStr = accountBalance && formatEther(accountBalance);
-  const balanceDisplay = networkChain.name === 'dove' ? doveFaucetBalance : accountBalanceStr;
+  let balanceDisplay = accountBalanceStr;
+  if (networkChain.name === 'dove') balanceDisplay = doveFaucetBalance;
+
+  if (networkChain.name === 'holesky') balanceDisplay = holeskyFaucetBalance;
   useEffect(() => {
     onSetWalletAmount(balanceDisplay);
   }, [balanceDisplay, onSetWalletAmount]);

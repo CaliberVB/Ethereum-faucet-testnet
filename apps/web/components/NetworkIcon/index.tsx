@@ -9,9 +9,11 @@ import BnbIcon from '../../public/assets/images/svg/bnb.svg';
 import MumbaiIcon from '../../public/assets/images/svg/mumbai.svg';
 import AptosIcon from '../../public/assets/images/svg/aptos.svg';
 import DoveIcon from '../../public/assets/images/svg/dove.svg';
+import Holesky from '../../public/assets/images/svg/holesky.svg';
 import { Network } from '@config';
 
 const IconMapping = {
+  holesky: <Holesky />,
   goerli: <GoerliIcon />,
   sepolia: <SepoliaIcon />,
   arbitrum: <ArbitrumIcon />,
