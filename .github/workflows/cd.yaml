@@ -125,20 +125,16 @@ jobs:
           token: ${{ secrets.ACTION_TOKEN }}
           path: ${{ env.ROOT_PATH_CD_REPOSITORY }}
 
-      - name: Update deployment, deploy to ArgoCD
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      - name: Update helm chart, commit files to ArgoCD
         run: |
           IMAGE_TAG=$(echo ${{ github.sha }} | cut -c1-9)
-          ECR_REPOSITORY="${NAME_SERVICE}"
+          echo "Working dir helm chart:" $PWD
+          echo "Tagging:" ${IMAGE_TAG}
 
-          cd argocd/faucet-testnet
-          cd overlays/${CURRENT_ENV}
-          kustomize edit set image ${NAME_SERVICE}=${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
-          cd ../..
-          kustomize build ./overlays/${CURRENT_ENV} > manifests/${CURRENT_ENV}/output.yaml
-          git status
+          cd argocd/faucet-testnet-v2
 
+          sed -i -e "s/tag: .*/tag: ${IMAGE_TAG}/g" ./chart/env/${CURRENT_ENV}/${NAME_SERVICE}-values.yaml
+          rm -rf ./chart/env/${CURRENT_ENV}/${NAME_SERVICE}-values.yaml-e
           if [[ -z $(git status -s) ]]; then
             echo -e '[WARNING] Nothing commit for deployments ArgoCD, working tree clean'
             exit 0
