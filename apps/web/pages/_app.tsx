@@ -7,8 +7,6 @@ import { theme } from '@config';
 import { BlockchainNetworkProvider, CaptchaProvider, DAppProvider } from '@/contexts';
 import { ErrorBoundary, GoogleAnalytics } from '@/components';
 
-console.log(123);
-
 const EthereumFaucet = ({ Component, pageProps }: AppProps) => (
   <ErrorBoundary>
     <SessionProvider session={pageProps.session}>
