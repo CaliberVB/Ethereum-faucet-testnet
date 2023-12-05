@@ -131,7 +131,7 @@ jobs:
           echo "Working dir helm chart:" $PWD
           echo "Tagging:" ${IMAGE_TAG}
 
-          cd argocd/faucet-testnet-v2
+          cd argocd/faucet-testnet
 
           sed -i -e "s/tag: .*/tag: ${IMAGE_TAG}/g" ./chart/env/${CURRENT_ENV}/${NAME_SERVICE}-values.yaml
           rm -rf ./chart/env/${CURRENT_ENV}/${NAME_SERVICE}-values.yaml-e
