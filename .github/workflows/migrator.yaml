@@ -115,11 +115,23 @@ jobs:
             exit 1
           fi
 
+      - name: Import Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ env.VAULT_SERVER }}
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            /kv-v2/data/sre-data/github ACTION_TOKEN |ACTION_TOKEN;
+            /kv-v2/data/sre-data/github AWS_ACCESS_KEY_ID |AWS_ACCESS_KEY_ID;
+            /kv-v2/data/sre-data/github AWS_SECRET_ACCESS_KEY | AWS_SECRET_ACCESS_KEY;
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
@@ -131,7 +143,7 @@ jobs:
         with:
           repository: ${{ env.CD_REPOSITORY }}
           ref: ${{ env.BRANCH_CD_REPOSITORY }}
-          token: ${{ secrets.ACTION_TOKEN }}
+          token: ${{ env.ACTION_TOKEN }}
           path: ${{ env.ROOT_PATH_CD_REPOSITORY }}
 
       - name: Update helm chart, commit files to ArgoCD
