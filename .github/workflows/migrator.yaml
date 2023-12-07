@@ -69,13 +69,9 @@ jobs:
         with:
           profile-file: ${{ env.PRITUNL_PROFILE_FILE }}
 
-      - name: Migrate database
-        shell: bash
+      - name: Build docker and migrate
         timeout-minutes: 15 #####
         run: |
-          ls -lha
-          cp -r prisma ./migrator
-          cd migrator
-          yarn install
-          yarn migrate
-
+          IMAGE_TAG=$(echo ${{ github.sha }} | cut -c1-9)
+          docker build --pull -t migrator:${IMAGE_TAG} -f ./migrator/Dockerfile .
+          docker run -e DATABASE_URL $DATABASE_URL migrator:${IMAGE_TAG}
