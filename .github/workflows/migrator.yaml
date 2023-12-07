@@ -64,6 +64,11 @@ jobs:
             /kv-v2/data/sre-data/github PRITUNL_PROFILE_FILE | PRITUNL_PROFILE_FILE;
             /kv-v2/data/faucet/prod DATABASE_URL | DATABASE_URL;
 
+      - name: Setup Pritunl Profile and Start VPN Connection
+        uses: nathanielvarona/pritunl-client-github-action@v1
+        with:
+          profile-file: ${{ env.PRITUNL_PROFILE_FILE }}
+
       - name: Migrate database
         id: migrate-database
         timeout-minutes: 15 #####
