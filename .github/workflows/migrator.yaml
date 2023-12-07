@@ -24,7 +24,7 @@ env:
   VAULT_SERVER: https://vault.caliber.build
 
 jobs:
-  build-prod:
+  migrate-prod:
     runs-on: ubuntu-latest
 
     steps:
