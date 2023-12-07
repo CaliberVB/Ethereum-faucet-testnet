@@ -70,9 +70,10 @@ jobs:
           profile-file: ${{ env.PRITUNL_PROFILE_FILE }}
 
       - name: Migrate database
-        id: migrate-database
+        shell: bash
         timeout-minutes: 15 #####
         run: |
+          ls -lha
           cp -r prisma ./migrator
           cd migrator
           yarn install
