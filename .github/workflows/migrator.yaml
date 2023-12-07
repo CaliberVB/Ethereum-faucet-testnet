@@ -21,13 +21,6 @@ on:
       - main
 
 env:
-  NAME_SERVICE: faucet-testnet-migrator
-  IMAGE_TAG_LATEST: latest
-  DOCKER_BUILDKIT: 1
-  AWS_REGION: ap-southeast-1
-  BRANCH_CD_REPOSITORY: master
-  CD_REPOSITORY: CaliberVB/argocd
-  ROOT_PATH_CD_REPOSITORY: argocd
   VAULT_SERVER: https://vault.caliber.build
 
 jobs:
