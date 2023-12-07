@@ -74,7 +74,6 @@ jobs:
         timeout-minutes: 15 #####
         run: |
           rm .yarnrc.yml
-          ls -lha
           cp -r prisma ./migrator
           cd migrator
           yarn install
